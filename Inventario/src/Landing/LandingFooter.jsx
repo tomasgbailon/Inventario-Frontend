@@ -16,7 +16,7 @@ export default function LandingFooter() {
                 </div>
                 <div className='landingFooterColumn'>
                     <div className='landingFooterItem' id='grey'>Iniciar Sesión</div>
-                    <div className='landingFooterItem'>Github</div>
+                    <div className='landingFooterItem'><a href='https://github.com/tomasgbailon/Inventario-Frontend'>Github</a></div>
                     <div className='landingFooterItem'> </div>
                 </div>
             </div>

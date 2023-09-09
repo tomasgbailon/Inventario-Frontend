@@ -39,8 +39,14 @@
     
 }
 
+.landingFooterItem a {
+    font-family: 'Outfit Medium';
+    font-size: 1.1em;
+    color: rgb(63, 63, 63)
+}
+
 .creditContainer {
-    font-size: 1em;
+    font-size: 0.7em;
 }
 
 #grey {

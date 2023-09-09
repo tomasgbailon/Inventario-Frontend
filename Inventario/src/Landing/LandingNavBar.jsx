@@ -15,7 +15,7 @@ export default function LandingNavBar() {
                 <a href="/">Documentación</a>
             </div>
             <div className="landingNavBarItem">
-                <a href="/">Panel de Control</a>
+                <a href="/dashboard">Panel de Control</a>
             </div>
             <div className="landingNavBarItem">
                 <LoginButton/>

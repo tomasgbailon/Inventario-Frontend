@@ -73,7 +73,7 @@ font-style: normal;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 70%;
+  height: 70vw;
 }
 
 .rightLandingContainer {
@@ -101,7 +101,6 @@ font-style: normal;
     align-items: center;
     width: 40%;
     height: 4em;
-    margin-top: 0em;
 }
 
 .landingImage {
@@ -114,7 +113,7 @@ font-style: normal;
 }
 
 h1 {
-    font-size: 4em;
+    font-size: 3.2vw;
 }
 
 p {
