@@ -3,16 +3,46 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    align-items: flex-start;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .dashboardContent {
+    margin-top: 2em;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    align-items: center;
-    width: 100vw;
+    width: 50vw;
     height: 100vh;
+}
+
+.titleContainer h1{
+    font-family: 'Outfit Medium';
+    font-size: 3em;
+    text-align: left;
+}
+
+.titleContainer{
+    display: flex;
+    align-items: center;
+    width: 90%;
+    padding-left: 10%;
+    gap: 22em;
+}
+
+.plusButton {
+    background-color: rgb(21, 119, 235);
+    width: 10%;
+    height: 70%;
+    border-radius: 3em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.plusButton a {
+    font-family: 'Outfit ExtraLight';
+    color: white;
+    font-size: 4em;
+    text-decoration: none;
 }

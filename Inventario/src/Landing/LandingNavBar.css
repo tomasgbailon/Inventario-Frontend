@@ -24,3 +24,21 @@
 a{
     font-size: 1.3em;
 }
+
+@media screen and (max-width: 1080px){
+  #landingNavBarContainer {
+    flex-direction: column;
+    height: 44vh;
+    gap: 0em;
+    padding-bottom: 2vh;
+  }
+  .landingNavBarItem{
+    width: 40%;
+    min-height: 12%;
+  }
+
+  .landingNavBarItem a {
+    font-family: 'Outfit Regular';
+    font-size: 1.6em;
+  }
+}

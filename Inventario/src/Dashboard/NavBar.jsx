@@ -1,4 +1,5 @@
 import './NavBar.css'
+import Popover from '../Tools/PopOver'
 
 // Selections:
 // 1: Panel de Control
@@ -43,9 +44,10 @@ export default function NavBar({selection}) {
                 {selection != 4 && <div className="thinGreyLine"/>}
             </div>
             <div className="navbarItem">
-                <a href='/'>
+                {/* <a href='/'>
                     Cuenta
-                </a>
+                </a> */}
+                <Popover/>
                 {selection == 5 && <div className="thinBlueLine"/>}
                 {selection != 5 && <div className="thinGreyLine"/>}
             </div>
