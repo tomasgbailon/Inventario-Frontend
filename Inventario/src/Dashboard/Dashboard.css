@@ -26,15 +26,15 @@
     display: flex;
     align-items: center;
     width: 90%;
-    padding-left: 10%;
+    padding-left: 5%;
     gap: 22em;
 }
 
 .plusButton {
     background-color: rgb(21, 119, 235);
-    width: 10%;
-    height: 70%;
-    border-radius: 3em;
+    width: 15%;
+    height: 50%;
+    border-radius: 1em;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -43,6 +43,41 @@
 .plusButton a {
     font-family: 'Outfit ExtraLight';
     color: white;
-    font-size: 4em;
+    font-size: 3em;
     text-decoration: none;
+}
+.orgsContainer{
+    font-family: 'Outfit Medium';
+    color: black;
+    font-size: 1.5em;
+    width: 92%;
+    text-align: left;
+}
+.orgsContainer h2 {
+    margin-top: 1em;
+    margin-bottom: 0.3em;
+}
+.greyLine {
+    width: 100%;
+    height: 0.08em;
+    background-color: rgb(211, 211, 211);
+    margin-top: 0.1em;
+    margin-bottom: 0.1em;
+}
+.orgs-grid {
+    display: grid;
+    grid-template-columns: 5fr 3fr 2fr;
+    width: 100%;
+    margin-bottom: 1em;
+}
+.orgs-grid-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    font-size: 0.9em;
+    color: rgb(156, 156, 156)
+}
+#options-item{
+    text-align: right;
 }

@@ -26,7 +26,7 @@
     width: 10vw;
     height: 15vh;
     z-index: 1;
-    border-radius: 1em;
+    border-radius: 2em;
     border: 1px solid rgba(0, 0, 0, 0.2);
   }
   
@@ -34,5 +34,33 @@
     display: flex;
     margin-top: 12em;
     margin-left: 15em;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5%;
   }
-  
+
+  .pop-over-button {
+    height: 45%;
+    width: 95%;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 1.2em;
+  }
+
+  .pop-over-button a {
+    font-family: 'Outfit Medium';
+  }
+
+  #blue-button {
+    background-color: rgb(21, 119, 235);
+  }
+  #blue-button a {
+    color: #fff;
+  }
+
+  #red-button {
+    background-color: rgb(235, 21, 21);
+  }
+  #red-button a {
+    color: #fff;
+  }
