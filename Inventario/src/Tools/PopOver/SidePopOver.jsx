@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useContext } from 'react';
-import './PopOver.css';
+import './SidePopOver.css';
 import {DashboardContext} from '../../Dashboard/Dashboard.jsx';
 
-function PopOver({Buttons, mainText, Id}) {
+function SidePopOver({Buttons, mainText, Id}) {
   const [isOpen, setIsOpen] = useState(false);
   const [buttons, setButtons] = useState(Buttons);
   const [text, setText] = useState(mainText);
@@ -30,14 +30,14 @@ function PopOver({Buttons, mainText, Id}) {
   useEffect(() => {
   }, []);
   return (
-    <div className={`popover ${(isOpen && (id === buttonUnlock) ) ? 'open' : ''}`}>
-      <button onClick={togglePopover} className="popover-button">{text}</button>
-      <div style={contentStyle} className="popover-content">
+    <div className={`side-popover ${(isOpen && (id === buttonUnlock) ) ? 'open' : ''}`}>
+      <button onClick={togglePopover} className="side-popover-button">{text}</button>
+      <div className="side-popover-content">
         {
           buttons.map((button) => {
             return (
               <>
-                <button className='pop-over-button' id={handleColor(button.color)}><a href={button.link}>{button.text}</a></button>
+                <button className='side-pop-over-button' id={handleColor(button.color)}><a href={button.link}>{button.text}</a></button>
               </>
             )
           })
@@ -47,4 +47,4 @@ function PopOver({Buttons, mainText, Id}) {
   );
 }
 
-export default PopOver;
+export default SidePopOver;

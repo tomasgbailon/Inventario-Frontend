@@ -2,7 +2,7 @@ import './Dashboard.css';
 import NavBar from './NavBar.jsx';
 import Footer from './Footer.jsx';
 import SearchBar from '../Tools/SearchBar';
-import Popover from '../Tools/PopOver/PopOver';
+import SidePopOver from '../Tools/PopOver/SidePopOver.jsx';
 import { useState,createContext } from 'react';
 
 const createdOrgs = [
@@ -57,12 +57,12 @@ export default function Dashboard() {
                                 <>
                                     <div className='orgs-grid-item'>{org.name}</div>
                                     <div className='orgs-grid-item'>{org.createdAt}</div>
-                                    <Popover Buttons={
+                                    <SidePopOver Buttons={
                                         [
                                             {text: 'Eliminar', color: 'red', link: '/'},
                                             {text: 'Otra opción', color: '', link: '/'},
                                         ]
-                                    } mainText="⋮" Type="options" Id={index + 1}/>
+                                    } mainText="⋮" Id={index + 1}/>
                                     <div className='greyLine'></div>
                                     <div className='greyLine'></div>
                                     <div className='greyLine'></div>
@@ -85,12 +85,12 @@ export default function Dashboard() {
                                 <>
                                     <div className='orgs-grid-item'>{org.name}</div>
                                     <div className='orgs-grid-item'>{org.createdAt}</div>
-                                    <Popover Buttons={
+                                    <SidePopOver Buttons={
                                         [
                                             {text: 'Renunciar', color: 'red', link: '/'},
                                             {text: 'Otra opción', color: '', link: '/'},
                                         ]
-                                    } mainText="⋮" Type="options" Id={index + createdOrgs.length + 1}/>
+                                    } mainText="⋮" Id={index + createdOrgs.length + 1}/>
                                     <div className='greyLine'></div>
                                     <div className='greyLine'></div>
                                     <div className='greyLine'></div>

@@ -81,3 +81,8 @@
 #options-item{
     text-align: right;
 }
+@media screen and (max-width: 1080px){
+    .dashboardContent {
+        width: 80vw;
+    }
+}

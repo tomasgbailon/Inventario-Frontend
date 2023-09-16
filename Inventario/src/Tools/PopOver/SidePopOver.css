@@ -1,5 +1,5 @@
 /* Popover.css */
-.popover {
+.side-popover {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -7,17 +7,20 @@
     justify-content: center;
     width: 100%;
     height: 100%;
+    text-align: left;
   }
   
-  .popover-button {
+  .side-popover-button {
     background: none;
     border: none;
     cursor: pointer;
     font-family: 'Outfit Regular';
     font-size: 1.2em;
+    width: 100%;
+    text-align: right;
   }
   
-  .popover-content {
+  .side-popover-content {
     display: none;
     position: absolute;
     background-color: #fff;
@@ -30,24 +33,24 @@
     border: 1px solid rgba(0, 0, 0, 0.2);
   }
   
-  .popover.open .popover-content {
+  .side-popover.open .side-popover-content {
     display: flex;
-    margin-top: 15em;
-    margin-left: 0em;
+    margin-top: 0em;
+    margin-left: 17em;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 5%;
   }
 
-  .pop-over-button {
+  .side-pop-over-button {
     height: 45%;
     width: 95%;
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 1.2em;
   }
 
-  .pop-over-button a {
+  .side-pop-over-button a {
     font-family: 'Outfit Medium';
     font-size: 100%;
   }
@@ -67,19 +70,19 @@
   }
 
   @media screen and (max-width: 1080px){
-    .popover-button {
+    .side-popover-button {
       font-size: 1.5em
     }
 
-    .popover.open .popover-content {
-      margin-top: 15em;
-      margin-left: 0em;
+    .side-popover.open .side-popover-content {
+      margin-top: 3.8em;
+      margin-left: -3em;
     }
-    .popover-content {
-      width: 20vw;
+    .side-popover-content {
+      width: 15vw;
       height: 15vh;
     }
-    .popover {
-      width: 10%;
+    .side-popover {
+      width: 100%;
     }
   }
