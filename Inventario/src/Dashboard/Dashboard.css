@@ -40,6 +40,10 @@
     justify-content: center;
 }
 
+.plusButton:active {
+    background-color: rgb(49, 133, 235);
+}
+
 .plusButton a {
     font-family: 'Outfit ExtraLight';
     color: white;

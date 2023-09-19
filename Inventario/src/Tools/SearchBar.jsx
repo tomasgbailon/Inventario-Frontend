@@ -2,7 +2,7 @@ import './SearchBar.css';
 import { useState } from 'react';
 
 export default function SearchBar({defaultText}) {
-    const [searchTerm, setSearchTerm] = useState('Hola');
+    const [searchTerm, setSearchTerm] = useState('');
     const handleSearch = (e) => {
         setSearchTerm(e.target.value);
     };
