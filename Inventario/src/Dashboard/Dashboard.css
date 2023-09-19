@@ -20,6 +20,7 @@
     font-family: 'Outfit Medium';
     font-size: 3em;
     text-align: left;
+    width: 82%;
 }
 
 .titleContainer{
@@ -27,12 +28,11 @@
     align-items: center;
     width: 90%;
     padding-left: 5%;
-    gap: 22em;
 }
 
 .plusButton {
     background-color: rgb(21, 119, 235);
-    width: 15%;
+    width: 6em;
     height: 50%;
     border-radius: 1em;
     display: flex;
