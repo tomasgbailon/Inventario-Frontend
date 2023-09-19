@@ -26,17 +26,17 @@
     background-color: #fff;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
     padding: 10px;
-    width: 10vw;
-    height: 15vh;
+    width: 8vw;
+    height: 13vh;
     z-index: 1;
-    border-radius: 2em;
+    border-radius: 1.5em;
     border: 1px solid rgba(0, 0, 0, 0.2);
   }
   
   .side-popover.open .side-popover-content {
     display: flex;
     margin-top: 0em;
-    margin-left: 17em;
+    margin-left: 15em;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -47,12 +47,13 @@
     height: 45%;
     width: 95%;
     border: 1px solid rgba(0, 0, 0, 0.2);
-    border-radius: 1.2em;
+    border-radius: 0.8em;
   }
 
   .side-pop-over-button a {
     font-family: 'Outfit Medium';
     font-size: 100%;
+    font-size: 0.9em;
   }
 
   #blue-button {

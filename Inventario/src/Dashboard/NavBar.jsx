@@ -8,6 +8,11 @@ import PopOver from '../Tools/PopOver/PopOver'
 // 4: Soporte
 // 5: Cuenta
 
+const user = {
+    name: 'Fatima Bailón',
+    email: 'a@b.cl',
+}
+
 export default function NavBar({selection}) {
     return (
         <div className="navbar">
@@ -49,7 +54,7 @@ export default function NavBar({selection}) {
                         {text: 'Cuenta', color: 'blue', link: '/'},
                         {text: 'Cerrar Sesión', color: 'red', link: '/'},
                     ]
-                } mainText="Cuenta" Id={0} />
+                } mainText={user.name} Id={0} />
                 {selection == 5 && <div className="thinBlueLine"/>}
                 {selection != 5 && <div className="thinGreyLine"/>}
             </div>
