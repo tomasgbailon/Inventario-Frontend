@@ -1,0 +1,22 @@
+.signup-button {
+    background-color: rgb(21, 119, 235);
+    height: 80%;
+    width: 100%;
+    border-radius: 1.7em;
+}
+
+.white-a {
+    color: white;
+}
+
+.signup-button:hover{
+    color: black;
+    height: 80%;
+    width: 100%;
+    border-radius: 1.7em;
+    background-color: rgb(71, 143, 232);
+    box-shadow: 0px 0px 5px rgba(21, 117, 235, 0.5);
+}
+.white-a:hover{
+    color: white;
+}

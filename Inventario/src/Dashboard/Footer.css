@@ -1,0 +1,27 @@
+.footer {
+    height: 10vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footerItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 12%;
+}
+
+.footerItem a {
+    color: rgb(168, 168, 168);
+    font-size: 1.2em;
+    text-align: center;
+}
+@media screen and (max-width: 1080px){
+    .footer {
+        height: 50vh;
+        gap: 1em;
+    }
+}

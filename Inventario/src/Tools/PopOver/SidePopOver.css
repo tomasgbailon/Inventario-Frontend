@@ -1,0 +1,89 @@
+/* Popover.css */
+.side-popover {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    text-align: left;
+  }
+  
+  .side-popover-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'Outfit Regular';
+    font-size: 1.2em;
+    width: 100%;
+    text-align: right;
+  }
+  
+  .side-popover-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    width: 8vw;
+    height: 13vh;
+    z-index: 1;
+    border-radius: 1.5em;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+  }
+  
+  .side-popover.open .side-popover-content {
+    display: flex;
+    margin-top: 0em;
+    margin-left: 15em;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5%;
+  }
+
+  .side-pop-over-button {
+    height: 45%;
+    width: 95%;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 0.8em;
+  }
+
+  .side-pop-over-button a {
+    font-family: 'Outfit Medium';
+    font-size: 100%;
+    font-size: 0.9em;
+  }
+
+  #blue-button {
+    background-color: rgb(21, 119, 235);
+  }
+  #blue-button a {
+    color: #fff;
+  }
+
+  #red-button {
+    background-color: rgb(235, 21, 21);
+  }
+  #red-button a {
+    color: #fff;
+  }
+
+  @media screen and (max-width: 1080px){
+    .side-popover-button {
+      font-size: 1.5em
+    }
+
+    .side-popover.open .side-popover-content {
+      margin-top: 3.8em;
+      margin-left: -3em;
+    }
+    .side-popover-content {
+      width: 15vw;
+      height: 15vh;
+    }
+    .side-popover {
+      width: 100%;
+    }
+  }
