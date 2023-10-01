@@ -10,7 +10,7 @@ export default function SearchBar({defaultText}) {
         <div className='searchBar'>
             <input
                 disabled={false}
-                pointer-events='auto'
+                pointerEvents='auto'
                 readOnly={false}
                 className='searchInput'
                 type="text"

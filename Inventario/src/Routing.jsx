@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route} from 'react-router-dom'
 import Landing from './Landing/Landing.jsx'
 import Dashboard from './Dashboard/Dashboard.jsx'
+import Organization from './Dashboard/Organization.jsx'
 
 
 function Routing(){
@@ -10,6 +11,7 @@ function Routing(){
                 <Routes>
                     <Route path={'/'} element={<Landing/>}/>
                     <Route path={'/dashboard'} element={<Dashboard/>}/>
+                    <Route path={'/organization/:organizationId/'} element={<Organization/>}/>
                 </Routes>
             </BrowserRouter>
         </>

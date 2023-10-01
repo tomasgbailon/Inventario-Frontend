@@ -1,0 +1,54 @@
+.organization {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+.organizationContent{
+    margin-top: 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 50vw;
+    height: auto;
+}
+
+.depsContainer{
+    font-family: 'Outfit Medium';
+    color: black;
+    font-size: 1.5em;
+    width: 92%;
+    text-align: left;
+}
+
+.deps-grid {
+    display: grid;
+    grid-template-columns: 4fr 3fr 2fr 1fr;
+    width: 100%;
+    margin-bottom: 1em;
+}
+.deps-grid-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    font-size: 0.9em;
+    color: rgb(156, 156, 156)
+}
+.deps-grid-item a {
+    font-size: 1.1em;
+    font-family: 'Outfit Medium';
+}
+#circle-grid{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.2em;
+}
+@media screen and (max-width: 1080px){
+    .organizationContent {
+        width: 80vw;
+    }
+}

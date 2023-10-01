@@ -3,7 +3,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    height: auto;
+    overflow: auto;
 }
 
 .dashboardContent {
@@ -13,7 +14,7 @@
     justify-content: flex-start;
     align-items: center;
     width: 50vw;
-    height: 100vh;
+    height: auto
 }
 
 .titleContainer h1{
@@ -81,6 +82,10 @@
     width: 100%;
     font-size: 0.9em;
     color: rgb(156, 156, 156)
+}
+.orgs-grid-item a {
+    font-size: 1.1em;
+    font-family: 'Outfit Medium';
 }
 #options-item{
     text-align: right;
