@@ -1,35 +1,43 @@
-.organization {
+.adminContainer h2{
+    margin: 0%;
+    margin-top: 0.5em;
+}
+
+.administration{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
 }
-.organizationContent{
-    margin-top: 2em;
+.administrationContent{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    width: 50vw;
+    width: 30vw;
     height: auto;
 }
-
-.depsContainer{
+.adminContainer{
     font-family: 'Outfit Medium';
     color: black;
     font-size: 1.5em;
     width: 92%;
     text-align: left;
 }
-
-.deps-grid {
+.admin-grid {
     display: grid;
-    grid-template-columns: 4fr 3fr 2fr 1fr;
+    grid-template-columns: 8fr 1fr;
     width: 100%;
     margin-bottom: 1em;
 }
-.deps-grid-header{
+#triple-column{
+    grid-template-columns: 3fr 3fr 1fr;
+}
+#small-font{
+    font-size: 0.7em;
+}
+.admin-grid-header{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -37,18 +45,16 @@
     font-size: 0.9em;
     color: rgb(156, 156, 156)
 }
-.deps-grid-item a {
+.admin-grid-item {
+    display: flex;
+    align-items: center;
+}
+.admin-grid-item a {
     font-size: 1.1em;
     font-family: 'Outfit Medium';
 }
-#circle-grid{
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 0.2em;
-}
 @media screen and (max-width: 1080px){
-    .organizationContent {
+    .administrationContent {
         width: 90vw;
     }
 }

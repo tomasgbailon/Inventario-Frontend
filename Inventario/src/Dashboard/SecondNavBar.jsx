@@ -21,7 +21,7 @@ export default function SecondNavBar({selection}) {
                 {selection == 1 && <div className="thinGreyLine"/>}
             </div>
             <div className="second-navbarItem">
-                <a href='/dashboard'>
+                <a href={'/administration/'+organizationId}>
                     Administración
                 </a>
                 {selection != 2 && <div className="thinBlueLine"/>}

@@ -1,0 +1,101 @@
+.signup-window{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+}
+.signup-window-left{
+    width: 50vw;
+    height: 100vh;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+.signup-image{
+    height: 100%;
+    object-fit: cover;
+}
+.signup-window-right{
+    width: 50vw;
+    display: flex;
+    justify-content: left;
+    align-items: flex-start;
+}
+.signup-window-form{
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 8em;
+}
+.signup-window-form h1{
+    font-family: 'Outfit Medium';
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 3em;
+}
+
+.signup-form-label {
+    font-family: 'Outfit Medium';
+    font-size: 1.2em;
+    margin-bottom: 0.2em;
+    color: black;
+}
+
+.signup-form-input{
+    width: 100%;
+    height: 2.5em;
+    font-family: 'Outfit Regular';
+    font-size: 1.1em;
+    padding-left: 0.5em;
+    border: solid 2px rgb(67, 67, 67);
+    border-radius: 0.7em;
+    margin-bottom: 0.5em;
+}
+.signup-form-button{
+    width: 100%;
+    height: 2.5em;
+    font-family: 'Outfit Medium';
+    font-size: 1.1em;
+    border: none;
+    border-radius: 0.7em;
+    background-color: rgb(21, 119, 235);
+    color: white;
+    margin-top: 1em;
+}
+.signup-form-button:hover{
+    background-color: rgb(71, 143, 232);
+    box-shadow: 0px 0px 5px rgba(21, 117, 235, 0.5);
+}
+@media screen and (max-width: 1080px){
+    .signup-window{
+        flex-direction: column-reverse;
+        min-height: 100vh;
+        height: auto;
+        width: 100vw;
+    }
+    .signup-window-left{
+        width: 100vw;
+        height: auto;
+        justify-content: center;
+        align-items: center;
+    }
+    .signup-image{
+        width: 80%;
+    }
+    .signup-window-right{
+        width: 100vw;
+        height: auto;
+        justify-content: center;
+        align-items: center;
+    }
+    .signup-window-form{
+        width: 70%;
+        margin-left: 0em;
+    }
+    .signup-form-input{
+        width: 100%;
+    }
+    .signup-form-button{
+        width: 100%;
+    }
+}

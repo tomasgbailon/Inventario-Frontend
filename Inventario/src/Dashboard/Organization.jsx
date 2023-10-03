@@ -85,7 +85,7 @@ export default function Organization() {
                             {editOrg.map((org, index) => {
                                 return(
                                     <>
-                                        <div className='deps-grid-item'><a href={'/organization/'+organizationId+'/department/'+index+'/'}>{org.name}</a></div>
+                                        <div className='deps-grid-item'><a href={'/administration/'+organizationId+'/'}>{org.name}</a></div>
                                         <div className='deps-grid-item'>{org.createdAt}</div>
                                         <div className='deps-grid-item' id='circle-grid'>
                                             {org.inCharge.slice(0,Math.min(4,org.inCharge.length)).map((name, index) => {
@@ -124,7 +124,7 @@ export default function Organization() {
                             {visOrg.map((org, index) => {
                                 return(
                                     <>
-                                        <div className='deps-grid-item'><a href={'/organization/'+organizationId+'/department/'+index+'/'}>{org.name}</a></div>
+                                        <div className='deps-grid-item'><a href={'/administration/'+organizationId+'/'}>{org.name}</a></div>
                                         <div className='deps-grid-item'>{org.createdAt}</div>
                                         <div className='deps-grid-item' id='circle-grid'>
                                             {org.inCharge.slice(0,Math.min(4,org.inCharge.length)).map((name, index) => {
