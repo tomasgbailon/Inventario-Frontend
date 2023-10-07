@@ -1,12 +1,32 @@
-import './NewOrg.css'
+import './EditOrg.css'
 import NavBar from '../NavBar'
 import Footer from '../Footer'
 import UserSearch from '../../Tools/UserSearch'
 import { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 import { DashboardContext } from '../Dashboard'
 import { SearchContext } from '../Dashboard'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
+
+const org = {
+    name: 'Organización 1',
+    description: 'Esta es una organización de prueba',
+    organizationId: 1,
+}
+
+const admins = [
+    {
+        name: 'aUsuario 1',
+        email: 'aab@b.cl',
+        userId: 1,
+    },
+    {
+        name: 'aUsuario 2',
+        email: 'abb@d.cl',
+        userId: 2,
+    }
+]
 
 const users = [
     {
@@ -51,13 +71,22 @@ const users = [
     },
 ]
 
-export default function NewOrg(){
+export default function EditOrg(){
+    const {organizationId} = useParams();
     const [buttonUnlock, setButtonUnlock] = useState(0);
     const [searchTerm, setSearchTerm] = useState('');
     const [searchResults, setSearchResults] = useState([]);
     const [clickedResult, setClickedResult] = useState({});
-    const [selectedUsers, setSelectedUsers] = useState([]);
+    const [selectedUsers, setSelectedUsers] = useState(admins);
+    const [orgName, setOrgName] = useState(org.name);
+    const [orgDescription, setOrgDescription] = useState(org.description);
     const [count, setCount] = useState(0);
+    const handleWriteName = (e) => {
+        setOrgName(e.target.value);
+    };
+    const handleWriteDesc = (e) => {
+        setOrgDescription(e.target.value);
+    };
     const deleteResult = (userId) => {
         return () => {
             const newSelectedUsers = selectedUsers.filter((user) => {
@@ -86,6 +115,7 @@ export default function NewOrg(){
         if (clickedResult.name !== undefined && included.length === 0) {
             setSelectedUsers([...selectedUsers, clickedResult]);
         }
+        console.log(clickedResult);
     }, [clickedResult, count]);
     return(
         <SearchContext.Provider value={{searchTerm, setSearchTerm, searchResults, setSearchResults, clickedResult, setClickedResult, count, setCount}}>
@@ -93,12 +123,12 @@ export default function NewOrg(){
             <div className="new-org">
                 <NavBar />
                 <div className="new-org-content">
-                    <h1>Nueva Organización</h1>
+                    <h1>{org.name}</h1>
                     <div className="new-org-form">
                         <label className="orgName">Nombre</label>
-                        <input type="text" className="new-org-input" id="orgName" placeholder="Nombre de la organización" />
+                        <input type="text" className="new-org-input" id="orgName" value={orgName} onChange={handleWriteName} />
                         <label className="orgDescription">Descripción (opcional)</label>
-                        <textarea className="new-org-input" id="orgDescription" placeholder="¿Qué hace tu organización?" />
+                        <textarea className="new-org-input" id="orgDescription" value={orgDescription} onChange={handleWriteDesc} />
                         <label className="orgSearch">Agrega Administradores (opcional)</label>
                         <UserSearch defaultText='Buscar usuario...'/>
                         { selectedUsers.length > 0 && <div className="orgSearch-frame">

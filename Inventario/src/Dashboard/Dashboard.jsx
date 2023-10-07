@@ -90,8 +90,8 @@ export default function Dashboard() {
                                     <div className='orgs-grid-item'>{org.createdAt}</div>
                                     <SidePopOver Buttons={
                                         [
+                                            {text: 'Editar', color: 'blue', link: '/edit/org/'+org.organizationId+'/'},
                                             {text: 'Eliminar', color: 'red', link: '/'},
-                                            {text: 'Otra opción', color: '', link: '/'},
                                         ]
                                     } mainText="⋮" Id={index + 1} contentStyle={1}/>
                                     <div className='greyLine'></div>
@@ -118,8 +118,8 @@ export default function Dashboard() {
                                     <div className='orgs-grid-item'>{org.createdAt}</div>
                                     <SidePopOver Buttons={
                                         [
+                                            {text: 'Editar', color: 'blue', link: '/edit/org/'+org.organizationId+'/'},
                                             {text: 'Renunciar', color: 'red', link: '/'},
-                                            {text: 'Otra opción', color: '', link: '/'},
                                         ]
                                     } mainText="⋮" Id={index + createdOrgs.length + 1} contentStyle={1}/>
                                     <div className='greyLine'></div>

@@ -9,6 +9,7 @@ export default function UserSearch({defaultText}) {
     const { searchTerm, setSearchTerm } = useContext(SearchContext);
     const { searchResults, setSearchResults } = useContext(SearchContext);
     const { clickedResult, setClickedResult } = useContext(SearchContext);
+    const { count, setCount } = useContext(SearchContext);
     const handleSearch = (e) => {
         setSearchTerm(e.target.value);
     };
@@ -17,6 +18,7 @@ export default function UserSearch({defaultText}) {
             setClickedResult(user);
             setSearchTerm('');
             setSearchResults([]);
+            setCount(count + 1);
         }
     }
     return (
