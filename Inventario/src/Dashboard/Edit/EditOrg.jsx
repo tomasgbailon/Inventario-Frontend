@@ -121,7 +121,7 @@ export default function EditOrg(){
         <SearchContext.Provider value={{searchTerm, setSearchTerm, searchResults, setSearchResults, clickedResult, setClickedResult, count, setCount}}>
         <DashboardContext.Provider value={{buttonUnlock, setButtonUnlock}}>
             <div className="new-org">
-                <NavBar />
+                <NavBar selection={1} />
                 <div className="new-org-content">
                     <h1>{org.name}</h1>
                     <div className="new-org-form">

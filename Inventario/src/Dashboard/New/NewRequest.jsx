@@ -1,4 +1,4 @@
-import './NewOrg.css'
+import './NewRequest.css'
 import NavBar from '../NavBar'
 import Footer from '../Footer'
 import UserSearch from '../../Tools/UserSearch'
@@ -7,6 +7,32 @@ import { DashboardContext } from '../Dashboard'
 import { SearchContext } from '../Dashboard'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
+
+const createdOrgs = [
+    {
+        name: 'Organización 1',
+        createdAt: '2021-05-01',
+        organizationId: 1,
+    },
+    {
+        name: 'Organización 2',
+        createdAt: '2021-05-02',
+        organizationId: 2,
+    },
+]
+
+const administredOrgs = [
+    {
+        name: 'Organización 3',
+        createdAt: '2021-05-03',
+        organizationId: 3,
+    },
+    {
+        name: 'Organización 4',
+        createdAt: '2021-05-04',
+        organizationId: 4,
+    },
+]
 
 const users = [
     {
@@ -51,7 +77,7 @@ const users = [
     },
 ]
 
-export default function NewOrg(){
+export default function NewRequest(){
     const [buttonUnlock, setButtonUnlock] = useState(0);
     const [searchTerm, setSearchTerm] = useState('');
     const [searchResults, setSearchResults] = useState([]);
@@ -78,31 +104,35 @@ export default function NewOrg(){
         }
     }, [searchTerm]);
     useEffect(() => {
-        const included = selectedUsers.filter((user) => {
-            return user.userId === clickedResult.userId && 
-            user.name === clickedResult.name && 
-            user.email === clickedResult.email;
-        });
-        if (clickedResult.name !== undefined && included.length === 0) {
+        if (clickedResult.name !== undefined && selectedUsers.length === 0) {
             setSelectedUsers([...selectedUsers, clickedResult]);
         }
     }, [clickedResult, count]);
     return(
         <SearchContext.Provider value={{searchTerm, setSearchTerm, searchResults, setSearchResults, clickedResult, setClickedResult, count, setCount}}>
         <DashboardContext.Provider value={{buttonUnlock, setButtonUnlock}}>
-            <div className="new-org">
-                <NavBar selection={1} />
-                <div className="new-org-content">
-                    <h1>Nueva Organización</h1>
-                    <div className="new-org-form">
-                        <label className="orgName">Nombre</label>
-                        <input type="text" className="new-org-input" id="orgName" placeholder="Nombre de la organización" />
-                        <label className="orgDescription">Descripción (opcional)</label>
-                        <textarea className="new-org-input" id="orgDescription" placeholder="¿Qué hace tu organización?" />
-                        <label className="orgSearch">Agrega Administradores (opcional)</label>
+            <div className='new-req'>
+                <NavBar selection={2}/>
+                <div className='new-req-content'>
+                    <h1>Nueva Solicitud</h1>
+                    <div className='new-req-form'>
+                        <label for="org-select">Organización</label>
+                        <select name="org-select" id="org-select">
+                            {
+                                [...createdOrgs, ...administredOrgs].map((org) => {
+                                    return <option value={org.organizationId}>{org.name}</option>
+                                })
+                            }
+                        </select>
+                        <label for="perm-type">Tipo de permiso</label>
+                        <select name="perm-type" id="perm-type">
+                            <option value="1">Administrador</option>
+                            <option value="2">Editor</option>
+                            <option value="3">Visualizador</option>
+                        </select>
+                        <label for="perm-name">Correo del receptor</label>
                         <UserSearch defaultText='Buscar usuario...'/>
                         { selectedUsers.length > 0 && <div className="orgSearch-frame">
-                            <div className='org-searchEntry' id='greyHeader'> Seleccionados </div>
                             {
                                 selectedUsers.map(
                                     (user, index) => {
@@ -121,7 +151,7 @@ export default function NewOrg(){
                         <button type="submit" className='submit-button'>Crear</button>
                     </div>
                 </div>
-                <Footer />
+                < Footer />
             </div>
         </DashboardContext.Provider>
         </SearchContext.Provider>
