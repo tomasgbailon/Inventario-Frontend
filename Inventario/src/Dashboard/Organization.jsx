@@ -8,6 +8,10 @@ import Circle from '../Tools/Circle';
 import { useState,createContext, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 
+const org = {
+    name: 'Outer Ltda.',
+}
+
 const editOrg = [
     {
         name: 'Inventario 1',
@@ -68,7 +72,7 @@ export default function Organization() {
                 <SecondNavBar selection={1}/>
                 <div className="organizationContent">
                     <div className='titleContainer'>
-                        <h1>Departamentos</h1>
+                        <h1>{org.name} Departamentos</h1>
                     </div>
                     <SearchBar defaultText='Buscar departamento...'/>
                     <div className='depsContainer'>

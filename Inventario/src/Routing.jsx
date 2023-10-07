@@ -4,6 +4,7 @@ import Dashboard from './Dashboard/Dashboard.jsx'
 import Organization from './Dashboard/Organization.jsx'
 import Administration from './Dashboard/Administration.jsx'
 import { SignupWindow } from './Account/Signup.jsx'
+import NewOrg from './Dashboard/New/NewOrg.jsx'
 
 
 function Routing(){
@@ -16,6 +17,7 @@ function Routing(){
                     <Route path={'/organization/:organizationId/'} element={<Organization/>}/>
                     <Route path={'/administration/:organizationId/'} element={<Administration/>}/>
                     <Route path={'/signup'} element={<SignupWindow/>}/>
+                    <Route path={'/create/org/'} element={<NewOrg/>}/>
                 </Routes>
             </BrowserRouter>
         </>

@@ -58,6 +58,7 @@ const visOrgs = [
 ]
 
 export const DashboardContext = createContext();
+export const SearchContext = createContext();
 
 export default function Dashboard() {
     const [createdOrgsList, setCreatedOrgsList] = useState(createdOrgs);
@@ -70,7 +71,7 @@ export default function Dashboard() {
             <div className="dashboardContent">
                 <div className='titleContainer'>
                     <h1>Organizaciones</h1>
-                    <button className='plusButton'><a href='/'>+</a></button>
+                    <button className='plusButton'><a href='/create/org/'>+</a></button>
                 </div>
                 <SearchBar defaultText='Buscar organización...'/>
                 <div className='orgsContainer'>

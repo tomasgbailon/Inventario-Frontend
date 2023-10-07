@@ -1,8 +1,8 @@
 import './SearchBar.css';
 import { useState } from 'react';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
-
 export default function SearchBar({defaultText}) {
     const [searchTerm, setSearchTerm] = useState('');
     const handleSearch = (e) => {
