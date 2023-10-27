@@ -1,0 +1,68 @@
+.inventory {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    overflow: auto;
+}
+.inventory-body {
+    margin-top: 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 50vw;
+    height: auto
+}
+.titleContainer h2{
+    font-family: 'Outfit Medium';
+    font-size: 2em;
+    text-align: left;
+    width: 82%;
+}
+.inventory-body h1{
+    font-family: 'Outfit Medium';
+    font-size: 3em;
+}
+.titleContainer{
+    display: flex;
+    align-items: center;
+    width: 90%;
+    padding-left: 5%;
+}
+.categoryContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    min-height: 4em;
+    height: auto;
+    border: solid 1px rgb(82, 82, 82);
+    border-radius: 1em;
+    overflow: hidden;
+    margin-bottom: 0.1em;
+}
+.categoryInfo{
+    width: 100%;
+    height: 4em;
+    display: grid;
+    grid-template-columns: 2fr 3fr 1fr;
+    border: solid 1px rgb(82, 82, 82);
+    align-items: center;
+    justify-content: center;
+}
+.categoryInfo p{
+    height: 100%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+#big-font {
+    font-family: 'Outfit Medium';
+    font-size: 2em;
+}

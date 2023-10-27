@@ -14,14 +14,17 @@ const org = {
 
 const editOrg = [
     {
+        inventoryId: '1',
         name: 'Inventario 1',
         createdAt: '2021-05-01',
         inCharge: ['F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N'],
     },{
+        inventoryId: '2',
         name: 'Inventario 2',
         createdAt: '2021-05-02',
         inCharge: ['A', 'B', 'C'],
     },{
+        inventoryId: '3',
         name: 'Inventario 3',
         createdAt: '2021-05-03',
         inCharge: ['D', 'E'],
@@ -30,14 +33,17 @@ const editOrg = [
 
 const visOrg = [
     {
+        inventoryId: '4',
         name: 'Inventario 4',
         createdAt: '2021-05-04',
         inCharge: ['I', 'J'],
     },{
+        inventoryId: '5',
         name: 'Inventario 5',
         createdAt: '2021-05-05',
         inCharge: ['K', 'L'],
     },{
+        inventoryId: '6',
         name: 'Inventario 6',
         createdAt: '2021-05-06',
         inCharge: ['M', 'N'],
@@ -89,7 +95,7 @@ export default function Organization() {
                             {editOrg.map((org, index) => {
                                 return(
                                     <>
-                                        <div className='deps-grid-item'><a href={'/administration/'+organizationId+'/'}>{org.name}</a></div>
+                                        <div className='deps-grid-item'><a href={'/inventory/'+organizationId+'/'+org.inventoryId+'/'}>{org.name}</a></div>
                                         <div className='deps-grid-item'>{org.createdAt}</div>
                                         <div className='deps-grid-item' id='circle-grid'>
                                             {org.inCharge.slice(0,Math.min(4,org.inCharge.length)).map((name, index) => {
@@ -97,7 +103,7 @@ export default function Organization() {
                                                     <Circle text={name} color={getRandColor(name)}/>
                                                 )
                                             })}
-                                            {org.inCharge.length > 4 ? <Circle text={'+'+(org.inCharge.length-6)} color={'#c4c4c4'}/> : null}
+                                            {org.inCharge.length > 4 ? <Circle text={'+'+(org.inCharge.length-6)} color={'#707070'}/> : null}
                                         </div>
                                         <SidePopOver Buttons={
                                             [
@@ -128,7 +134,7 @@ export default function Organization() {
                             {visOrg.map((org, index) => {
                                 return(
                                     <>
-                                        <div className='deps-grid-item'><a href={'/administration/'+organizationId+'/'}>{org.name}</a></div>
+                                        <div className='deps-grid-item'><a href={'/inventory/'+organizationId+'/'+org.inventoryId+'/'}>{org.name}</a></div>
                                         <div className='deps-grid-item'>{org.createdAt}</div>
                                         <div className='deps-grid-item' id='circle-grid'>
                                             {org.inCharge.slice(0,Math.min(4,org.inCharge.length)).map((name, index) => {

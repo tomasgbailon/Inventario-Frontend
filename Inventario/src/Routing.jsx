@@ -7,7 +7,8 @@ import { SignupWindow } from './Account/Signup.jsx'
 import NewOrg from './Dashboard/New/NewOrg.jsx'
 import NewRequest from './Dashboard/New/NewRequest.jsx'
 import EditOrg from './Dashboard/Edit/EditOrg.jsx'
-
+import Requests from './Requests/Requests.jsx'
+import Inventory from './Dashboard/Inventory.jsx'
 
 function Routing(){
     return (
@@ -22,6 +23,8 @@ function Routing(){
                     <Route path={'/create/org/'} element={<NewOrg/>}/>
                     <Route path={'/create/req/'} element={<NewRequest/>}/>
                     <Route path={'/edit/org/:organizationId/'} element={<EditOrg/>}/>
+                    <Route path={'/requests'} element={<Requests/>}/>
+                    <Route path={'/inventory/:organizationId/:inventoryId/'} element={<Inventory/>}/>
                 </Routes>
             </BrowserRouter>
         </>
