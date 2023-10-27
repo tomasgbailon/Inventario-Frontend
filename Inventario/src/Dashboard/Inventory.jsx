@@ -6,6 +6,7 @@ import SecondNavBar from './SecondNavBar';
 import { DashboardContext } from './Dashboard';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
+import SidePopOver from '../Tools/PopOver/SidePopOver';
 
 const inventory = {
     name: 'Inventario 1',
@@ -194,13 +195,14 @@ export default function Inventory() {
                     <SearchBar defaultText={'buscar productos...'}/>
                     <div className='titleContainer'>
                         <h1> Categorías</h1>
-                        <button className='plusButton'><a href='/create/category'>+</a></button>
+                        <button className='plusButton'><a href={'/create/cat/'+organizationId+'/'}>+</a></button>
                     </div>
                     {
                         categories.map((category, index) => {
                             return (
+                                <div className='entry'>
                                 <div className={`categoryContainer ${locks[index] === 1 ? 'open' : ''}`} key={index}>
-                                    <div className='categoryInfo' onClick={toggleLock(index)}>
+                                    <div className='categoryInfo'  onClick={toggleLock(index)}>
                                         <p id='big-font' className='flex-start'>{category.prefix} - {category.name}</p>
                                         <p>{category.products.length} productos</p>
                                     </div>
@@ -249,6 +251,13 @@ export default function Inventory() {
                                             })
                                         }
                                     </div>}
+                                </div>
+                                <SidePopOver Buttons={
+                                    [
+                                        {text: 'Editar', color: 'blue', link: '/edit/cat/'+organizationId+'/'+category.categoryId+'/'},
+                                        {text: 'Eliminar', color: 'red', link: '/'},
+                                    ]
+                                } mainText="⋮" Id={index + 1} contentStyle={3}/>
                                 </div>
                             )
                         })
