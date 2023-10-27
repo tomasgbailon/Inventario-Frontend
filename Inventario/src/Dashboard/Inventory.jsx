@@ -14,7 +14,7 @@ const inventory = {
 
 const Categories = [
     {
-        name: 'Categoría 1',
+        name: 'Herramientas de construcción',
         createdAt: '2021-05-01',
         updatedAt: '2021-05-02',
         prefix: 'C1',
@@ -22,7 +22,7 @@ const Categories = [
         products: [
             {
                 productId: 1,
-                name: 'XProducto 1',
+                name: 'Martillo Stanley',
                 sku: 'P1',
                 price: 100,
                 units: 10,
@@ -32,7 +32,7 @@ const Categories = [
                 updatedAt: '2021-05-01'
             },{
                 productId: 2,
-                name: 'Producto 2',
+                name: 'Martillo Bauker',
                 sku: 'P2',
                 price: 100,
                 units: 10,
@@ -42,7 +42,7 @@ const Categories = [
                 updatedAt: '2021-05-01'
             },{
                 productId: 3,
-                name: 'Producto 3',
+                name: 'Martillo Truper',
                 sku: 'P3',
                 price: 1000,
                 units: 15,
@@ -56,12 +56,44 @@ const Categories = [
 
     },
     {
-        name: 'Categoría 2',
+        name: 'Maquinaria de soldadura',
         createdAt: '2021-05-02',
         updatedAt: '2021-05-03',
         prefix: 'C2',
         categoryId: 2,
-        products: [],
+        products: [
+            {
+                productId: 4,
+                name: 'Soldadora Einhell',
+                sku: 'P4',
+                price: 100,
+                units: 10,
+                available: 10,
+                inUse: 0,
+                unavailable: 0,
+                updatedAt: '2021-05-01'
+            },{
+                productId: 5,
+                name: 'Soldadora Stanley',
+                sku: 'P5',
+                price: 100,
+                units: 10,
+                available: 5,
+                inUse: 5,
+                unavailable: 0,
+                updatedAt: '2021-05-01'
+            },{
+                productId: 6,
+                name: 'Soldadora Truper',
+                sku: 'P6',
+                price: 1000,
+                units: 15,
+                available: 10,
+                inUse: 0,
+                unavailable: 5,
+                updatedAt: '2021-05-01'
+            }
+        ],
     },
     {
         name: 'Categoría 3',
@@ -167,10 +199,9 @@ export default function Inventory() {
                     {
                         categories.map((category, index) => {
                             return (
-                                <div className='categoryContainer' key={index}>
+                                <div className={`categoryContainer ${locks[index] === 1 ? 'open' : ''}`} key={index}>
                                     <div className='categoryInfo' onClick={toggleLock(index)}>
-                                        <p id='big-font'>{category.prefix} - {category.name}</p>
-                                        <div/>
+                                        <p id='big-font' className='flex-start'>{category.prefix} - {category.name}</p>
                                         <p>{category.products.length} productos</p>
                                     </div>
                                     { locks[index] === 1 && category.products.length > 0 && <div className='blackLine'/>}
@@ -198,7 +229,7 @@ export default function Inventory() {
                                                     <>
                                                         <div className='products-grid-item'>{product.name}</div>
                                                         <div className='products-grid-item'>{product.sku}</div>
-                                                        <div className='products-grid-item'>{product.price}</div>
+                                                        <div className='products-grid-item'>${product.price}</div>
                                                         <div className='products-grid-item'>{product.units}</div>
                                                         <div className='products-grid-item'>{product.available}</div>
                                                         <div className='products-grid-item'>{product.inUse}</div>

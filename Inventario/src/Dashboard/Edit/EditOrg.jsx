@@ -148,7 +148,7 @@ export default function EditOrg(){
                                 )
                             }
                         </div>}
-                        <button type="submit" className='submit-button'>Crear</button>
+                        <button type="submit" className='submit-button'>Confirmar</button>
                     </div>
                 </div>
                 <Footer />

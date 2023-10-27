@@ -33,7 +33,7 @@
 .plusButton {
     background-color: rgb(21, 119, 235);
     width: 6em;
-    height: 50%;
+    height:100%;
     border-radius: 1em;
     display: flex;
     align-items: center;
