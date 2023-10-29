@@ -21,14 +21,14 @@ export default function SecondNavBar({selection}) {
                 {selection == 1 && <div className="thinGreyLine"/>}
             </div>
             <div className="second-navbarItem">
-                <a href={'/administration/'+organizationId}>
+                <a href={'/administration/'+organizationId+'/'}>
                     Administración
                 </a>
                 {selection != 2 && <div className="thinBlueLine"/>}
                 {selection == 2 && <div className="thinGreyLine"/>}
             </div>
             <div className="second-navbarItem">
-                <a href='/'>
+                <a href={'/proyects/'+organizationId+'/'}>
                     Proyectos
                 </a>
                 {selection != 3 && <div className="thinBlueLine"/>}

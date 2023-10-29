@@ -11,6 +11,8 @@ import Requests from './Requests/Requests.jsx'
 import Inventory from './Dashboard/Inventory.jsx'
 import NewCat from './Dashboard/New/NewCat.jsx'
 import EditCat from './Dashboard/Edit/EditCat.jsx'
+import NewInv from './Dashboard/New/NewInventory.jsx'
+import Proyects from './Dashboard/Proyects.jsx'
 
 function Routing(){
     return (
@@ -29,6 +31,8 @@ function Routing(){
                     <Route path={'/inventory/:organizationId/:inventoryId/'} element={<Inventory/>}/>
                     <Route path={'/create/cat/:organizationId/'} element={<NewCat/>}/>
                     <Route path={'/edit/cat/:organizationId/:categoryId/'} element={<EditCat/>}/>
+                    <Route path={'/create/inv/:organizationId/'} element={<NewInv/>}/>
+                    <Route path={'/proyects/:organizationId/'} element={<Proyects/>}/>
                 </Routes>
             </BrowserRouter>
         </>

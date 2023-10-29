@@ -79,6 +79,7 @@ export default function Organization() {
                 <div className="organizationContent">
                     <div className='titleContainer'>
                         <h1>{org.name} Departamentos</h1>
+                        <button className='plusButton'><a href={'/create/inv/'+organizationId+'/'}>+</a></button>
                     </div>
                     <SearchBar defaultText='Buscar departamento...'/>
                     <div className='depsContainer'>
