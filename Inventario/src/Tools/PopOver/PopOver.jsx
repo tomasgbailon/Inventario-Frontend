@@ -13,7 +13,6 @@ function PopOver({Buttons, mainText, Id}) {
   const togglePopover = () => {
     setButtonUnlock(id);
     setIsOpen(!isOpen);
-    console.log(buttonUnlock, isOpen);
   };
   const handleColor = (color) => {
     switch (color) {

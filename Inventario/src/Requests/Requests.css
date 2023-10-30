@@ -1,4 +1,4 @@
-.dashboard {
+.requests{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -6,7 +6,8 @@
     height: auto;
     overflow: auto;
 }
-.dashboardContent {
+
+.requests-body {
     margin-top: 2em;
     display: flex;
     flex-direction: column;
@@ -29,36 +30,15 @@
     width: 90%;
     padding-left: 5%;
 }
-
-.plusButton {
-    background-color: rgb(21, 119, 235);
-    width: 6em;
-    height:100%;
-    border-radius: 1em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.plusButton:active {
-    background-color: rgb(49, 133, 235);
-}
-
-.plusButton a {
-    font-family: 'Outfit ExtraLight';
-    color: white;
-    font-size: 3em;
-    text-decoration: none;
-}
-.orgsContainer{
+.requestsContainer{
     font-family: 'Outfit Medium';
     color: black;
     font-size: 1.5em;
     width: 92%;
     text-align: left;
 }
-.orgsContainer h2 {
-    margin-top: 1em;
+.requestsContainer h2 {
+    margin-top: 0em;
     margin-bottom: 0.3em;
 }
 .greyLine {
@@ -68,13 +48,19 @@
     margin-top: 0.1em;
     margin-bottom: 0.1em;
 }
-.orgs-grid {
+.reqs-grid-1 {
     display: grid;
-    grid-template-columns: 5fr 3fr 2fr;
+    grid-template-columns: 7fr 5fr 2fr 2fr;
     width: 100%;
     margin-bottom: 1em;
 }
-.orgs-grid-header{
+.reqs-grid-2 {
+    display: grid;
+    grid-template-columns: 5fr 5fr 5fr 2fr 2fr;
+    width: 100%;
+    margin-bottom: 1em;
+}
+.reqs-grid-header{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -82,15 +68,34 @@
     font-size: 0.9em;
     color: rgb(156, 156, 156)
 }
-.orgs-grid-item a {
-    font-size: 1.1em;
-    font-family: 'Outfit Medium';
+.req-accept{
+    background-color: rgb(21, 119, 235);
+    width: 98%;
+    height: 100%;
+    border-radius: 0.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8em;
+    color: white;
 }
-#options-item{
-    text-align: right;
+.req-reject{
+    background-color: red;
+    width: 100%;
+    height: 100%;
+    border-radius: 0.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8em;
+    color: white;
 }
+
 @media screen and (max-width: 1080px){
-    .dashboardContent {
+    .requests-body {
         width: 80vw;
+    }
+    .reqs-grid-item {
+        font-size: 0.7em;
     }
 }

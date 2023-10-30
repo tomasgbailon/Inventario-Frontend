@@ -1,5 +1,15 @@
-/* Popover.css */
-.popover {
+.gen-label{
+    font-family: 'Outfit Medium';
+    color: gray
+}
+.gen-date{
+    font-family: 'Outfit Medium';
+    font-size: 1em;
+    width: 95%;
+    height: 2em;
+    border-radius: 1em;
+}
+.gen-popover {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -9,7 +19,7 @@
     height: 100%;
   }
   
-  .popover-button {
+  .gen-popover-button {
     background: none;
     border: none;
     cursor: pointer;
@@ -17,22 +27,22 @@
     font-size: 1.2em;
   }
   
-  .popover-content {
+  .gen-popover-content {
     display: none;
     position: absolute;
     background-color: #fff;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
     padding: 10px;
-    width: 7vw;
-    height: 10vh;
+    width: 12vw;
+    height: 15vh;
     z-index: 1;
     border-radius: 1.5em;
     border: 1px solid rgba(0, 0, 0, 0.2);
   }
   
-  .popover.open .popover-content {
+  .gen-popover.open .gen-popover-content {
     display: flex;
-    margin-top: 11em;
+    margin-top: 13em;
     margin-left: 0em;
     flex-direction: column;
     align-items: center;
@@ -40,53 +50,15 @@
     gap: 5%;
   }
 
-  .pop-over-button {
-    height: 45%;
+  .gen-pop-over-button {
+    height: 35%;
     width: 100%;
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 0.8em;
   }
 
-  .pop-over-button a {
+  .gen-pop-over-button {
     font-family: 'Outfit Medium';
     font-size: 100%;
-  }
-
-  #blue-button {
-    background-color: rgb(21, 119, 235);
-  }
-  #blue-button a {
     color: #fff;
-  }
-
-  #red-button {
-    background-color: rgb(235, 21, 21);
-  }
-  #red-button a {
-    color: #fff;
-  }
-
-  #green-button {
-    background-color: #328f2b;
-  }
-  #green-button a {
-    color: #fff;
-  }
-
-  @media screen and (max-width: 1080px){
-    .popover-button {
-      font-size: 2em
-    }
-
-    .popover.open .popover-content {
-      margin-top: 15em;
-      margin-left: 0em;
-    }
-    .popover-content {
-      width: 20vw;
-      height: 15vh;
-    }
-    .popover {
-      width: 30%;
-    }
   }

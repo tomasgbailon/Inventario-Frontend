@@ -2,12 +2,12 @@ import React, { useEffect, useState, useContext } from 'react';
 import './SidePopOver.css';
 import {DashboardContext} from '../../Dashboard/Dashboard.jsx';
 
-function SidePopOver({Buttons, mainText, Id}) {
+function SidePopOver({Buttons, mainText, Id, contentStyle}) {
   const [isOpen, setIsOpen] = useState(false);
   const [buttons, setButtons] = useState(Buttons);
   const [text, setText] = useState(mainText);
-  const [id, setId] = useState(Id);//[id, setId
-  const [contentStyle, setContentStyle] = useState({});//{textAlign: 'right',}
+  const [id, setId] = useState(Id);
+  // const [style, setStyle] = useState(contentStyle);
   const [block, setBlock] = useState(true);
   const {buttonUnlock, setButtonUnlock} = useContext(DashboardContext);
   const togglePopover = () => {
@@ -30,14 +30,14 @@ function SidePopOver({Buttons, mainText, Id}) {
   useEffect(() => {
   }, []);
   return (
-    <div className={`side-popover ${(isOpen && (id === buttonUnlock) ) ? 'open' : ''}`}>
-      <button onClick={togglePopover} className="side-popover-button">{text}</button>
-      <div className="side-popover-content">
+    <div className={`side-popover${contentStyle == 3 ? '-3' : ''} ${(isOpen && (id === buttonUnlock) ) ? 'open' : ''}`}>
+      <button onClick={togglePopover} className={`side-popover${contentStyle == 3 ? '-3' : ''}-button`}>{text}</button>
+      <div className={"side-popover-content"+"-"+contentStyle}>
         {
           buttons.map((button) => {
             return (
               <>
-                <button className='side-pop-over-button' id={handleColor(button.color)}><a href={button.link}>{button.text}</a></button>
+                <button className={`side-pop-over-button`} id={handleColor(button.color)}><a href={button.link}>{button.text}</a></button>
               </>
             )
           })

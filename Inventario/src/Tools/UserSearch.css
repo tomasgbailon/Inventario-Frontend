@@ -1,0 +1,51 @@
+.user-searchBar-frame {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    border: solid 1.5px rgba(82, 82, 82, 0.729);
+    border-radius: 0.5em;
+    overflow: hidden;
+    margin-bottom: 0.7em;
+}
+
+.user-searchBar {
+    width: 97%;
+    height: 1.8em;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 0.2em;
+    margin-bottom: 0.7em;
+    padding-left: 0.8em;
+    font-size: 1.3em;
+    border-radius: 0.5em;
+    border: solid 1.5px rgba(82, 82, 82, 0.729);
+    overflow: hidden;
+}
+.user-searchInput {
+    width: 85%;
+    height: 95%;
+    font-family: 'Outfit Light';
+    font-size: 0.9em;
+    padding-left: 0.5em;
+    border: 0px;
+}
+.user-searchInput:focus {
+    outline: none;
+}
+.searchIcon{
+    color: rgba(100, 100, 100, 0.729);
+}
+.user-searchResult {
+    font-family: 'Outfit Light';
+    height: 2.5em;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 1em;
+}
+.user-searchResult:hover {
+    background-color: rgb(49, 133, 235);
+    color: white;
+    cursor: pointer;
+}

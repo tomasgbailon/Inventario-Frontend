@@ -1,0 +1,60 @@
+.adminContainer h2{
+    margin: 0%;
+    margin-top: 0.5em;
+}
+
+.administration{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+.administrationContent{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 30vw;
+    height: auto;
+}
+.adminContainer{
+    font-family: 'Outfit Medium';
+    color: black;
+    font-size: 1.5em;
+    width: 92%;
+    text-align: left;
+}
+.admin-grid {
+    display: grid;
+    grid-template-columns: 8fr 1fr;
+    width: 100%;
+    margin-bottom: 1em;
+}
+#triple-column{
+    grid-template-columns: 3fr 3fr 1fr;
+}
+#small-font{
+    font-size: 0.7em;
+}
+.admin-grid-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    font-size: 0.9em;
+    color: rgb(156, 156, 156)
+}
+.admin-grid-item {
+    display: flex;
+    align-items: center;
+}
+.admin-grid-item a {
+    font-size: 1.1em;
+    font-family: 'Outfit Medium';
+}
+@media screen and (max-width: 1080px){
+    .administrationContent {
+        width: 90vw;
+    }
+}

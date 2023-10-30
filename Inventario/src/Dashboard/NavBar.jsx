@@ -28,7 +28,7 @@ export default function NavBar({selection}) {
                 {selection != 1 && <div className="thinGreyLine"/>}
             </div>
             <div className="navbarItem">
-                <a href='/dashboard'>
+                <a href='/requests'>
                     Solicitudes
                 </a>
                 {selection == 2 && <div className="thinBlueLine"/>}

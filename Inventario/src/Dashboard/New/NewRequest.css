@@ -1,0 +1,39 @@
+.new-req-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 75vh;
+}
+
+.new-req-content h1{
+    font-family: 'Outfit Medium';
+}
+
+.new-req-form{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+}
+
+.new-req-form label {
+    font-family: 'Outfit Regular';
+    font-size: 1.3em;
+    color: rgb(74, 74, 74);
+}
+
+.new-req-form select {
+    font-family: 'Outfit Light';
+    font-size: 1.2em;
+    border-radius: 0.5em;
+    border: solid 1.5px rgba(82, 82, 82, 0.729);
+    height: 1.8em;
+    padding-left: 0.5em;
+    margin-bottom: 0.5em;
+    background-color: white;
+}
+@media screen and (max-width: 1080px){
+    .new-req-form{
+        width: 70%;
+    }
+}
