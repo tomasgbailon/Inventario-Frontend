@@ -71,8 +71,8 @@ export default function EditCat(){
     const handleWriteName = (e) => {
         setOrgName(e.target.value);
     };
-    const handleWriteDesc = (e) => {
-        setOrgDescription(e.target.value);
+    const handleWritePrefix = (e) => {
+        setOrgPrefix(e.target.value);
     };
     const deleteResult = (inventoryId) => {
         return () => {
@@ -115,8 +115,8 @@ export default function EditCat(){
                         <label className="orgName">Nombre</label>
                         <input type="text" className="new-org-input" id="orgName" value={orgName} onChange={handleWriteName} />
                         <label className="orgName">Prefijo</label>
-                        <input type="text" className="new-org-input" id="orgName" value={orgPrefix} onChange={handleWriteDesc} />
-                        <label className="orgSearch">Agrega Inventarios (opcional)</label>
+                        <input type="text" className="new-org-input" id="orgName" value={orgPrefix} onChange={handleWritePrefix} />
+                        <label className="orgSearch">Maneja Inventarios (opcional)</label>
                         <UserSearch defaultText='Buscar inventario...'/>
                         { selectedUsers.length > 0 && <div className="orgSearch-frame">
                             <div className='org-searchEntry' id='greyHeader'> Seleccionados </div>

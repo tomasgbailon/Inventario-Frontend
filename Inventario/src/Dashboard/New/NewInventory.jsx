@@ -104,6 +104,7 @@ export default function NewInv(){
                         <label className="orgDescription">Descripción (opcional)</label>
                         <textarea className="new-org-input" id="orgDescription" placeholder="Describe tu inventario" />
                         <label className="orgSearch">Agrega editores (opcional)</label>
+                        <label className="orgSearch" id='small-font'>*Los administradores ya cuentan con permisos de edición</label>
                         <UserSearch defaultText='Buscar usuario...'/>
                         { selectedUsers.length > 0 && <div className="orgSearch-frame">
                             <div className='org-searchEntry' id='greyHeader'> Seleccionados </div>

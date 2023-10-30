@@ -85,6 +85,10 @@
     justify-content: center;
     margin-top: 1em;
 }
+#small-font{
+    font-size: 0.9em;
+    color: black
+}
 
 @media screen and (max-width: 1080px){
     .new-org-form{

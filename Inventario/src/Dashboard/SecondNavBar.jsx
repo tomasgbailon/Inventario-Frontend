@@ -7,7 +7,6 @@ import { DashboardContext } from './Dashboard'
 // 1: Departamentos
 // 2: Administración
 // 3: Proyectos
-// 4: Nuevo
 
 export default function SecondNavBar({selection}) {
     const {organizationId} = useContext(DashboardContext);
@@ -33,13 +32,6 @@ export default function SecondNavBar({selection}) {
                 </a>
                 {selection != 3 && <div className="thinBlueLine"/>}
                 {selection == 3 && <div className="thinGreyLine"/>}
-            </div>
-            <div className="second-navbarItem">
-                <a href='/'>
-                    Nuevo
-                </a>
-                {selection != 4 && <div className="thinBlueLine"/>}
-                {selection == 4 && <div className="thinGreyLine"/>}
             </div>
         </div>
     )

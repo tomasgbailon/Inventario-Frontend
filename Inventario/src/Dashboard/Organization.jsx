@@ -108,7 +108,7 @@ export default function Organization() {
                                         </div>
                                         <SidePopOver Buttons={
                                             [
-                                                {text: 'Editar', color: 'blue', link: '/'},
+                                                {text: 'Editar', color: 'blue', link: '/edit/inv/'+organizationId+'/'+org.inventoryId+'/'},
                                                 {text: 'Eliminar', color: 'red', link: '/'},
                                             ]
                                         } mainText="⋮" Id={index + 1} contentStyle={2}/>

@@ -13,6 +13,7 @@ import NewCat from './Dashboard/New/NewCat.jsx'
 import EditCat from './Dashboard/Edit/EditCat.jsx'
 import NewInv from './Dashboard/New/NewInventory.jsx'
 import Proyects from './Dashboard/Proyects.jsx'
+import EditInv from './Dashboard/Edit/EditInv.jsx'
 
 function Routing(){
     return (
@@ -33,6 +34,7 @@ function Routing(){
                     <Route path={'/edit/cat/:organizationId/:categoryId/'} element={<EditCat/>}/>
                     <Route path={'/create/inv/:organizationId/'} element={<NewInv/>}/>
                     <Route path={'/proyects/:organizationId/'} element={<Proyects/>}/>
+                    <Route path={'/edit/inv/:organizationId/:inventoryId/'} element={<EditInv/>}/>
                 </Routes>
             </BrowserRouter>
         </>

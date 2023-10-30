@@ -9,21 +9,22 @@ import { SearchContext } from '../Dashboard'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
-const org = {
-    name: 'Organización 1',
-    description: 'Esta es una organización de prueba',
-    organizationId: 1,
+const inv = {
+    name: 'Inventario 1',
+    prefix: 'INV1',
+    location: 'Sala 1',
+    description: 'Este es un inventario de prueba',
+    inventoryId: 1,
 }
-
-const admins = [
+const editors = [
     {
         name: 'aUsuario 1',
-        email: 'aab@b.cl',
+        email: 'a@b.cl',
         userId: 1,
     },
     {
         name: 'aUsuario 2',
-        email: 'abb@d.cl',
+        email: 'b@c.cl',
         userId: 2,
     }
 ]
@@ -32,12 +33,12 @@ const users = [
     {
         name: 'aUsuario 1',
         email: 'aab@b.cl',
-        userId: 1,
+        userId: 9,
     },
     {
         name: 'aUsuario 2',
         email: 'abb@d.cl',
-        userId: 2,
+        userId: 10,
     },
     {
         name: 'bUsuario 3',
@@ -71,19 +72,27 @@ const users = [
     },
 ]
 
-export default function EditOrg(){
-    const {organizationId} = useParams();
+export default function EditInv(){
+    const {organizationId, inventoryId} = useParams();
     const [buttonUnlock, setButtonUnlock] = useState(0);
     const [searchTerm, setSearchTerm] = useState('');
     const [searchResults, setSearchResults] = useState([]);
     const [clickedResult, setClickedResult] = useState({});
-    const [selectedUsers, setSelectedUsers] = useState(admins);
-    const [orgName, setOrgName] = useState(org.name);
-    const [orgDescription, setOrgDescription] = useState(org.description);
+    const [selectedUsers, setSelectedUsers] = useState(editors);
+    const [orgName, setOrgName] = useState(inv.name);
+    const [orgPrefix, setOrgPrefix] = useState(inv.prefix);
+    const [orgLocation, setOrgLocation] = useState(inv.location);
+    const [orgDescription, setOrgDescription] = useState(inv.description);
     const [count, setCount] = useState(0);
     const handleWriteName = (e) => {
         setOrgName(e.target.value);
     };
+    const handleWritePrefix = (e) => {
+        setOrgPrefix(e.target.value);
+    }
+    const handleWriteLocation = (e) => {
+        setOrgLocation(e.target.value);
+    }
     const handleWriteDesc = (e) => {
         setOrgDescription(e.target.value);
     };
@@ -123,13 +132,17 @@ export default function EditOrg(){
             <div className="new-org">
                 <NavBar selection={1} />
                 <div className="new-org-content">
-                    <h1>{org.name}</h1>
+                    <h1>{inv.name}</h1>
                     <div className="new-org-form">
                         <label className="orgName">Nombre</label>
                         <input type="text" className="new-org-input" id="orgName" value={orgName} onChange={handleWriteName} />
+                        <label className="orgPrefix">Prefijo</label>
+                        <input type="text" className="new-org-input" id="orgPrefix" value={orgPrefix} onChange={handleWritePrefix} />
+                        <label className="orgLocation">Ubicación</label>
+                        <input type="text" className="new-org-input" id="orgLocation" value={orgLocation} onChange={handleWriteLocation} />
                         <label className="orgDescription">Descripción (opcional)</label>
                         <textarea className="new-org-input" id="orgDescription" value={orgDescription} onChange={handleWriteDesc} />
-                        <label className="orgSearch">Maneja Administradores (opcional)</label>
+                        <label className="orgSearch">Maneja Editores (opcional)</label>
                         <UserSearch defaultText='Buscar usuario...'/>
                         { selectedUsers.length > 0 && <div className="orgSearch-frame">
                             <div className='org-searchEntry' id='greyHeader'> Seleccionados </div>

@@ -80,6 +80,7 @@ export default function NewCat(){
                         <label className="orgName">Prefijo</label>
                         <input type="text" className="new-org-input" id="orgName" placeholder="Prefijo de la categoría (debe ser único)" />
                         <label className="orgSearch">Agrega Inventarios (opcional)</label>
+                        <label className="orgSearch" id='small-font'>*Si se deja en blanco se agregará a todos los inventarios</label>
                         <UserSearch defaultText='Buscar inventario...'/>
                         { selectedUsers.length > 0 && <div className="orgSearch-frame">
                             <div className='org-searchEntry' id='greyHeader'> Seleccionados </div>
