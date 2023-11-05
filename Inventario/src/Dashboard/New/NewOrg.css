@@ -89,6 +89,25 @@
     font-size: 0.9em;
     color: black
 }
+.final-button{
+    background-color: white;
+    color: black;
+    font-family: 'Outfit Regular';
+    width: 100%;
+    height: 2em;
+    border-radius: 0.7em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1em;
+
+}
+#delete {
+    color: red
+}
+.space{
+    height: 4em;
+}
 
 @media screen and (max-width: 1080px){
     .new-org-form{

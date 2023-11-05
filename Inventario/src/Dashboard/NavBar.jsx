@@ -9,8 +9,9 @@ import PopOver from '../Tools/PopOver/PopOver'
 // 5: Cuenta
 
 const user = {
+    userId: 1,
     name: 'Fatima Bailón',
-    email: 'a@b.cl',
+    email: 'fatimabailon@gmail.com',
 }
 
 export default function NavBar({selection}) {
@@ -51,7 +52,7 @@ export default function NavBar({selection}) {
             <div className="navbarItem">
                 <PopOver Buttons={
                     [
-                        {text: 'Cuenta', color: 'blue', link: '/'},
+                        {text: 'Cuenta', color: 'blue', link: '/user/'+user.userId+'/'},
                         {text: 'Cerrar Sesión', color: 'red', link: '/'},
                     ]
                 } mainText={user.name} Id={0} />
