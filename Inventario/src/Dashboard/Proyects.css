@@ -1,7 +1,7 @@
 .proyects {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     height: auto;
     overflow: auto;
@@ -18,7 +18,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    width: 50vw;
+    width: 70vh;
     height: auto
 }
 .titleContainer{

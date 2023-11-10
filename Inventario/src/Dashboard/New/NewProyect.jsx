@@ -2,7 +2,6 @@ import './NewOrg.css'
 import NavBar from '../NavBar'
 import Footer from '../Footer'
 import UserSearch from '../../Tools/UserSearch'
-import Circle from '../../Tools/Circle'
 import { useState, useEffect } from 'react'
 import { DashboardContext } from '../Dashboard'
 import { SearchContext } from '../Dashboard'
@@ -100,8 +99,8 @@ export default function NewProy(){
                         <input type="text" className="new-org-input" id="orgName" placeholder="Nombre del proyecto" />
                         <label className='orgStatus'>Estado</label>
                         <select className='new-org-input' id='orgStatus'>
-                            <option value='1'>Activo</option>
-                            <option value='2'>Inactivo</option>
+                            <option value='active' id='option'>Activo</option>
+                            <option value='inactive' id='option'>Inactivo</option>
                         </select>
                         <label className="orgDescription">Descripción (opcional)</label>
                         <textarea className="new-org-input" id="orgDescription" placeholder="Describe tu proyecto" />

@@ -162,7 +162,7 @@ export default function Dashboard() {
                         <div className='greyLine'></div>
                         <div className='greyLine'></div>
                         <div className='greyLine'></div>
-                        {editedOrgs.map((org, index) => {
+                        {visOrgs.map((org, index) => {
                             return (
                                 <>
                                     <div className='orgs-grid-item'><a href={'/organization/'+org.organizationId+'/'}>{org.name}</a></div>

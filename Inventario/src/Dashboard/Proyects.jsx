@@ -186,7 +186,7 @@ export default function Proyects() {
                                 </div>
                                 <SidePopOver Buttons={
                                     [
-                                        {text: 'Editar', color: 'blue', link: '/edit/cat/'+organizationId+'/'+proyect.proyectId+'/'},
+                                        {text: 'Editar', color: 'blue', link: '/edit/proy/'+organizationId+'/'+proyect.proyectId+'/'},
                                         {text: 'Eliminar', color: 'red', link: '/'},
                                     ]
                                 } mainText="⋮" Id={index + 1} contentStyle={3}/>

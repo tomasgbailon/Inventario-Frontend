@@ -16,6 +16,7 @@ import Proyects from './Dashboard/Proyects.jsx'
 import EditInv from './Dashboard/Edit/EditInv.jsx'
 import UserProfile from './Dashboard/UserProfile.jsx'
 import NewProy from './Dashboard/New/NewProyect.jsx'
+import EditProyect from './Dashboard/Edit/EditProyect.jsx'
 
 function Routing(){
     return (
@@ -39,6 +40,7 @@ function Routing(){
                     <Route path={'/edit/inv/:organizationId/:inventoryId/'} element={<EditInv/>}/>
                     <Route path={'/user/:userId/'} element={<UserProfile/>}/>
                     <Route path={'/create/proy/:organizationId/'} element={<NewProy/>}/>
+                    <Route path={'/edit/proy/:organizationId/:proyectId/'} element={<EditProyect/>}/>
 
                 </Routes>
             </BrowserRouter>

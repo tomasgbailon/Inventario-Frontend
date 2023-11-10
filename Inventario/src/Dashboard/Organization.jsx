@@ -47,6 +47,36 @@ const visOrg = [
         name: 'Inventario 6',
         createdAt: '2021-05-06',
         inCharge: ['M', 'N'],
+    },{
+        inventoryId: '7',
+        name: 'Inventario 7',
+        createdAt: '2021-05-07',
+        inCharge: ['O', 'P'],
+    },{
+        inventoryId: '8',
+        name: 'Inventario 8',
+        createdAt: '2021-05-08',
+        inCharge: ['Q', 'R'],
+    },{
+        inventoryId: '9',
+        name: 'Inventario 9',
+        createdAt: '2021-05-09',
+        inCharge: ['S', 'T'],
+    },{
+        inventoryId: '10',
+        name: 'Inventario 10',
+        createdAt: '2021-05-10',
+        inCharge: ['U', 'V'],
+    },{
+        inventoryId: '11',
+        name: 'Inventario 11',
+        createdAt: '2021-05-11',
+        inCharge: ['W', 'X'],
+    },{
+        inventoryId: '12',
+        name: 'Inventario 12',
+        createdAt: '2021-05-12',
+        inCharge: ['Y', 'Z'],
     }
 ]
 

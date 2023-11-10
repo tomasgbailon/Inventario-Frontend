@@ -6,7 +6,7 @@
 .administration{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     min-height: 100vh;
 }
@@ -15,7 +15,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    width: 30vw;
+    min-width: 70vh;
     height: auto;
 }
 .adminContainer{
@@ -55,6 +55,6 @@
 }
 @media screen and (max-width: 1080px){
     .administrationContent {
-        width: 90vw;
+        min-width: 90vw;
     }
 }

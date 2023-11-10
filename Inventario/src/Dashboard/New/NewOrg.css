@@ -108,6 +108,10 @@
 .space{
     height: 4em;
 }
+#option {
+    font-family: 'Outfit Regular';
+    font-size: 1em;
+}
 
 @media screen and (max-width: 1080px){
     .new-org-form{

@@ -1,6 +1,6 @@
 .second-navbar{
     width: 100vw;
-    height: 6vh;
+    height: 5vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -13,7 +13,7 @@
     align-items: center;
     justify-content: flex-end;
     height: 100%;
-    width: 10%;
+    min-width: 18vh;
     transition: 0.3s;
 }
 .second-navbarItem a {
