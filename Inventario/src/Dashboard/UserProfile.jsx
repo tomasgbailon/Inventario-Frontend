@@ -49,7 +49,7 @@ export default function UserProfile(){
                         <label className="orgName">Nombre</label>
                         <input type="text" className="new-org-input" id="orgName" value={userName} onChange={handleWriteName} />
                         <label className="orgDescription">Correo Electrónico</label>
-                        <input type='text' className="new-org-input" id="orgName" value={userEmail} onChange={handleWriteEmail} />
+                        <input type='text' className="new-org-input" id="orgName" value={userEmail} disabled />
                         <button type="submit" className='submit-button'>Confirmar</button>
                     </div>
                     <div className="final-buttons">

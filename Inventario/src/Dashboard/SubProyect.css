@@ -181,7 +181,7 @@
     border-radius: 0.5em;
     background-color: rgb(245, 245, 245);
 }
-@media screen and (max-width: 1080px){
+@media screen and (max-width: 1580px){
     .product2-entry{
         width: 80%;
     }

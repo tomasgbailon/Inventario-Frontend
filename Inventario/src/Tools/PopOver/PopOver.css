@@ -75,7 +75,7 @@
 
   @media screen and (max-width: 1080px){
     .popover-button {
-      font-size: 2em
+      font-size: 1.2em
     }
 
     .popover.open .popover-content {
