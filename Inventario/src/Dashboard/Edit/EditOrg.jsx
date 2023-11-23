@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom'
 import { DashboardContext } from '../Dashboard'
 import { SearchContext } from '../Dashboard'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faTrash, faGear } from '@fortawesome/free-solid-svg-icons'
 
 const org = {
     name: 'Organización 1',

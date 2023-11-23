@@ -169,7 +169,7 @@ export default function Proyects() {
                                             proyect.subproyects.map((subproyect, index) => {
                                                 return (
                                                     <>
-                                                        <div className='subproyects-grid-item'>{subproyect.name}</div>
+                                                        <div className='subproyects-grid-item'><a href={'/subproy/'+organizationId+"/"+proyect.proyectId+"/"+subproyect.subproyectId}>{subproyect.name}</a></div>
                                                         <div className='subproyects-grid-item'>{subproyect.status === 'active' ? <div className='little-circle' id='green-circle'></div> : <div className='little-circle' id='red-circle'></div>}</div>
                                                         <div className='subproyects-grid-item'>${subproyect.budget}</div>
                                                         <div className='subproyects-grid-item'>{subproyect.updatedAt}</div>

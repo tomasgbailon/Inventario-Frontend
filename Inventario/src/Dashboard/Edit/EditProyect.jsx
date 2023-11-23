@@ -15,6 +15,7 @@ const proyect = {
     status: 'active',
     organizationId: 1,
     proyectId: 1,
+    budget: 100000,
 }
 const editors = [
     {
@@ -83,6 +84,7 @@ export default function EditProyect(){
     const [orgName, setOrgName] = useState(proyect.name);
     const [orgStatus, setOrgStatus] = useState(proyect.status);
     const [orgDescription, setOrgDescription] = useState(proyect.description);
+    const [orgBudget, setOrgBudget] = useState(proyect.budget);
     const [count, setCount] = useState(0);
     const handleWriteName = (e) => {
         setOrgName(e.target.value);
@@ -92,6 +94,9 @@ export default function EditProyect(){
     };
     const handleWriteDesc = (e) => {
         setOrgDescription(e.target.value);
+    };
+    const handleWriteBudget = (e) => {
+        setOrgBudget(e.target.value);
     };
     const deleteResult = (userId) => {
         return () => {
@@ -139,6 +144,8 @@ export default function EditProyect(){
                             <option value="active" id='option'>Activo</option>
                             <option value="inactive" id='option'>Inactivo</option>
                         </select>
+                        <label className="orgBudget">Presupuesto Objetivo (opcional)</label>
+                        <input type="number" step={10000} min={0} className="new-org-input" id="orgBudget" value={orgBudget} onChange={handleWriteBudget} />
                         <label className="orgDescription">Descripción (opcional)</label>
                         <textarea className="new-org-input" id="orgDescription" value={orgDescription} onChange={handleWriteDesc} />
                         <label className="orgSearch">Maneja Editores (opcional)</label>

@@ -51,7 +51,7 @@
     text-decoration: none;
 }
 .orgsContainer{
-    font-family: 'Outfit Medium';
+    font-family: 'Outfit Regular';
     color: black;
     font-size: 1.5em;
     width: 92%;
@@ -84,7 +84,7 @@
 }
 .orgs-grid-item a {
     font-size: 1.1em;
-    font-family: 'Outfit Medium';
+    font-family: 'Outfit Regular';
 }
 #options-item{
     text-align: right;

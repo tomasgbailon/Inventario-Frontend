@@ -30,7 +30,7 @@ function SidePopOver({Buttons, mainText, Id, contentStyle}) {
   useEffect(() => {
   }, []);
   return (
-    <div className={`side-popover${contentStyle == 3 ? '-3' : ''} ${(isOpen && (id === buttonUnlock) ) ? 'open' : ''}`}>
+    <div className={`side-popover${contentStyle >= 3 ? '-'+contentStyle : ''} ${(isOpen && (id === buttonUnlock) ) ? 'open' : ''}`}>
       <button onClick={togglePopover} className={`side-popover${contentStyle == 3 ? '-3' : ''}-button`}>{text}</button>
       <div className={"side-popover-content"+"-"+contentStyle}>
         {

@@ -16,7 +16,7 @@
 }
 
 .depsContainer{
-    font-family: 'Outfit Medium';
+    font-family: 'Outfit Regular';
     color: black;
     font-size: 1.5em;
     width: 92%;
@@ -39,7 +39,7 @@
 }
 .deps-grid-item a {
     font-size: 1.1em;
-    font-family: 'Outfit Medium';
+    font-family: 'Outfit Regular';
 }
 #circle-grid{
     display: flex;

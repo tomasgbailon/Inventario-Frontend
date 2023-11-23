@@ -1,0 +1,268 @@
+#product-panel{
+    width: 30%;
+    padding-left: 0em;
+    margin-top: 3em;
+}
+.product3-entry{
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: 70%;
+    gap: 0em;
+}
+.product4-entry{
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: 50%;
+    gap: 0em;
+}
+.products3Container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    min-height: 3em;
+    height: auto;
+    border: solid 1px rgba(82, 82, 82, 0.633);
+    border-radius: 0.7em;
+    overflow:hidden;
+    margin-bottom: 0.2em;
+    max-height: 0;
+    transition: max-height 1.5s ease-in-out;
+}
+.products3Container.open{
+    max-height: 10000em;
+    transition: max-height 1.5s ease-in-out;
+}
+.product3Info{
+    width: 100%;
+    height: 3em;
+    display: grid;
+    grid-template-columns: 5fr 3fr 3fr 1fr;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.product3Info p{
+    height: 100%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    background-color: rgb(245, 245, 245);
+}
+.product3Info .little-circle {
+    width: 0.5em;
+    height: 0.5em;
+    border-radius: 50%;
+    background-color: rgb(0, 0, 0);
+    margin-right: 0.5em;
+}
+.subproyects-grid-item .little-circle {
+    width: 0.7em;
+    height: 0.7em;
+    border-radius: 50%;
+    background-color: rgb(0, 0, 0);
+    margin-right: 0.5em;
+}
+.products3-grid {
+    display: grid;
+    grid-template-columns: 6fr 5fr 7fr 8fr 8fr 10fr 6fr 4fr;
+    width: 100%;
+    margin-bottom: 0em;
+    cursor: pointer;
+}
+.products4-grid {
+    display: grid;
+    grid-template-columns: 7fr 7fr 7fr 1.6fr;
+    width: 100%;
+    margin-bottom: 0em;
+    cursor: pointer;
+}
+.products3-grid-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-size: 1em;
+    color: rgb(0, 0, 0);
+    font-family: 'Outfit Medium';
+    transition: background-color 0.1s ease-in-out;
+}
+.products3-grid-header:active{
+    background-color: rgb(211, 211, 211);
+}
+.products3-grid-item {
+    font-size: 1.4em;
+    font-family: 'Outfit Light';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 2em;
+    height: auto;
+    color: black;
+    background-color: white;
+}
+.products3-grid .unit-check{
+    width: 0.9em;
+    height: 0.9em;
+    margin-left: 1.5em;
+
+}
+.products4-grid .unit-check{
+    width: 1.5em;
+    height: 1.5em;
+    margin-left: 0em;
+
+}
+.product3-options{
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 1em;
+}
+.product3-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 25%;
+    height: 2.5em;
+    border-radius: 0.5em;
+    background-color: rgb(21, 119, 235);
+    color: white;
+    font-family: 'Outfit Light';
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.1s ease-in-out;
+}
+.product3-button:disabled{
+    background-color: rgb(211, 211, 211);
+    color: rgb(82, 82, 82);
+    cursor: default;
+}
+.product3-lock{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 0.5em;
+    background-color: rgb(245, 245, 245);
+}
+.product3-lock .t4-check{
+    width: 1.5em;
+    height: 1.5em;
+    margin-left: 0em;
+    margin-right: 2em;
+}
+.red {
+    background-color: rgb(214, 58, 58);
+}
+.orgName{
+    font-size: 1.5em;
+    font-family: 'Outfit Medium';
+    color: rgb(0, 0, 0);
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+.product4-entry select {
+    width: 100%;
+    height: 2.5em;
+    border-radius: 0.5em;
+    background-color: rgb(245, 245, 245);
+    font-family: 'Outfit Light';
+    font-size: 1em;
+    color: rgb(56, 56, 56);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border: 0.1px solid rgb(145, 145, 145);
+}
+
+.product4-entry input{
+    width: 100%;
+    height: 2em;
+    border-radius: 0.5em;
+    background-color: rgb(245, 245, 245);
+    font-family: 'Outfit Light';
+    font-size: 1em;
+    color: rgb(0, 0, 0);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border: 0.1px solid rgb(145, 145, 145);
+
+}
+#edit-button-2 {
+    width: 19em;
+}
+
+@media screen and (max-width: 1080px){
+    .product3-entry{
+        width: 90%;
+    }
+    .product3-entry input{
+        width: 1em;
+        margin-left: 1em;
+    }
+    .product4-entry{
+        width: 70%;
+    }
+    .products4-grid .unit-check {
+        width: 1.2em;
+        height: 1.2em;
+        margin-left: 0em;
+        margin-right: 1em;
+
+    }
+    .products3-grid-header {
+        font-size: 0.7em;
+    }
+    .products3-grid-item {
+        font-size: 0.9em;
+    }
+    .product3Info{
+        height: 100%;
+    }
+    .product3Info{
+        height: 2em;
+        grid-template-columns: 5fr 3fr 3fr 1fr;
+    }
+    .product3Info p{
+        font-size: 1em;
+    }
+    .products3Container{
+        min-height: 2em;
+    }
+    #edit-button{
+        width: 30%;
+    }
+    .products4-grid {
+        grid-template-columns: 5fr 5fr 3fr 0.5fr;
+    }
+    .product3-button{
+        width: 35%;
+        height: 2em;
+        font-size: 100%;
+    }
+    .product3-lock{
+        border-radius: 0px;
+    }
+    .product3-lock input {
+        width: 1.2em;
+        height: 1.2em;
+        margin-left: 0em;
+    }
+    .product3-lock .t4-check{
+        width: 1.2em;
+        height: 1.2em;
+        margin-right: 0.8em;
+    }
+}

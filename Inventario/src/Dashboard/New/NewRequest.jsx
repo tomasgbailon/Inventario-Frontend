@@ -77,13 +77,100 @@ const users = [
     },
 ]
 
+const inventories = [
+    {
+        name: 'Inventario 1',
+        createdAt: '2021-05-01',
+        inventoryId: 1,
+    },
+    {
+        name: 'Inventario 2',
+        createdAt: '2021-05-02',
+        inventoryId: 2,
+    },
+    {
+        name: 'Inventario 3',
+        createdAt: '2021-05-03',
+        inventoryId: 3,
+    },
+    {
+        name: 'Inventario 4',
+        createdAt: '2021-05-04',
+        inventoryId: 4,
+    },
+    {
+        name: 'Inventario 5',
+        createdAt: '2021-05-05',
+        inventoryId: 5,
+    },
+    {
+        name: 'Inventario 6',
+        createdAt: '2021-05-06',
+        inventoryId: 6,
+    },
+    {
+        name: 'Inventario 7',
+        createdAt: '2021-05-07',
+        inventoryId: 7,
+    },
+    {
+        name: 'Inventario 8',
+        createdAt: '2021-05-08',
+        inventoryId: 8,
+    },
+    {
+        name: 'Inventario 9',
+        createdAt: '2021-05-09',
+        inventoryId: 9,
+    },
+    {
+        name: 'Inventario 10',
+        createdAt: '2021-05-10',
+        inventoryId: 10,
+    },
+    {
+        name: 'Inventario 11',
+        createdAt: '2021-05-11',
+        inventoryId: 11,
+    },
+    {
+        name: 'Inventario 12',
+        createdAt: '2021-05-12',
+        inventoryId: 12,
+    },
+    {
+        name: 'Inventario 13',
+        createdAt: '2021-05-13',
+        inventoryId: 13,
+    },
+    {
+        name: 'Inventario 14',
+        createdAt: '2021-05-14',
+        inventoryId: 14,
+    },
+    {
+        name: 'Inventario 15',
+        createdAt: '2021-05-15',
+        inventoryId: 15,
+    },
+    {
+        name: 'Inventario 16',
+        createdAt: '2021-05-16',
+        inventoryId: 16,
+    },
+]
+
 export default function NewRequest(){
     const [buttonUnlock, setButtonUnlock] = useState(0);
     const [searchTerm, setSearchTerm] = useState('');
     const [searchResults, setSearchResults] = useState([]);
     const [clickedResult, setClickedResult] = useState({});
     const [selectedUsers, setSelectedUsers] = useState([]);
+    const [selectedType, setSelectedType] = useState(1); // 1: Admin, 2: Editor, 3: Viewer
     const [count, setCount] = useState(0);
+    const handleSelectedType = (event) => {
+        setSelectedType(event.target.value);
+    }
     const deleteResult = (userId) => {
         return () => {
             const newSelectedUsers = selectedUsers.filter((user) => {
@@ -116,7 +203,7 @@ export default function NewRequest(){
                 <div className='new-req-content'>
                     <h1>Nueva Solicitud</h1>
                     <div className='new-req-form'>
-                        <label for="org-select">Organización</label>
+                        <label htmlFor="org-select">Organización</label>
                         <select name="org-select" id="org-select">
                             {
                                 [...createdOrgs, ...administredOrgs].map((org) => {
@@ -124,13 +211,21 @@ export default function NewRequest(){
                                 })
                             }
                         </select>
-                        <label for="perm-type">Tipo de permiso</label>
-                        <select name="perm-type" id="perm-type">
-                            <option value="1">Administrador</option>
-                            <option value="2">Editor</option>
-                            <option value="3">Visualizador</option>
+                        <label htmlFor="perm-type">Tipo de permiso</label>
+                        <select name="perm-type" id="perm-type" value={selectedType} onChange={handleSelectedType}>
+                            <option value={1}>Administrador</option>
+                            <option value={2}>Editor</option>
+                            <option value={3}>Visualizador</option>
                         </select>
-                        <label for="perm-name">Correo del receptor</label>
+                        {(selectedType === '3' || selectedType === '2') && <><label htmlFor="inv-select">Inventario</label>
+                        <select name="inv-select" id="inv-select">
+                            {
+                                inventories.map((inv) => {
+                                    return <option value={inv.inventoryId}>{inv.name}</option>
+                                })
+                            }
+                        </select></>}
+                        <label htmlFor="perm-name">Correo del receptor</label>
                         <UserSearch defaultText='Buscar usuario...'/>
                         { selectedUsers.length > 0 && <div className="orgSearch-frame">
                             {

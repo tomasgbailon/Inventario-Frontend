@@ -24,7 +24,7 @@ const Categories = [
             {
                 productId: 1,
                 name: 'Martillo Stanley',
-                sku: 'P1',
+                prefix: 'P1',
                 price: 100,
                 units: 10,
                 available: 10,
@@ -34,7 +34,7 @@ const Categories = [
             },{
                 productId: 2,
                 name: 'Martillo Bauker',
-                sku: 'P2',
+                prefix: 'P2',
                 price: 100,
                 units: 10,
                 available: 5,
@@ -44,7 +44,7 @@ const Categories = [
             },{
                 productId: 3,
                 name: 'Martillo Truper',
-                sku: 'P3',
+                prefix: 'P3',
                 price: 1000,
                 units: 15,
                 available: 10,
@@ -66,7 +66,7 @@ const Categories = [
             {
                 productId: 4,
                 name: 'Soldadora Einhell',
-                sku: 'P4',
+                prefix: 'P4',
                 price: 100,
                 units: 10,
                 available: 10,
@@ -76,7 +76,7 @@ const Categories = [
             },{
                 productId: 5,
                 name: 'Soldadora Stanley',
-                sku: 'P5',
+                prefix: 'P5',
                 price: 100,
                 units: 10,
                 available: 5,
@@ -86,7 +86,7 @@ const Categories = [
             },{
                 productId: 6,
                 name: 'Soldadora Truper',
-                sku: 'P6',
+                prefix: 'P6',
                 price: 1000,
                 units: 15,
                 available: 10,
@@ -156,7 +156,7 @@ export default function Inventory() {
         let newProducts = [...categories[index].products];
         const func = {
             'name':0,
-            'sku':1,
+            'prefix':1,
             'price':2,
             'units':3,
             'available':4,
@@ -193,6 +193,7 @@ export default function Inventory() {
                 <div className="inventory-body">
                     <h1 className='title'>{inventory.name}</h1>
                     <SearchBar defaultText={'buscar productos...'}/>
+                    <div className='create-product'><a href={'/create/prod/'+organizationId+'/'}>Crear nuevo producto</a></div>
                     <div className='titleContainer'>
                         <h1> Categorías</h1>
                         <button className='plusButton'><a href={'/create/cat/'+organizationId+'/'}>+</a></button>
@@ -210,8 +211,8 @@ export default function Inventory() {
                                     { locks[index] === 1 && category.products.length > 0 && 
                                     <div className='products-grid'>
                                         <div className='products-grid-header' onClick={orderBy('name',index)}>Nombre</div>
-                                        <div className='products-grid-header' onClick={orderBy('sku',index)}>SKU</div>
-                                        <div className='products-grid-header' onClick={orderBy('price',index)}>Precio Unitario</div>
+                                        <div className='products-grid-header' onClick={orderBy('prefix',index)}>Prefijo</div>
+                                        <div className='products-grid-header' onClick={orderBy('price',index)}>Valor Total</div>
                                         <div className='products-grid-header' onClick={orderBy('units',index)}>Unidades</div>
                                         <div className='products-grid-header' onClick={orderBy('available',index)}><div className='little-circle' id='green-circle'></div></div>
                                         <div className='products-grid-header' onClick={orderBy('inUse',index)}><div className='little-circle' id='yellow-circle'></div></div>
@@ -229,14 +230,14 @@ export default function Inventory() {
                                             category.products.map((product, index) => {
                                                 return (
                                                     <>
-                                                        <div className='products-grid-item'>{product.name}</div>
-                                                        <div className='products-grid-item'>{product.sku}</div>
-                                                        <div className='products-grid-item'>${product.price}</div>
-                                                        <div className='products-grid-item'>{product.units}</div>
-                                                        <div className='products-grid-item'>{product.available}</div>
-                                                        <div className='products-grid-item'>{product.inUse}</div>
-                                                        <div className='products-grid-item'>{product.unavailable}</div>
-                                                        <div className='products-grid-item'>{product.updatedAt}</div>
+                                                        <div className='products-grid-item'><a href={'/product/'+organizationId+'/'+inventoryId+'/'+product.productId+'/'}>{product.name}</a></div>
+                                                        <div className='products-grid-item'><a href={'/product/'+organizationId+'/'+inventoryId+'/'+product.productId+'/'}>{product.prefix}</a></div>
+                                                        <div className='products-grid-item'><a href={'/product/'+organizationId+'/'+inventoryId+'/'+product.productId+'/'}>${product.price}</a></div>
+                                                        <div className='products-grid-item'><a href={'/product/'+organizationId+'/'+inventoryId+'/'+product.productId+'/'}>{product.units}</a></div>
+                                                        <div className='products-grid-item'><a href={'/product/'+organizationId+'/'+inventoryId+'/'+product.productId+'/'}>{product.available}</a></div>
+                                                        <div className='products-grid-item'><a href={'/product/'+organizationId+'/'+inventoryId+'/'+product.productId+'/'}>{product.inUse}</a></div>
+                                                        <div className='products-grid-item'><a href={'/product/'+organizationId+'/'+inventoryId+'/'+product.productId+'/'}>{product.unavailable}</a></div>
+                                                        <div className='products-grid-item'><a href={'/product/'+organizationId+'/'+inventoryId+'/'+product.productId+'/'}>{product.updatedAt}</a></div>
                                                         {index < category.products.length - 1&&<><div className='greyLine'/>
                                                         <div className='greyLine'/>
                                                         <div className='greyLine'/>
