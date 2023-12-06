@@ -20,6 +20,7 @@ import EditProyect from './Dashboard/Edit/EditProyect.jsx'
 import SubProyect from './Dashboard/SubProyect.jsx'
 import Product from './Dashboard/Product.jsx'
 import EditUnit from './Dashboard/Edit/EditUnit.jsx'
+import NewProd from './Dashboard/New/NewProd.jsx'
 
 function Routing(){
     return (
@@ -47,6 +48,7 @@ function Routing(){
                     <Route path={'/subproy/:organizationId/:proyectId/:subproyectId/'} element={<SubProyect/>}/>
                     <Route path={'/product/:organizationId/:inventoryId/:productId/'} element={<Product/>}/>
                     <Route path={'/edit/unit/:organizationId/:productId/:unitId/'} element={<EditUnit/>}/>
+                    <Route path={'/create/prod/:organizationId/:inventoryId/'} element={<NewProd/>}/>
                 </Routes>
             </BrowserRouter>
         </>

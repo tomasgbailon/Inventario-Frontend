@@ -193,7 +193,7 @@ export default function Inventory() {
                 <div className="inventory-body">
                     <h1 className='title'>{inventory.name}</h1>
                     <SearchBar defaultText={'buscar productos...'}/>
-                    <div className='create-product'><a href={'/create/prod/'+organizationId+'/'}>Crear nuevo producto</a></div>
+                    <div className='create-product'><a href={'/create/prod/'+organizationId+'/'+inventoryId+'/'}>Crear nuevo producto</a></div>
                     <div className='titleContainer'>
                         <h1> Categorías</h1>
                         <button className='plusButton'><a href={'/create/cat/'+organizationId+'/'}>+</a></button>
