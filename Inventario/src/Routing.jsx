@@ -42,7 +42,7 @@ function Routing(){
                     <Route path={'/create/inv/:organizationId/'} element={<NewInv/>}/>
                     <Route path={'/proyects/:organizationId/'} element={<Proyects/>}/>
                     <Route path={'/edit/inv/:organizationId/:inventoryId/'} element={<EditInv/>}/>
-                    <Route path={'/user/:userId/'} element={<UserProfile/>}/>
+                    <Route path={'/myprofile'} element={<UserProfile/>}/>
                     <Route path={'/create/proy/:organizationId/'} element={<NewProy/>}/>
                     <Route path={'/edit/proy/:organizationId/:proyectId/'} element={<EditProyect/>}/>
                     <Route path={'/subproy/:organizationId/:proyectId/:subproyectId/'} element={<SubProyect/>}/>

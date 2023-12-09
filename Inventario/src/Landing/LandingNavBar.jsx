@@ -1,7 +1,9 @@
 import './LandingNavBar.css'
 import LoginButton from '../Account/LoginButton'
+import { useAuth0 } from '@auth0/auth0-react'
 
 export default function LandingNavBar() {
+    const { isAuthenticated, user, isLoading } = useAuth0();
     return (
         <div id="landingNavBarContainer">
             <div className="landingNavBarItem">
@@ -15,7 +17,8 @@ export default function LandingNavBar() {
                 <a href="/">Documentación</a>
             </div>
             <div className="landingNavBarItem">
-                <a href="/dashboard">Panel de Control</a>
+                {isAuthenticated ? <a href="/dashboard">Panel de Control</a>:
+                <a href="/">Panel de Control</a>}
             </div>
             <div className="landingNavBarItem">
                 <LoginButton/>

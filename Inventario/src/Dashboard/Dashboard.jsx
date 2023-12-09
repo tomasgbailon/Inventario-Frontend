@@ -3,7 +3,9 @@ import NavBar from './NavBar.jsx';
 import Footer from './Footer.jsx';
 import SearchBar from '../Tools/SearchBar';
 import SidePopOver from '../Tools/PopOver/SidePopOver.jsx';
-import { useState,createContext } from 'react';
+import { useState,createContext,useEffect } from 'react';
+import { useAuth0 } from '@auth0/auth0-react'
+import axios from 'axios';
 
 const createdOrgs = [
     {
@@ -61,15 +63,35 @@ export const DashboardContext = createContext();
 export const SearchContext = createContext();
 
 export default function Dashboard() {
-    const [createdOrgsList, setCreatedOrgsList] = useState(createdOrgs);
+    const { user, isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
+    const [createdOrgsList, setCreatedOrgsList] = useState([]);
     const [administredOrgsList, setAdministredOrgsList] = useState(administredOrgs);
     const [buttonUnlock, setButtonUnlock] = useState(0);
+    useEffect(() => {
+        if (isAuthenticated) {
+            const token = getAccessTokenSilently();
+            const userId = user.sub.split('|')[1];
+            axios.get('https://back.outer.cl/organizations/created/'+userId, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            }).then((response) => {
+                setCreatedOrgsList(response.data);
+            }).catch((error) => {
+                console.log(error);
+            });
+
+        }
+    }, [isAuthenticated]);
+    if (isLoading) {
+        return <div className='loading'>Cargando...</div>;
+    }
     return (
         <DashboardContext.Provider value={{buttonUnlock, setButtonUnlock}}>
-        <div className="dashboard">
+        {isAuthenticated || true ? <div className="dashboard">
             <NavBar selection={1}/>
             <div className="dashboardContent">
-                <div className='titleContainer'>
+                <div className='dash-titleContainer'>
                     <h1>Organizaciones</h1>
                     <button className='plusButton'><a href='/create/org/'>+</a></button>
                 </div>
@@ -178,7 +200,11 @@ export default function Dashboard() {
                 </div>
             </div>
             <Footer/>
-        </div>
+        </div> : <div className="dashboard">
+            <h1>
+                Debes iniciar sesión para acceder a esta página
+            </h1>
+        </div>}
         </DashboardContext.Provider>
     )
 }

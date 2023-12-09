@@ -22,7 +22,13 @@
 }
 @media screen and (max-width: 1080px){
     .footer {
-        height: 50vh;
-        gap: 1em;
+        height: 25vh;
+        gap: 0em;
+        flex-direction: column;
+    }
+    .footerItem{
+        width: 100%;
+        height: 20%;
+        justify-content: center;
     }
 }

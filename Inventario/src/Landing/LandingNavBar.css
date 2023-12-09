@@ -28,9 +28,10 @@ a{
 @media screen and (max-width: 1080px){
   #landingNavBarContainer {
     flex-direction: column;
-    height: 44vh;
+    height: 25vh;
     gap: 0em;
     padding-bottom: 2vh;
+    padding-top: 2vh;
   }
   .landingNavBarItem{
     width: 40%;
@@ -39,6 +40,6 @@ a{
 
   .landingNavBarItem a {
     font-family: 'Outfit Regular';
-    font-size: 1.6em;
+    font-size: 1.1em;
   }
 }

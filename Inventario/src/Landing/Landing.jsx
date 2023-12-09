@@ -3,8 +3,13 @@ import '../App.css'
 import LandingNavBar from './LandingNavBar'
 import LandingFooter from './LandingFooter'
 import Signup from '../Account/SignupButton'
+import { useAuth0 } from '@auth0/auth0-react'
 
 export default function Landing() {
+    const { isAuthenticated, user, isLoading } = useAuth0();
+    if (isLoading) {
+        return <div className='loading'>Cargando...</div>;
+    }
     return (
         <div className='mainContainer'>
             <LandingNavBar/>
@@ -14,9 +19,9 @@ export default function Landing() {
                     <p>
                         Las empresas pequeñas tienen la emergente necesidad
                         de manejar su inventario de la forma más simple e
-                        intuitiva posible. Con Inventario.com maneja tu empresa
+                        intuitiva posible. Con inventario.outer.cl maneja tu empresa
                         y decide quienes pueden administrar el negocio junto
-                        a ti 
+                        a ti.
                     </p>
                     <div className='signupButtonContainer'>
                         <Signup/>

@@ -25,7 +25,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             appState?.returnTo || window.location.pathname,
           )
         },
-        // scope: 'read:companies',
       }}
     >
       <Routing/>
