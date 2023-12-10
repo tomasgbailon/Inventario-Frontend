@@ -59,27 +59,31 @@ const visOrgs = [
     },
 ]
 
+const user = {
+    'sub': 'auth0|6571495dfe17052e1a796138',
+}
+
 export const DashboardContext = createContext();
 export const SearchContext = createContext();
 
 export default function Dashboard() {
-    const { user, isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
+    const { 
+        //user,
+        isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
     const [createdOrgsList, setCreatedOrgsList] = useState([]);
     const [administredOrgsList, setAdministredOrgsList] = useState(administredOrgs);
     const [buttonUnlock, setButtonUnlock] = useState(0);
     useEffect(() => {
-        if (isAuthenticated) {
-            const token = getAccessTokenSilently();
+        if (isAuthenticated || true) { // TODO: Cambiar el true por isAuthenticated
+            //const token = getAccessTokenSilently();
             const userId = user.sub.split('|')[1];
             axios.get('https://back.outer.cl/organizations/created/'+userId, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
+                // headers: {
+                //     Authorization: `Bearer ${token}`,
+                // },
             }).then((response) => {
                 setCreatedOrgsList(response.data);
-            }).catch((error) => {
-                console.log(error);
-            });
+            })
 
         }
     }, [isAuthenticated]);
@@ -98,7 +102,7 @@ export default function Dashboard() {
                 <SearchBar defaultText='Buscar organización...'/>
                 <div className='orgsContainer'>
                     <h2>Creadas por ti</h2>
-                    <div className='orgs-grid'>
+                    { createdOrgsList.length > 0 ? <div className='orgs-grid'>
                         <div className='orgs-grid-header'>Nombre</div>
                         <div className='orgs-grid-header'>Fecha de creación</div>
                         <div className='orgs-grid-header'></div>
@@ -122,7 +126,10 @@ export default function Dashboard() {
                                 </>
                             )
                         })}
-                    </div>
+                    </div>: 
+                    <h3>
+                        No has creado organizaciones
+                    </h3>}
                 </div>
                 <div className='orgsContainer'>
                     <h2>Administradas por ti</h2>

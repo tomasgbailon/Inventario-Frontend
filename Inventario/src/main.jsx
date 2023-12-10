@@ -15,9 +15,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <Auth0Provider
       domain={domain}
       clientId={clientId}
-      audience={audience}
       authorizationParams={{
         redirect_uri: window.location.origin,
+        audience: audience,
+        scope: 'read:users update:users',
         onRedirectCallback: (appState) => {
           window.history.replaceState(
             {},

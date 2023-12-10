@@ -1,5 +1,6 @@
 /src/.env
 .env
+/public/env.js
 # Logs
 logs
 *.log
