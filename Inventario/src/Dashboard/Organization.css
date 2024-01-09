@@ -11,8 +11,9 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    min-width: 70vh;
+    min-width: 100vh;
     height: auto;
+    min-height: 75vh;
 }
 
 .depsContainer{
@@ -23,6 +24,13 @@
     text-align: left;
 }
 
+.depsContainer h3
+{
+    margin-top: 0em;
+    margin-bottom: 0.3em;
+    font-size: 1em;
+    font-family: 'Outfit Light';
+}
 .deps-grid {
     display: grid;
     grid-template-columns: 4fr 3fr 2fr 1fr;
@@ -49,6 +57,32 @@
 }
 @media screen and (max-width: 1080px){
     .organizationContent {
-        min-width: 90vw;
+        min-width: 10vw;
+        width: 90%;
+    }
+    .depsContainer{
+        font-size: 1em;
+    }
+    .depsContainer h2{
+        margin-top: 0%;
+        margin-bottom: 0.3em;
+        font-size: 1.2em;
+    }
+    .deps-grid {
+        grid-template-columns: 4fr 3fr 2fr 1fr;
+        width: 100%;
+        margin-bottom: 1em;
+    }
+    .deps-grid-header{
+        font-size: 0.6em;
+    }
+    .deps-grid-item a {
+        font-size: 0.9em;
+    }
+    .deps-grid-item {
+        font-size: 0.8em;
+    }
+    #circle-grid{
+        gap: 0.1em;
     }
 }

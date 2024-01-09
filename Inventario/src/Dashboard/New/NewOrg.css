@@ -75,6 +75,7 @@
 }
 .submit-button{
     background-color: rgb(21, 119, 235);
+    /* background: linear-gradient(0deg, rgb(3, 196, 254), rgb(28, 123, 255),rgb(3, 196, 254)); */
     color: white;
     font-family: 'Outfit Light';
     width: 100%;
@@ -97,9 +98,17 @@
     justify-content: center;
     margin-top: 1em;
 }
-#small-font{
-    font-size: 0.9em;
-    color: black
+.red:disabled{
+    background-color: rgba(214, 58, 58, 0.657);
+    color: white;
+    font-family: 'Outfit Light';
+    width: 100%;
+    height: 2.5em;
+    border-radius: 0.7em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1em;
 }
 .final-button{
     background-color: white;
@@ -127,6 +136,78 @@
 
 @media screen and (max-width: 1080px){
     .new-org-form{
-        width: 70%;
+        width: 85%;
+    }
+    .new-org-content{
+        justify-content: flex-start;
+        min-height: 0vh;
+        height: auto;
+    }
+    .new-org-content h1{
+        margin-top: 2em;
+    }
+    label.orgName{
+        font-size: 1em;
+    }
+    label.orgDescription{
+        font-size: 1em;
+    }
+    label.orgSearch{
+        font-size: 1em;
+    }
+    label.orgPrefix{
+        font-size: 1em;
+    }
+    label.orgLocation{
+        font-size: 1em;
+    }
+    label.category{
+        font-size: 1em;
+    }
+    label.type{
+        font-size: 1em;
+    }
+    label.prefix{
+        font-size: 1em;
+    }
+    label.measure{
+        font-size: 1em;
+    }
+    label.brand{
+        font-size: 1em;
+    }
+    label.model{
+        font-size: 1em;
+    }
+    #orgName{
+        font-size: 1em;
+    }
+    #orgDescription{
+        font-size: 1em;
+    }
+    label.orgType{
+        font-size: 1em;
+    }
+    label.orgUnits{
+        font-size: 1em;
+    }
+    label.orgModel{
+        font-size: 1em;
+    }
+    label.orgBrand{
+        font-size: 1em;
+    }
+    /* #small-font{
+        font-size: 0.7em;
+    } */
+    input.new-org-input{
+        font-size: 1em;
+    }
+    select.new-org-input{
+        font-size: 1em;
+    }
+    select option{
+        font-size: 0.8em;
+        padding: 0em;
     }
 }

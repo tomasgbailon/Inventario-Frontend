@@ -1,7 +1,8 @@
 .orgDownBar {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
+    gap: 0.5em;
 }
 
 #edit-button {
@@ -11,7 +12,7 @@
     display: flex;
     flex-direction: column;
     height: auto;
-    width: 40%;
+    width: 60%;
     gap: 0em;
 }
 .products2Container{
@@ -20,7 +21,7 @@
     align-items: center;
     justify-content: flex-start;
     width: 100%;
-    min-height: 3em;
+    min-height: 4em;
     height: auto;
     border: solid 1px rgba(82, 82, 82, 0.633);
     border-radius: 0.7em;
@@ -35,9 +36,9 @@
 }
 .product2Info{
     width: 100%;
-    height: 3em;
+    height: 4em;
     display: grid;
-    grid-template-columns: 4fr 2fr 2fr 1fr;
+    grid-template-columns: 3fr 2fr 2fr 2fr 1fr;
     align-items: center;
     justify-content: center;
     cursor: pointer;
@@ -51,6 +52,7 @@
     margin-top: 0px;
     margin-bottom: 0px;
     background-color: rgb(245, 245, 245);
+    font-size: 1.3em;
 }
 .product2Info .little-circle {
     width: 0.5em;
@@ -68,7 +70,7 @@
 }
 .products2-grid {
     display: grid;
-    grid-template-columns: 7fr 7fr 6fr 2fr;
+    grid-template-columns: 7fr 7fr 7fr 7fr 6fr 2fr;
     width: 100%;
     margin-bottom: 0em;
     cursor: pointer;
@@ -87,7 +89,7 @@
     background-color: rgb(211, 211, 211);
 }
 .products2-grid-item {
-    font-size: 1.4em;
+    font-size: 1.1em;
     font-family: 'Outfit Light';
     display: flex;
     justify-content: center;
@@ -96,6 +98,11 @@
     height: auto;
     color: black;
     background-color: white;
+}
+.products2-grid-item.unit-check{
+    width: 1.2em;
+    height: 1.2em;
+    margin-left: 1em;
 }
 .new-org-content h2 {
     font-family: 'Outfit Medium';
@@ -126,8 +133,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 30%;
-    margin-left: 0.7em;
+    /* width: 30%;
+    margin-left: 0.7em; */
 }
 .main-check {
     display: flex;
@@ -186,8 +193,8 @@
         width: 80%;
     }
     .product2-options{
-        flex-direction: column;
-        gap: 1em;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
     }
     .product2-button{
         width: 100%;
@@ -200,20 +207,17 @@
         transition: max-height 1.5s ease-in-out;
     }
     .product2Info{
-        grid-template-columns: 3fr 3fr 3fr 1fr;
-    }
-    .product2Info p{
-        font-size: 0.8em;
+        grid-template-columns: 3fr 3fr 3fr 3fr 1fr;
     }
     p .little-circle {
         width: 3em;
         height: 3em;
     }
     .products2-grid-header {
-        font-size: 0.8em;
+        font-size: 0.4em;
     }
     .products2-grid-item {
-        font-size: 0.8em;
+        font-size: 0.5em;
     }
     .product2-lock{
         font-size: 0.8em;
@@ -237,7 +241,7 @@
         min-height: 2em;
     }
     .product2Info p{
-        font-size: 1em;
+        font-size: 0.5em;
     }
     .product2-lock{
         height: 100%;
@@ -254,5 +258,8 @@
     }
     .new-org-content h3{
         width: 78%;
+    }
+    #subp-total{
+        font-size: 1em;
     }
 }

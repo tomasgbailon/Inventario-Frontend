@@ -7,14 +7,14 @@
     display: flex;
     flex-direction: column;
     height: auto;
-    width: 70%;
+    width: 75%;
     gap: 0em;
 }
 .product4-entry{
     display: flex;
     flex-direction: column;
     height: auto;
-    width: 50%;
+    width: 75%;
     gap: 0em;
 }
 .products3Container{
@@ -40,7 +40,7 @@
     width: 100%;
     height: 3em;
     display: grid;
-    grid-template-columns: 5fr 3fr 3fr 1fr;
+    grid-template-columns: 4fr 3fr 3fr 3fr 1fr;
     align-items: center;
     justify-content: center;
     cursor: pointer;
@@ -71,14 +71,28 @@
 }
 .products3-grid {
     display: grid;
-    grid-template-columns: 6fr 5fr 7fr 8fr 8fr 10fr 6fr 4fr;
+    grid-template-columns: 7fr 4fr 4fr 8fr 6fr 10fr 7fr 8fr 4fr;
+    width: 100%;
+    margin-bottom: 0em;
+    cursor: pointer;
+}
+.products3-1-grid {
+    display: grid;
+    grid-template-columns: 6fr 5fr 5fr 8fr 6fr 9fr 4fr;
+    width: 100%;
+    margin-bottom: 0em;
+    cursor: pointer;
+}
+.products3-2-grid {
+    display: grid;
+    grid-template-columns: 6fr 5fr 5fr 8fr 6fr 9fr 4fr;
     width: 100%;
     margin-bottom: 0em;
     cursor: pointer;
 }
 .products4-grid {
     display: grid;
-    grid-template-columns: 7fr 7fr 7fr 1.6fr;
+    grid-template-columns: 6fr 5fr 5fr 8fr 6fr 9fr  5fr 4fr;
     width: 100%;
     margin-bottom: 0em;
     cursor: pointer;
@@ -88,7 +102,7 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    font-size: 1em;
+    font-size: 0.9em;
     color: rgb(0, 0, 0);
     font-family: 'Outfit Medium';
     transition: background-color 0.1s ease-in-out;
@@ -97,7 +111,7 @@
     background-color: rgb(211, 211, 211);
 }
 .products3-grid-item {
-    font-size: 1.4em;
+    font-size: 0.9em;
     font-family: 'Outfit Light';
     display: flex;
     justify-content: center;
@@ -106,16 +120,41 @@
     height: auto;
     color: black;
     background-color: white;
+    padding: 0.1em;
+}
+.products3-grid-item.selected {
+    font-size: 0.9em;
+    font-family: 'Outfit Light';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 2em;
+    height: auto;
+    color: black;
+    background-color: rgb(203, 229, 255);
+    padding: 0.1em;
 }
 .products3-grid .unit-check{
-    width: 0.9em;
-    height: 0.9em;
-    margin-left: 1.5em;
+    width: 1.6em;
+    height: 1.6em;
+    margin-left: 0em;
+
+}
+.products3-1-grid .unit-check{
+    width: 1.6em;
+    height: 1.6em;
+    margin-left: 0.3em;
+
+}
+.products3-2-grid .unit-check{
+    width: 1.6em;
+    height: 1.6em;
+    margin-left: 2.5em;
 
 }
 .products4-grid .unit-check{
-    width: 1.5em;
-    height: 1.5em;
+    width: 1.6em;
+    height: 1.6em;
     margin-left: 0em;
 
 }
@@ -146,6 +185,9 @@
     background-color: rgb(211, 211, 211);
     color: rgb(82, 82, 82);
     cursor: default;
+    min-width: 25%;
+    width: auto;
+    margin-top: 0em;
 }
 .product3-lock{
     display: flex;
@@ -162,6 +204,9 @@
     margin-left: 0em;
     margin-right: 2em;
 }
+.product3Info input{
+    background-color: rgb(211, 211, 211);
+}
 .red {
     background-color: rgb(214, 58, 58);
 }
@@ -171,6 +216,11 @@
     color: rgb(0, 0, 0);
     margin-top: 0.5em;
     margin-bottom: 0.5em;
+}
+#orgMultiSelect {
+    display: flex;
+    flex-direction: column;
+    height: auto;
 }
 .product4-entry select {
     width: 100%;
@@ -185,7 +235,13 @@
     cursor: pointer;
     border: 0.1px solid rgb(145, 145, 145);
 }
+#refresh{
+    width: 10%;
+}
+#inspect{
+    width: 10%;
 
+}
 .product4-entry input{
     width: 100%;
     height: 2em;
@@ -203,6 +259,20 @@
 #edit-button-2 {
     width: 19em;
 }
+#total-unit{
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.unit-options{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+
+}
 
 @media screen and (max-width: 1080px){
     .product3-entry{
@@ -213,7 +283,7 @@
         margin-left: 1em;
     }
     .product4-entry{
-        width: 70%;
+        width: 90%;
     }
     .products4-grid .unit-check {
         width: 1.2em;
@@ -223,29 +293,55 @@
 
     }
     .products3-grid-header {
-        font-size: 0.7em;
+        font-size: 0.4em;
     }
     .products3-grid-item {
-        font-size: 0.9em;
+        font-size: 0.5em;
+        padding: 0.3em;
+    }
+    .products3-2-grid .unit-check{
+        width: 1em;
+        height: 1em;
+        margin-left: 0.5em;
+    
+    }
+    .products3-grid .unit-check{
+        width: 4em;
+        height: 4em;
+        margin-left: 0em;
+    
+    }
+    .products3-1-grid .unit-check{
+        width: 1.6em;
+        height: 1.6em;
+        margin-left: 0.5em;
+    
+    }
+    .products3-grid-item.selected {
+        font-size: 0.5em;
     }
     .product3Info{
         height: 100%;
     }
     .product3Info{
         height: 2em;
-        grid-template-columns: 5fr 3fr 3fr 1fr;
+        grid-template-columns: 3fr 3fr 3fr 3fr 1fr;
     }
     .product3Info p{
-        font-size: 1em;
+        font-size: 0.6em;
     }
     .products3Container{
         min-height: 2em;
-    }
-    #edit-button{
-        width: 30%;
+        border-radius: 0.3em;
     }
     .products4-grid {
-        grid-template-columns: 5fr 5fr 3fr 0.5fr;
+        grid-template-columns: 6fr 5fr 5fr 8fr 6fr 9fr  5fr 4fr;
+    }
+    .products4-grid div {
+        font-size: 0.4em;
+    }
+    .products4-grid input {
+        font-size: 1.8em;
     }
     .product3-button{
         width: 35%;
@@ -264,5 +360,23 @@
         width: 1.2em;
         height: 1.2em;
         margin-right: 0.8em;
+    }
+    #inspect{
+        width: 25%;
+        font-size: 0.7em;
+        margin-top: 0em;
+    }
+    #refresh{
+        width: 25%;
+        font-size: 0.7em;
+        margin-top: 0em;
+    }
+    #total-unit{
+        width: 100%;
+        font-size: 1em;
+        border-bottom: 0em;
+    }
+    .product3-options .product3-button{
+        font-size: 0.5em;
     }
 }

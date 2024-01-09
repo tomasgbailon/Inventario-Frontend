@@ -15,6 +15,13 @@
     width: 60vw;
     height: auto
 }
+.inventory-body h3 {
+    font-family: 'Outfit Regular';
+    font-size: 2em;
+    text-align: center;
+    width: 100%;
+
+}
 .entry{
     display: flex;
     height: auto;
@@ -45,12 +52,13 @@
     width: 100%;
     min-height: 5em;
     height: auto;
-    border: solid 2px rgb(82, 82, 82);
+    border: solid 1.5px rgb(82, 82, 82);
     border-radius: 1em;
     overflow: hidden;
-    margin-bottom: 0.2em;
+    margin-bottom: 0.5em;
     max-height: 0;
     transition: max-height 1.5s ease-in-out;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
 }
 .categoryContainer.open{
     max-height: 10000em;
@@ -83,7 +91,7 @@
 }
 .products-grid {
     display: grid;
-    grid-template-columns: 5fr 1fr 3fr 2fr 1fr 1fr 1fr 4fr;
+    grid-template-columns: 5fr 1fr 3fr 3fr 2fr 1fr 1fr 1fr 4fr;
     width: 100%;
     margin-bottom: 0em;
     cursor: pointer;
@@ -149,9 +157,10 @@
     justify-content: center;
     align-items: center;
     width: 92%;
-    height: 4em;
+    height: 2.5em;
     background-color: rgb(21,119,235);
-    border-radius: 1.5em;
+    /* background: linear-gradient(0deg, rgb(3, 196, 254), rgb(28, 123, 255), rgb(28, 123, 255),rgb(3, 196, 254)); */
+    border-radius: 1em;
     cursor: pointer;
 }
 .create-product a{
@@ -162,24 +171,61 @@
     align-items: center;
     color: white;
     font-family: 'Outfit Regular';
-    font-size: 1.8em;
+    font-size: 1em;
 }
 @media screen and (max-width: 1080px){
     .entry{
         gap: 0.5em;
     }
     .inventory-body {
-        width: 80vw;
+        width: 90vw;
     }
     .categoryInfo{
         height: 5em;
         grid-template-columns: 3fr 1fr;
     }
-    #big-font {
-        font-size: 1.5em;
-        padding-left: 0.5em;
-    }
     .products-grid-item {
         font-size: 1.1em;
+    }
+    .titleContainer{
+        display: flex;
+        flex-direction: column;
+        padding-left: 0px;
+        margin-bottom: 1em;
+    }
+    .titleContainer h1 {
+        font-size: 1.5em;
+        text-align: center;
+        width: 100%;
+    }
+    #title{
+        font-size: 2.3em;
+        text-align: center;
+    }
+    .create-product{
+        width: 90%;
+        height: 2.5em;
+        border-radius: 0.6em;
+        cursor: pointer;
+        font-size: 0.9em;
+        font-family: 'Outfit Regular';
+    }
+    .categoryInfo p{
+        font-size: 0.9em;
+
+    }
+    .products-grid-header{
+        font-size: 0.4em;
+    }
+    .products-grid-item a{
+        font-size: 0.5em;
+    }
+    .categoryContainer{
+        min-height: 3em;
+        height: auto;
+        border-radius: 0.5em;
+    }
+    .categoryInfo{
+        height: 3em;
     }
 }

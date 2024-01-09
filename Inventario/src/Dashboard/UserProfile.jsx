@@ -6,7 +6,6 @@ import {DashboardContext} from './Dashboard.jsx';
 import Circle from '../Tools/Circle.jsx';
 import { useAuth0 } from '@auth0/auth0-react'
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 
 function getRandColor(char){
     // Map a character from the alphabet to a random color
@@ -24,11 +23,6 @@ function getRandColor(char){
     }
 }
 
-// const user = {
-//     'sub': 'auth0|6571495dfe17052e1a796138',
-//     'email': 'tomyignacio.bailon@gmail.com',
-// }
-
 export default function UserProfile(){
     const { isAuthenticated, 
         user, //comment for testing
@@ -39,25 +33,27 @@ export default function UserProfile(){
     const [modified, setModified] = useState('');
     const [userEmail, setUserEmail] = useState('');
     const [nameError, setNameError] = useState('');
-    const authId = user?.sub.split('|')[1];
-    const email = user?.email;
+    const [token, setToken] = useState('');
+    const [contentLoaded, setContentLoaded] = useState(false);
+    const [authId, setAuthId] = useState(user?.sub.split('|')[1]);
+    const [email, setEmail] = useState(user?.email);
     const handleWriteName = (e) => {
         const name = e.target.value;
+        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-]*$/;
         if (name.length > 15){
             setNameError('El nombre de usuario no puede tener más de 15 caracteres');
-        } else if (name.length < 5){
+        } else if (name.length < 3){
             setNameError('El nombre de usuario no puede tener menos de 3 caracteres');
-            //check alphanum
-        } else if (!name.match(/^[0-9a-zA-Z]+$/)){
+            //check alphanum with spaces
+        } else if (!validNameRegex.test(name)){
             setNameError('El nombre de usuario solo puede contener letras y números');
         }
         else{
-
             setNameError('');
         }
         setModified(e.target.value);
     }
-    const getUser = (token) => {
+    const getUser = (token,currentTry) => {
         axios.get(import.meta.env.VITE_API_ADDRESS+'/users/?email='+email, {
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -69,13 +65,15 @@ export default function UserProfile(){
             setUserEmail(response.data.email);
             setUserId(response.data.userId);
         }).catch((error) => {
-            console.log(error);
+            if (currentTry < 3){
+                getUser(token, currentTry+1);
+            } else {
+                alert('Error al cargar el perfil de usuario');
+            }
         })
 
     }
     const handleSubmit = (e) => {
-        const token = getAccessTokenSilently(); //comment for testing
-        //const token = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Im1lbjZIcEk5QnFnUXFRZm1YRmhIRiJ9.eyJpc3MiOiJodHRwczovL2Rldi15Y3hqMWtzaXd2bnE4d3QwLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NTcxNDk1ZGZlMTcwNTJlMWE3OTYxMzgiLCJhdWQiOlsiaHR0cHM6Ly9kZXYteWN4ajFrc2l3dm5xOHd0MC51cy5hdXRoMC5jb20vYXBpL3YyLyIsImh0dHBzOi8vZGV2LXljeGoxa3Npd3ZucTh3dDAudXMuYXV0aDAuY29tL3VzZXJpbmZvIl0sImlhdCI6MTcwMjE1MTIyNywiZXhwIjoxNzAyMjM3NjI3LCJhenAiOiJyQ2ZSRzlZRktoMzdMVDNqTmdDTDNURUVSNlNuOUQ3QyIsInNjb3BlIjoib3BlbmlkIn0.dVSr8WGRjXU4DR9R9bT6AHZCD12Y4d_qKMhWmVqc64MIgz9AliL6CmWQgQO6L96rqPMms-0JYW1HQ9OR3g3Ox7kKhJ61ZGxZGr4kbz21ijVQKU1RlT5sio3ogfOVH2u03SpqI3ZdGQ4tFAMlGKMOoxUwoLFHALcWk8zoAb_qCICOb3MkjDYPx55s7oOFgn9kGCBInew2-J4PqsEoJ6nMqI2xEVYV3Qh3DzKptH18ho3U6xy46pcaDHzIaTqs4PIP-yDzByFiirzXpywZo-rWJi16p84QVCvGkI_emAGeyNuXSl6z6EhUcq_UnD-_mDr0hN6-QIxMmjxlwQjGTQchGA';
         e.preventDefault();
         if (modified !== userName){
             const data = {
@@ -88,29 +86,41 @@ export default function UserProfile(){
                     Identity: authId,
                 },
             }).then((response) => {
-                getUser(token);
+                getUser(token, 0);
             }).catch((error) => {
                 alert('Error al actualizar el nombre de usuario');
             })
         }
     }
+    const getToken = async () => {
+        await getAccessTokenSilently().then((response) => {
+            setToken(response);
+        })
+    }
     useEffect(() => {
-        if (isAuthenticated 
-            //|| true // TODO: Cambiar el true por isAuthenticated
-            ) { 
-            const token = getAccessTokenSilently(); //comment for testing
-            getUser(token); //comment for testing
-            //getUser('eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Im1lbjZIcEk5QnFnUXFRZm1YRmhIRiJ9.eyJpc3MiOiJodHRwczovL2Rldi15Y3hqMWtzaXd2bnE4d3QwLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NTcxNDk1ZGZlMTcwNTJlMWE3OTYxMzgiLCJhdWQiOlsiaHR0cHM6Ly9kZXYteWN4ajFrc2l3dm5xOHd0MC51cy5hdXRoMC5jb20vYXBpL3YyLyIsImh0dHBzOi8vZGV2LXljeGoxa3Npd3ZucTh3dDAudXMuYXV0aDAuY29tL3VzZXJpbmZvIl0sImlhdCI6MTcwMjE1MTIyNywiZXhwIjoxNzAyMjM3NjI3LCJhenAiOiJyQ2ZSRzlZRktoMzdMVDNqTmdDTDNURUVSNlNuOUQ3QyIsInNjb3BlIjoib3BlbmlkIn0.dVSr8WGRjXU4DR9R9bT6AHZCD12Y4d_qKMhWmVqc64MIgz9AliL6CmWQgQO6L96rqPMms-0JYW1HQ9OR3g3Ox7kKhJ61ZGxZGr4kbz21ijVQKU1RlT5sio3ogfOVH2u03SpqI3ZdGQ4tFAMlGKMOoxUwoLFHALcWk8zoAb_qCICOb3MkjDYPx55s7oOFgn9kGCBInew2-J4PqsEoJ6nMqI2xEVYV3Qh3DzKptH18ho3U6xy46pcaDHzIaTqs4PIP-yDzByFiirzXpywZo-rWJi16p84QVCvGkI_emAGeyNuXSl6z6EhUcq_UnD-_mDr0hN6-QIxMmjxlwQjGTQchGA');
+        if (isAuthenticated) { 
+            const token = getToken();
+        } else {
+            const authId = localStorage.getItem('authId');
+            setAuthId(authId);
+            const email = localStorage.getItem('email');
+            setEmail(email);
+            const token = localStorage.getItem('token');
+            setToken(token);
         }
-    }, [isAuthenticated, user, getAccessTokenSilently]);
-    if(isLoading){
+    }, [isAuthenticated]);
+    useEffect(() => {
+        if (token !== '' && token !== undefined && token !== null){
+            getUser(token, 0);
+            setContentLoaded(true);
+        }
+    }, [token])
+    if(isLoading ){
         return <div className='loading'>Cargando...</div>;
     }
     return (
         <DashboardContext.Provider value={{buttonUnlock, setButtonUnlock}}>
-            { isAuthenticated 
-            //|| true // TODO: Cambiar el true por isAuthenticated
-            && 
+            {(userId !== 0 || isAuthenticated) && 
             <div className="new-org">
                 <NavBar selection={5}/>
                 <div className="new-org-content">

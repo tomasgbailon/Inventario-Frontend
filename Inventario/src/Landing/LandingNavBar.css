@@ -20,6 +20,10 @@
     text-align: center;
     gap: 1em;
 }
+.landingNavBarLogo{
+  width: 20%;
+  height: auto;
+}
 
 a{
     font-size: 1.3em;
@@ -40,6 +44,6 @@ a{
 
   .landingNavBarItem a {
     font-family: 'Outfit Regular';
-    font-size: 1.1em;
+    font-size: 1em;
   }
 }

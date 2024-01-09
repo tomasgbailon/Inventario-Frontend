@@ -42,7 +42,7 @@ export default function UserSearch({defaultText}) {
                     (user, index) => {
                         return (
                             <div className='user-searchResult' onClick={handleClick(user)} key={index}>
-                                <div id='bold'>{user.name}</div>&nbsp;&nbsp;&nbsp;{user.email}
+                                <div id='bold'>{user.username}</div>&nbsp;&nbsp;&nbsp;{user.email}
                             </div>
                         )
                     }

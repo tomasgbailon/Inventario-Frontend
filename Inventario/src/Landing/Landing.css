@@ -126,7 +126,8 @@ p {
 @media screen and (max-width: 800px){
   .landingContainer {
     flex-direction: column;
-    min-height: 100vh;
+    min-height: 30vh;
+    height: 80vh;
   }
 
   h1 {
@@ -138,20 +139,26 @@ p {
 
   .leftLandingContainer {
     width: 80%;
-    height: 70%;
+    height: auto;
     padding: 0%;
     justify-content: center;
     align-items: center;
     text-align: left;
   }
-
   .rightLandingContainer {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .landingImage {
     width: 80%;
-    height: 40%;
+    height: auto;
   }
   .landingContainer{
     padding-top: 1em;
-    min-height: 30vh;
     justify-content: flex-start;
   }
 }

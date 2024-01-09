@@ -18,7 +18,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       authorizationParams={{
         redirect_uri: window.location.origin,
         audience: audience,
-        scope: 'read:users update:users',
         onRedirectCallback: (appState) => {
           window.history.replaceState(
             {},

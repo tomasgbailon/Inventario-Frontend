@@ -21,11 +21,20 @@
     width: 55vw;
     height: auto
 }
-.titleContainer{
-    display: flex;
-    align-items: center;
+.proyects-body h2{
+    font-family: 'Outfit Medium';
+    font-size: 2.5em;
+    color: black;
     width: 90%;
-    padding-left: 5%;
+    margin-bottom: 0.3em;
+}
+.proyects-body h3{
+    font-family: 'Outfit Light';
+    font-size: 1.5em;
+    color: black;
+    width: 90%;
+    margin-top: 0em;
+    margin-bottom: 0em;
 }
 .proyectsContainer{
     display: flex;
@@ -33,14 +42,15 @@
     align-items: center;
     justify-content: flex-start;
     width: 100%;
-    min-height: 5em;
+    min-height: 7em;
     height: auto;
-    border: solid 2px rgb(82, 82, 82);
+    border: solid 1.5px rgb(82, 82, 82);
     border-radius: 1em;
     overflow: hidden;
     margin-bottom: 0.2em;
     max-height: 0;
     transition: max-height 1.5s ease-in-out;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
 }
 .proyectsContainer.open{
     max-height: 10000em;
@@ -51,12 +61,14 @@
     font-size: 1.8em;
     justify-content: flex-start;
     padding-left: 1em;
+    display: flex;
+    flex-direction: row;
 }
 .proyectInfo{
     width: 100%;
-    height: 5em;
+    height: 7em;
     display: grid;
-    grid-template-columns: 4fr 2fr 2fr;
+    grid-template-columns: 3fr 1fr 2fr 2fr 2fr 2fr;
     align-items: center;
     justify-content: center;
     cursor: pointer;
@@ -65,15 +77,17 @@
     height: 100%;
     text-align: center;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     margin-top: 0px;
     margin-bottom: 0px;
     background-color: rgb(245, 245, 245);
+    font-size: 1.2em;
 }
 .subproyects-grid {
     display: grid;
-    grid-template-columns: 5fr 1fr 5fr 4fr;
+    grid-template-columns: 5fr 1fr 4fr 4fr 4fr 4fr;
     width: 100%;
     margin-bottom: 0em;
     cursor: pointer;
@@ -92,8 +106,8 @@
     background-color: rgb(211, 211, 211);
 }
 .subproyects-grid-item {
-    font-size: 1.4em;
-    font-family: 'Outfit Medium';
+    font-size: 1.1em;
+    font-family: 'Outfit Regular';
     display: flex;
     justify-content: center;
     align-items: center;
@@ -119,25 +133,55 @@
     background-color: rgb(0, 0, 0);
     margin-right: 0.5em;
 }
+#balance-positive {
+    color:green;
+}
+#balance-negative {
+    color:red;
+}
 @media screen and (max-width: 1080px){
     .entry {
         gap: 0.5em;
     }
     .proyects-body {
-        width: 80vw;
+        width: 90vw;
     }
     .proyectInfo{
-        height: 5em;
-        grid-template-columns: 3fr 2fr 2fr;
+        height: 3em;
+        grid-template-columns: 3fr 1fr 2fr 2fr 2fr 2fr;
     }
     .proyectInfo p {
+        font-size: 0.5em;
+    }
+    .proyects-body h2{
+        font-size: 1.5em;
+    }
+    .proyects-body h3{
         font-size: 1em;
     }
-    #big-font {
-        font-size: 1.5em;
-        padding-left: 0.5em;
+    .categoryInfo #big-font {
+        font-size: 1em;
+        padding-left: 1em;
+    }
+    .proyectInfo #big-font {
+        font-size: 0.6em;
+        padding-left: 1em;
+    }
+    .subproyects-grid-header {
+        font-size: 0.3em;
     }
     .subproyects-grid-item {
-        font-size: 1.1em;
+        font-size: 0.4em;
+    }
+    .proyectsContainer {
+        border-radius: 0.5em;
+        min-height: 3em;
+    }
+    .orgDownBar{
+        width: 100%;
+    }
+    .submit-button#edit-button {
+        width: 35%;
+        font-size: 0.6em;
     }
 }

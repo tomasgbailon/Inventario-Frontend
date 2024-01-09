@@ -54,6 +54,7 @@
 
   #blue-button {
     background-color: rgb(21, 119, 235);
+    /* background: linear-gradient(0deg, rgb(3, 196, 254), rgb(28, 123, 255), rgb(28, 123, 255),rgb(3, 196, 254)); */
   }
   #blue-button a {
     color: #fff;
@@ -61,6 +62,10 @@
 
   #red-button {
     background-color: rgb(214, 58, 58);
+    /* background: linear-gradient(0deg, rgb(251, 129, 129), rgb(255, 28, 28),rgb(251, 129, 129)); */
+    color: white;
+    /* font-size: 1em; */
+    font-family: 'Outfit Medium';
   }
   #red-button a {
     color: #fff;
@@ -68,6 +73,7 @@
 
   #green-button {
     background-color: #328f2b;
+    /* background: linear-gradient(0deg, rgb(33, 177, 83), rgb(14, 115, 49),rgb(33, 177, 83)); */
   }
   #green-button a {
     color: #fff;
@@ -75,18 +81,23 @@
 
   @media screen and (max-width: 1080px){
     .popover-button {
-      font-size: 1.2em
+      font-size: 1em
     }
-
     .popover.open .popover-content {
-      margin-top: 15em;
+      margin-top: 7em;
       margin-left: 0em;
     }
     .popover-content {
       width: 20vw;
-      height: 15vh;
+      height: 7vh;
+      padding: 0.3em;
+      border-radius: 1em;
     }
     .popover {
-      width: 30%;
+      width: 50%;
+    }
+    .pop-over-button{
+      font-size: 0.7em;
+      height: 2.5em;
     }
   }

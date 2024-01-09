@@ -1,10 +1,10 @@
 import './SearchBar.css';
-import { useState } from 'react';
-
+import { useContext, useState} from 'react';
+import { SearchContext } from '../Dashboard/Dashboard';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 export default function SearchBar({defaultText}) {
-    const [searchTerm, setSearchTerm] = useState('');
+    const { searchTerm, setSearchTerm } = useContext(SearchContext);
     const handleSearch = (e) => {
         setSearchTerm(e.target.value);
     };
