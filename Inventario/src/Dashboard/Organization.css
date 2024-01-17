@@ -86,3 +86,8 @@
         gap: 0.1em;
     }
 }
+@media (prefers-color-scheme: dark) {
+    .depsContainer{
+        color: rgb(243, 243, 243);
+    }
+}

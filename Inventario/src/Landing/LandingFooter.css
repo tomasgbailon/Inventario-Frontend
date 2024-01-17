@@ -73,3 +73,15 @@
         font-size: 0.9em;
     }
 }
+@media (prefers-color-scheme: dark) {
+    .landingFooterContainer{
+        background-color: rgb(16, 16, 16);
+        border-top: 1px solid rgb(63, 63, 63);
+    }
+    .landingFooterItem a {
+        color: rgb(243, 243, 243);
+    }
+    #grey {
+        color: rgb(243, 243, 243);
+    }
+}

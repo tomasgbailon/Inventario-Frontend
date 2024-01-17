@@ -37,7 +37,8 @@ export default function NewOrg(){
     }
     const handleWriteName = (e) => {
         const name = e.target.value;
-        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-]*$/;
+        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-\/]*$/
+;
         if (name.length > 20){
             setOrgNameError('El nombre de la organización no puede tener más de 20 caracteres');
         } else if (name.length < 5){
@@ -52,7 +53,8 @@ export default function NewOrg(){
     };
     const handleWriteDesc = (e) => {
         const desc = e.target.value;
-        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-]*$/;
+        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-\/]*$/
+;
         if (desc.length > 200){
             setOrgDescriptionError('La descripción de la organización no puede tener más de 200 caracteres');
         } else if (!validNameRegex.test(desc)){
@@ -113,7 +115,7 @@ export default function NewOrg(){
             if (currentTry < 3) {
                 getUsers(string, currentTry+1);
             } else {
-                console.log(error);
+                //console.log(error);
             }
         });
     }
@@ -132,12 +134,12 @@ export default function NewOrg(){
                 Identity: authId,
             },
         }).then((response) => {
-            console.log(response);
+            //console.log(response);
         } ).catch((error) => {
             if (currentTry < 3 && error.status === 500) {
                 sendInvitation(token, receptorName, receptorEmail, currentTry+1);
             } else {
-                console.log(error);
+                //console.log(error);
                 setSelectedUsers([]);
             }
         })
@@ -154,7 +156,7 @@ export default function NewOrg(){
             if (currentTry < 3) {
                 getUser(token, currentTry+1);
             } else {
-                console.log(error);
+                //console.log(error);
             }
         })
     }   

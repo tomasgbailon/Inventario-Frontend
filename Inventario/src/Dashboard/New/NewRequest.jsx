@@ -107,7 +107,7 @@ export default function NewRequest(){
             if (currentTry < 3) {
                 getUser(token, currentTry+1);
             } else {
-                console.log(error);
+                //console.log(error);
             }
         })
     } 
@@ -151,7 +151,7 @@ export default function NewRequest(){
             if (currentTry < 3) {
                 getUsers(string, currentTry+1);
             } else {
-                console.log(error);
+                //console.log(error);
             }
         });
     }
@@ -181,7 +181,7 @@ export default function NewRequest(){
                 Identity: authId,
             },
         }).then((response) => {
-            console.log(response.data);
+            //console.log(response.data);
             if(response.data.edit.length === 0){
                 setProyects([{proyectId: 0, name: 'No hay proyectos disponibles'}])
             } else {

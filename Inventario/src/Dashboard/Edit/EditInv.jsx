@@ -30,7 +30,8 @@ export default function EditInv(){
     const [email, setEmail] = useState(user?.email);
     const handleWriteName = (e) => {
         const name = e.target.value;
-        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-]*$/;
+        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-\/]*$/
+;
         if (name.length > 20){
             setOrgNameError('El nombre no puede tener más de 20 caracteres');
         } else if (name.length < 5){
@@ -45,7 +46,8 @@ export default function EditInv(){
     };
     const handleWriteLocation = (e) => {
         const location = e.target.value;
-        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-]*$/;
+        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-\/]*$/
+;
         if (location.length > 30){
             setOrgLocationError('La ubicación no puede tener más de 30 caracteres');
         } else if (!validNameRegex.test(location)){
@@ -57,7 +59,8 @@ export default function EditInv(){
     }
     const handleWriteDesc = (e) => {
         const description = e.target.value;
-        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-]*$/;
+        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-\/]*$/
+;
         if (description.length > 200){
             setOrgDescriptionError('La descripción no puede tener más de 200 caracteres');
         } else if (!validNameRegex.test(description)){
@@ -90,7 +93,7 @@ export default function EditInv(){
             if (currentTry < 3) {
                 getUser(token, currentTry+1);
             } else {
-                console.log(error);
+                //console.log(error);
             }
         })
     }
@@ -112,7 +115,7 @@ export default function EditInv(){
             if (currentTry < 3) {
                 getInv(token, currentTry+1);
             } else {
-                console.log(error);
+                //console.log(error);
             }
         })
     

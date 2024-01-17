@@ -15,12 +15,18 @@ export default function NewUnit(){
     const [buttonUnlock, setButtonUnlock] = useState(0);
     const [subproyects, setSubproyects] = useState([]);
     const [orgDescription, setOrgDescription] = useState('');
+    const [orgName, setOrgName] = useState('');
+    const [orgType, setOrgType] = useState('');
     const [orgStatus, setOrgStatus] = useState('');
     const [orgPrice, setOrgPrice] = useState('');
     const [orgResponsible, setOrgResponsible] = useState('');
     const [orgSubproyect, setOrgSubproyect] = useState(0);
     const [orgProvider, setOrgProvider] = useState('');
     const [orgPurchaseDate, setOrgPurchaseDate] = useState('');
+    const [orgRUT, setOrgRUT] = useState('');
+    const [orgSellerName, setOrgSellerName] = useState('');
+    const [orgSellerContact, setOrgSellerContact] = useState('');
+    const [orgFacturationCode, setOrgFacturationCode] = useState('');
     const [token, setToken] = useState('');
     const [userId, setUserId] = useState(0);
     const [accessLevel, setAccessLevel] = useState('');
@@ -28,12 +34,17 @@ export default function NewUnit(){
     const [orgPriceError, setOrgPriceError] = useState('');
     const [orgResponsibleError, setOrgResponsibleError] = useState('');
     const [orgProviderError, setOrgProviderError] = useState('');
+    const [ orgRUTError, setOrgRUTError] = useState('');
+    const [orgSellerNameError, setOrgSellerNameError] = useState('');
+    const [orgSellerContactError, setOrgSellerContactError] = useState('');
+    const [orgFacturationCodeError, setOrgFacturationCodeError] = useState('');
     const [quantity, setQuantity] = useState(1);
     const [authId, setAuthId] = useState(user?.sub.split('|')[1]);
     const [email, setEmail] = useState(user?.email);
     const handleWriteDesc = (e) => {
         const value = e.target.value;
-        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-]*$/;
+        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-\/]*$/
+;
         if (value.length > 100) {
             setOrgDescriptionError('La descripción no puede tener más de 100 caracteres');
         } else if(!validNameRegex.test(value)) {
@@ -45,7 +56,8 @@ export default function NewUnit(){
     };
     const handleWriteResponsible = (e) => {
         const value = e.target.value;
-        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-]*$/;
+        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-\/]*$/
+;
         if (value.length > 20) {
             setOrgResponsibleError('El responsable no puede tener más de 20 caracteres');
         } else if (!validNameRegex.test(value)) {
@@ -57,7 +69,8 @@ export default function NewUnit(){
     };
     const handleWriteProvider = (e) => {
         const value = e.target.value;
-        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-]*$/;
+        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-\/]*$/
+;
         if (value.length > 20) {
             setOrgProviderError('El proveedor no puede tener más de 20 caracteres');
         } else if (!validNameRegex.test(value)) {
@@ -66,6 +79,57 @@ export default function NewUnit(){
             setOrgProviderError('');
         }
         setOrgProvider(e.target.value);
+    };
+    const handleWriteRUT = (e) => {
+        const value = e.target.value;
+        //numbers and k or K
+        const validNameRegex = /^[0-9kK]*$/;
+        if (value.length > 9) {
+            setOrgRUTError('El RUT no puede tener más de 9 caracteres');
+        } else if (!validNameRegex.test(value)) {
+            setOrgRUTError('El RUT solo puede tener números');
+        } else {
+            setOrgRUTError('');
+        }
+        setOrgRUT(e.target.value);
+    };
+    const handleWriteSellerName = (e) => {
+        const value = e.target.value;
+        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-\/]*$/
+;
+        if (value.length > 20) {
+            setOrgSellerNameError('El nombre del vendedor no puede tener más de 20 caracteres');
+        } else if (!validNameRegex.test(value)) {
+            setOrgSellerNameError('El nombre del vendedor solo puede tener letras y números');
+        } else {
+            setOrgSellerNameError('');
+        }
+        setOrgSellerName(e.target.value);
+    };
+    const handleWriteSellerContact = (e) => {
+        const value = e.target.value;
+        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ@_\s.,-]*$/;
+        if (value.length > 20) {
+            setOrgSellerContactError('El contacto del vendedor no puede tener más de 20 caracteres');
+        } else if (!validNameRegex.test(value)) {
+            setOrgSellerContactError('El contacto del vendedor solo puede tener letras y números');
+        } else {
+            setOrgSellerContactError('');
+        }
+        setOrgSellerContact(e.target.value);
+    };
+    const handleWriteFacturationCode = (e) => {
+        const value = e.target.value;
+        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-\/]*$/
+;
+        if (value.length > 20) {
+            setOrgFacturationCodeError('El código de facturación no puede tener más de 20 caracteres');
+        } else if (!validNameRegex.test(value)) {
+            setOrgFacturationCodeError('El código de facturación solo puede tener letras y números');
+        } else {
+            setOrgFacturationCodeError('');
+        }
+        setOrgFacturationCode(e.target.value);
     };
     const handleWriteStatus = (e) => {
         setOrgStatus(e.target.value);
@@ -105,6 +169,10 @@ export default function NewUnit(){
             description: orgDescription === '' ? null : orgDescription,
             purchaseDate: orgPurchaseDate === '' ? null : date,
             quantity: parseInt(quantity),
+            providerRUT: orgRUT === '' ? null : orgRUT,
+            providerName: orgSellerName === '' ? null : orgSellerName,
+            providerContact: orgSellerContact === '' ? null : orgSellerContact,
+            facturationCode: orgFacturationCode === '' ? null : orgFacturationCode,
         }
         await axios.post(import.meta.env.VITE_API_ADDRESS+'/units/create', data, {
             headers: {
@@ -154,6 +222,21 @@ export default function NewUnit(){
             }
         })
     }
+    const getProduct = async (token, currentTry) => {
+        await axios.get(import.meta.env.VITE_API_ADDRESS+'/products/'+categoryId+'/'+productId, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                Identity: authId,
+            },
+        }).then((response) => {
+            setOrgName(response.data.name);
+            setOrgType(response.data.type);
+        }).catch((error) => {
+            if (currentTry < 3 || error.status === 500) {
+                getProduct(token, currentTry+1);
+            }
+        })
+    }
     const getSubproyects = async (token, currentTry) => {
         await axios.get(import.meta.env.VITE_API_ADDRESS+'/subproyects/'+organizationId, {
             headers: {
@@ -166,7 +249,7 @@ export default function NewUnit(){
             if (currentTry < 3 && error.status === 500) {
                 getSubproyects(token, currentTry+1);
             } else {
-                console.log(error);
+                //console.log(error);
             }
         })
     }
@@ -196,6 +279,7 @@ export default function NewUnit(){
     useEffect(() => {
         if (accessLevel !== '') {
             getSubproyects(token, 1);
+            getProduct(token, 1);
         }
     }, [accessLevel]);
     if (isLoading ) {
@@ -208,14 +292,14 @@ export default function NewUnit(){
                 <div className="new-org">
                 <NavBar selection={1} />
                 <div className="new-org-content">
-                    <h1>Nueva Unidad</h1>
+                    <h1>Nueva Unidad de {orgName}</h1>
                     <div className="new-org-form">
                         <label className="orgName">Estado</label>
                         <select className="new-org-input" id="orgStatus" value={orgStatus} onChange={handleWriteStatus}>
                             <option value="" disabled>Seleccionar</option>
                             <option value="available">Disponible</option>
                             <option value="in use">En uso</option>
-                            <option value="unavailable">No disponible</option>
+                            {orgType === 'asset' && <option value="unavailable">No disponible</option>}
                         </select>
                         <label className="orgName">Precio</label>
                         <input className="new-org-input" id="orgPrice" value={'$'+orgPrice} onChange={handleWritePrice} />
@@ -226,7 +310,19 @@ export default function NewUnit(){
                         <label className="orgName">Proveedor (Opcional)</label>
                         <input className="new-org-input" id="orgProvider" value={orgProvider} onChange={handleWriteProvider} />
                         {orgProviderError !== '' && <div id='red-small-font'>{orgProviderError}</div>}
-                        <label className="orgName">Fecha de compra (Opcional)</label>
+                        <label className="orgName">RUT Proveedor (Opcional) (Sin puntos ni guión)</label>
+                        <input className="new-org-input" id="orgRUT" value={orgRUT} onChange={handleWriteRUT} />
+                        {orgRUTError !== '' && <div id='red-small-font'>{orgRUTError}</div>}
+                        <label className="orgName">Nombre Vendedor (Opcional)</label>
+                        <input className="new-org-input" id="orgSellerName" value={orgSellerName} onChange={handleWriteSellerName} />
+                        {orgSellerNameError !== '' && <div id='red-small-font'>{orgSellerNameError}</div>}
+                        <label className="orgName">Contacto Vendedor (Opcional)</label>
+                        <input className="new-org-input" id="orgSellerContact" value={orgSellerContact} onChange={handleWriteSellerContact} />
+                        {orgSellerContactError !== '' && <div id='red-small-font'>{orgSellerContactError}</div>}
+                        <label className="orgName">Código de facturación (Opcional)</label>
+                        <input className="new-org-input" id="orgFacturationCode" value={orgFacturationCode} onChange={handleWriteFacturationCode} />
+                        {orgFacturationCodeError !== '' && <div id='red-small-font'>{orgFacturationCodeError}</div>}
+                        <label className="orgName">Fecha de compra</label>
                         <input type='date' className="new-org-input" id="orgPurchaseDate" value={orgPurchaseDate} onChange={handleWriteDate} />
                         <label className="orgDescription">Descripción (opcional)</label>
                         <textarea className="new-org-input" id="orgDescription" value={orgDescription} onChange={handleWriteDesc} />
@@ -246,11 +342,16 @@ export default function NewUnit(){
                         }} />
                         <button type="submit" className='submit-button' disabled={
                             orgStatus === '' ||
+                            orgPurchaseDate === '' ||
                             orgDescriptionError !== '' ||
                             orgPriceError !== '' ||
                             orgResponsibleError !== '' ||
                             orgProviderError !== '' ||
-                            orgPrice === ''
+                            orgPrice === '' ||
+                            orgRUTError !== '' ||
+                            orgSellerNameError !== '' ||
+                            orgSellerContactError !== '' ||
+                            orgFacturationCodeError !== ''
                         } onClick={
                             (e) => {
                                 handleCreateUnit(e, token, 1);

@@ -26,7 +26,8 @@ export default function NewCat(){
     const [email, setEmail] = useState(user?.email);
     const handleWriteName = (event) => {
         const name = event.target.value;
-        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-]*$/;
+        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-\/]*$/
+;
         if (name.length > 25){
             setCatNameError('El nombre no puede exceder los 25 caracteres');
         } else if (name.length < 5) {
@@ -55,7 +56,7 @@ export default function NewCat(){
         for (let i = 0; i < selectedUsers.length; i++) {
             await createCategory(selectedUsers[i].value, token, 0);
         }
-        navigate('/organization/'+organizationId+'/');
+        navigate(-1);
     }
     const createCategory = async (inventoryId, token, currentTry) => {
         await axios.post(import.meta.env.VITE_API_ADDRESS+'/categories/create', {
@@ -153,7 +154,7 @@ useEffect(() => {
         }
     }, [accessLevel])
     useEffect(() => {
-        console.log(selectedUsers);
+        //console.log(selectedUsers);
     }, [selectedUsers])
     if (isLoading ) {
         return <div className='loading'>Cargando...</div>;

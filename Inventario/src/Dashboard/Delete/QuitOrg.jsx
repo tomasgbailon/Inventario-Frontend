@@ -32,7 +32,7 @@ export default function QuitOrg(){
         }).then((response) => {
             navigate('/dashboard');
         }).catch((error) => {
-            console.log(error);
+            //console.log(error);
         })
     }
     const getToken = async () => {
@@ -66,7 +66,7 @@ export default function QuitOrg(){
             if (currentTry < 3) {
                 getOrg(token, currentTry+1);
             } else {
-                console.log(error);
+                //console.log(error);
             }
         })
     }

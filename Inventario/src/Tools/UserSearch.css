@@ -60,3 +60,8 @@
         font-size: 0.7em;
     }
 }
+@media (prefers-color-scheme: dark) {
+    .user-searchInput {
+        background-color: rgb(25, 25, 25);
+    }
+}

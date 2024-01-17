@@ -27,7 +27,8 @@ export default function EditCat(){
     const [email, setEmail] = useState(user?.email);
     const handleWriteName = (event) => {
         const name = event.target.value;
-        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-]*$/;
+        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-\/]*$/
+;
         if (name.length > 25){
             setCatNameError('El nombre no puede exceder los 25 caracteres');
         } else if (name.length < 5) {
@@ -90,7 +91,7 @@ export default function EditCat(){
             },
         }).then((response) => {
             setInventories(response.data);
-            console.log(response.data);
+            //console.log(response.data);
         }).catch((error) => {
             if (currentTry < 3 && error.status === 500) {
                 getInventories(token, currentTry+1);

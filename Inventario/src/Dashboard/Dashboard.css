@@ -149,3 +149,12 @@
         font-size: 2em;
     }
 }
+@media (prefers-color-scheme: dark) {
+    .orgsContainer{
+        color: rgb(243, 243, 243);
+    }
+    .final-buttons .final-button{
+        background-color: #181818;
+        color: rgb(243, 243, 243);
+    }
+}

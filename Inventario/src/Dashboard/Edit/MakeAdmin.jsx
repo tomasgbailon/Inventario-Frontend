@@ -33,7 +33,7 @@ export default function MakeAdmin(){
         }).then((response) => {
             navigate('/administration/'+organizationId+'/');
         }).catch((error) => {
-            console.log(error);
+            //console.log(error);
         })
     }
     const getToken = async () => {

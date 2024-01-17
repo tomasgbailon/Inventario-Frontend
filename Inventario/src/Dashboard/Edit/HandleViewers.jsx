@@ -78,7 +78,7 @@ export default function HandleViewers(){
             if (currentTry < 3) {
                 getUser(token, currentTry+1);
             } else {
-                console.log(error);
+                //console.log(error);
             }
         })
     }
@@ -94,7 +94,7 @@ export default function HandleViewers(){
             if (currentTry < 3) {
                 getUsers(string, currentTry+1);
             } else {
-                console.log(error);
+                //console.log(error);
             }
         });
     }  
@@ -110,7 +110,7 @@ export default function HandleViewers(){
             if (currentTry < 3) {
                 getInv(token, currentTry+1);
             } else {
-                console.log(error);
+                //console.log(error);
             }
         })
     
@@ -128,7 +128,7 @@ export default function HandleViewers(){
             if (currentTry < 3) {
                 getEditors(token, currentTry+1);
             } else {
-                console.log(error);
+                //console.log(error);
             }
         })
     }

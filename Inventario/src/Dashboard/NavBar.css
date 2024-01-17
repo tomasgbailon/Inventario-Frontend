@@ -85,3 +85,18 @@
         flex-direction: column;
     }
 }
+@media (prefers-color-scheme: dark) {
+    .navbar {
+        background-color: rgb(16, 16, 16);
+        border-bottom: 1px solid rgb(63, 63, 63);
+    }
+    .navbar a {
+        color: rgb(243, 243, 243);
+    }
+    .thinBlueLine {
+        background-color: rgb(21, 119, 235);
+    }
+    .thinGreyLine {
+        background-color: rgb(16, 16, 16);
+    }
+}

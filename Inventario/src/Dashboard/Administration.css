@@ -97,3 +97,11 @@
         font-size: 1em;
     }
 }
+@media (prefers-color-scheme: dark) {
+    #small-font{
+        color: rgb(243, 243, 243);
+    }
+    .adminContainer{
+        color: rgb(243, 243, 243);
+    }
+}

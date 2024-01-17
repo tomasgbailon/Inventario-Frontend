@@ -11,6 +11,8 @@ import SecondNavBar from './SecondNavBar'
 import { useNavigate } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import axios from 'axios'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 
 const translate = {
     'available': 'Disponible',
@@ -61,21 +63,74 @@ export default function Product(){
     const [orgDescriptionError, setOrgDescriptionError] = useState('');
     const [toggleEdit, setToggleEdit] = useState(false);
     const [proyectSelectLock, setProyectSelectLock] = useState(0);
+    const [editSetLock, setEditSetLock] = useState(false);
+    const [editSetChoice, setEditSetChoice] = useState(0);
+    const [editSetValue, setEditSetValue] = useState('');
+    const [editSetValueError, setEditSetValueError] = useState('');
     const [locks, setLocks] = useState([1,1,1]);
     const [unitLocks, setUnitLocks] = useState(['available','in use','unavailable'].map((status) => units[status].map(() => 0)));
     const [mainChecks, setMainChecks] = useState([0,0,0]);
     const [orderDirection, setOrderDirection] = useState(['available','in use','unavailable'].map((status) => [0,0,0,0,0,0,0,0,0]));
+    const [showMetrics, setShowMetrics] = useState(false);
+    const [showAll, setShowAll] = useState(true);
     const [count, setCount] = useState(0);
     const [token, setToken] = useState('');
     const [userId, setUserId] = useState(0);
     const [subproyects, setSubproyects] = useState([]);
     const [accessLevel, setAccessLevel] = useState('');
-    const [showInfo, setShowInfo] = useState(false);
     const [display, setDisplay] = useState(false);
     const [authId, setAuthId] = useState(user?.sub.split('|')[1]);
     const [email, setEmail] = useState(user?.email);
-    const toggleInfo = () => {
-        setShowInfo(!showInfo);
+    const handleWriteEditSet = (e, type) => {
+        if (type === 'text') {
+            const value = e.target.value;
+            const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ@_\s.,-]*$/;
+            if (value.length > 20) {
+                setEditSetValueError('El valor no puede tener más de 20 caracteres');
+            } else if (!validNameRegex.test(value)) {
+                setEditSetValueError('El valor solo puede contener letras y números');
+            } else {
+                setEditSetValueError('');
+            }
+            setEditSetValue(value);
+        } else if (type === 'number') {
+            const price = e.target.value.substring(1);
+            if (isNaN(price)) {
+                setEditSetValueError('El precio debe ser un número');
+            } else if (price.length > 15) {
+                setEditSetValueError('El precio no puede tener más de 10 dígitos');
+            } else if (price.length === 0) {
+                setEditSetValueError('El precio no puede estar vacío');
+            } else {
+                setEditSetValueError('');
+            }
+            setEditSetValue(price);
+        } else if (type === 'date') {
+            setEditSetValue(e.target.value);
+        } else if (type === 'RUT') {
+            const value = e.target.value;
+            const validNameRegex = /^[0-9kK.-]*$/;
+            if (value.length > 12) {
+                setEditSetValueError('El RUT no puede tener más de 12 caracteres');
+            } else if (!validNameRegex.test(value)) {
+                setEditSetValueError('El RUT solo puede contener números, puntos y guiones');
+            } else {
+                setEditSetValueError('');
+            }
+            setEditSetValue(value);
+        
+        } else if (type === 'textarea') {
+            const value = e.target.value;
+            const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ@_\s.,-]*$/;
+            if (value.length > 200) {
+                setEditSetValueError('La descripción no puede tener más de 200 caracteres');
+            } else if (!validNameRegex.test(value)) {
+                setEditSetValueError('La descripción solo puede contener letras y números');
+            } else {
+                setEditSetValueError('');
+            }
+            setEditSetValue(value);
+        }
     }
     const transformDate = (date) => {
         const year = date.split('-')[0];
@@ -87,7 +142,7 @@ export default function Product(){
         e.preventDefault();
         editProduct(token, 1);
     }
-    const handleDelete = (e, status) => {
+    const handleDelete = async (e, status) => {
         e.preventDefault();
         const statuses = ['available','in use','unavailable'];
         const selectedUnits = units[status].filter((unit, index) => {
@@ -96,14 +151,15 @@ export default function Product(){
         selectedUnits.forEach((unit) => {
             deleteUnit(token, 1, unit.unitId);
         });
-        setLocks([1,1,1]);
-        getUnits(token, 1);
-        const currentLocks = [...locks];
-        setTimeout(() => {
-            setLocks(currentLocks);
-        }, 100);
+        setLocks([0,0,0])
+        await getUnits(token, 1).then(
+            () => {
+                setUnitLocks(['available','in use','unavailable'].map((status) => units[status].map(() => 0)));
+                setLocks([1,1,1]);
+            }
+        )
     }
-    const handleMark = (e, status, destinyStatus) => {
+    const handleMark = async (e, status, destinyStatus) => {
         e.preventDefault();
         //Get the units that are selected from the units array in units[status]
         const statuses = ['available','in use','unavailable'];
@@ -115,15 +171,15 @@ export default function Product(){
             mark(token, 1, unit, destinyStatus);
         });
         //Refresh the units
-        getUnits(token, 1);
-        //Close and open the locks
-        setLocks([1,1,1]);
-        const currentLocks = [...locks];
-        setTimeout(() => {
-            setLocks(currentLocks);
-        }, 100);
+        setLocks([0,0,0])
+        await getUnits(token, 1).then(
+            () => {
+                setUnitLocks(['available','in use','unavailable'].map((status) => units[status].map(() => 0)));
+                setLocks([1,1,1]);
+            }
+        )
     }
-    const handleAssign = (e, status) => {
+    const handleAssign = async (e, status) => {
         e.preventDefault();
         if (orgSubproyect === 0) {
             alert('Seleccione un subproyecto');
@@ -136,12 +192,13 @@ export default function Product(){
         selectedUnits.forEach((unit) => {
             assign(token, 1, unit);
         });
-        setLocks([1,1,1]);
-        getUnits(token, 1);
-        const currentLocks = [...locks];
-        setTimeout(() => {
-            setLocks(currentLocks);
-        }, 100);
+        setLocks([0,0,0])
+        await getUnits(token, 1).then(
+            () => {
+                setUnitLocks(['available','in use','unavailable'].map((status) => units[status].map(() => 0)));
+                setLocks([1,1,1]);
+            }
+        )
     }
     const mark = async (token, currentTry, unit, mark) => {
         await axios.put(import.meta.env.VITE_API_ADDRESS+'/units/'+categoryId+'/'+productId+'/'+unit.unitId, {
@@ -152,6 +209,9 @@ export default function Product(){
             purchaseDate: unit.purchaseDate,
             provider: unit.provider,
             description: unit.description,
+            providerName: unit.providerName,
+            providerRUT: unit.providerRUT,
+            providerContact: unit.providerContact,
         }, {
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -174,6 +234,9 @@ export default function Product(){
             purchaseDate: unit.purchaseDate,
             provider: unit.provider,
             description: unit.description,
+            providerName: unit.providerName,
+            providerRUT: unit.providerRUT,
+            providerContact: unit.providerContact,
         }, {
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -209,13 +272,15 @@ export default function Product(){
     }
     const toggleEditFunc = () => {
         setToggleEdit(!toggleEdit);
+        setDisplay((display && toggleEdit) ? false : display)
     }
     const toggleProyectSelect = () => {
         setProyectSelectLock(proyectSelectLock === 0 ? 1 : 0);
     }
     const handleWriteName = (e) => {
         const name = e.target.value;
-        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-]*$/;
+        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-\/]*$/
+;
         if(name.length > 30){
             setOrgNameError('El nombre no puede tener más de 30 caracteres');
         } else if (name.length < 5){
@@ -229,7 +294,8 @@ export default function Product(){
     };
     const handleWriteDesc = (e) => {
         const value = e.target.value;
-        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-]*$/;
+        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-\/]*$/
+;
         if(value.length > 200){
             setOrgDescriptionError('La descripción no puede tener más de 200 caracteres');
         } else if (!validNameRegex.test(value)) {
@@ -241,7 +307,8 @@ export default function Product(){
     };
     const handleWriteBrand = (e) => {
         const value = e.target.value;
-        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-]*$/;
+        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-\/]*$/
+;
         if (value.length > 20) {
             setOrgBrandError('La marca no puede tener más de 20 caracteres');
         } else if (!validNameRegex.test(value)) {
@@ -253,7 +320,8 @@ export default function Product(){
     }
     const handleWriteModel = (e) => {
         const value = e.target.value;
-        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-]*$/;
+        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-\/]*$/
+;
         if (value.length > 30) {
             setOrgModelError('El modelo no puede tener más de 30 caracteres');
         } else if (!validNameRegex.test(value)) {
@@ -265,7 +333,8 @@ export default function Product(){
     }
     const handleWriteUnits = (e) => {
         const value = e.target.value;
-        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-]*$/;
+        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-\/]*$/
+;
         if (value.length > 10) {
             setOrgUnitsError('La unidad de medida no puede tener más de 10 caracteres');
         } else if (value.length < 1) {
@@ -282,6 +351,54 @@ export default function Product(){
     }
     const handleAddUnits = () => {
         navigate('/create/unit/'+organizationId+'/'+inventoryId+'/'+categoryId+'/'+productId+'/');
+    }
+    const handleMultiEdit = async () => {
+        //for each selected row in every status, trigger EditUnit
+        const statuses = ['available','in use','unavailable'];
+        for(let i = 0; i < 3; i++){
+            for(let j = 0; j < units[statuses[i]].length; j++){
+                if(unitLocks[i][j] === 1){
+                    await editUnit(token, 1, units[statuses[i]][j])();
+                }
+            }
+        }
+        setLocks([0,0,0])
+        await getUnits(token, 1).then(
+            () => {
+                setUnitLocks(['available','in use','unavailable'].map((status) => units[status].map(() => 0)));
+                setLocks([1,1,1]);
+            }
+        )
+        setEditSetChoice(0);
+        setEditSetValue('');
+    }
+    const editUnit = (token, currentTry, unit) => async () => {
+        const data = {
+            status: unit.status,
+            subproyectId: unit.subproyectId,
+            responsible: unit.responsible,
+            price: editSetChoice === '1' ? editSetValue : unit.price,
+            provider: editSetChoice === '2' ? editSetValue : unit.provider,
+            providerRUT: editSetChoice === '3' ? editSetValue : unit.providerRUT,
+            providerName: editSetChoice === '4' ? editSetValue : unit.providerName,
+            providerContact: editSetChoice === '5' ? editSetValue : unit.providerContact,
+            purchaseDate: editSetChoice === '6' ? editSetValue : unit.purchaseDate,
+            description: editSetChoice === '7' ? editSetValue : unit.description,
+        }
+        console.log(data);
+        await axios.put(import.meta.env.VITE_API_ADDRESS+'/units/'+categoryId+'/'+productId+'/'+unit.unitId, data, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                Identity: authId,
+            }
+        }).then((response) => {
+        }).catch((error) => {
+            if (currentTry < 3 && error.status === 500) {
+                editUnit(token, currentTry+1);
+            } else {
+               alert('Error al editar el producto'); 
+            }
+        })
     }
     const toggleLock = (index) => () => {
         const newLocks = locks.map((lock, i) => {
@@ -338,6 +455,24 @@ export default function Product(){
         });
         setOrderDirection(newOrderDirection);
     }
+    const anySelected = () => {
+        for(let i = 0; i < units['available'].length; i++){
+            if(unitLocks[0][i] === 1){
+                return true;
+            }
+        }
+        for(let i = 0; i < units['in use'].length; i++){
+            if(unitLocks[1][i] === 1){
+                return true;
+            }
+        }
+        for(let i = 0; i < units['unavailable'].length; i++){
+            if(unitLocks[2][i] === 1){
+                return true;
+            }
+        }
+        return false;
+    } 
     const orderBy = (key, index) => () => {
         const statuses = ['available','in use','unavailable'];
         let newUnits = [...units[statuses[index]]];
@@ -491,7 +626,7 @@ export default function Product(){
             if (currentTry < 3) {
                 getInv(token, currentTry+1);
             } else {
-                console.log(error);
+                //console.log(error);
             }
         })
     
@@ -524,7 +659,7 @@ export default function Product(){
             if (currentTry < 3) {
                 getUnits(token, currentTry+1);
             } else {
-                console.log(error);
+                //console.log(error);
             }
         })
     };
@@ -540,7 +675,7 @@ export default function Product(){
             if (currentTry < 3 && error.status === 500) {
                 getSubproyects(token, currentTry+1);
             } else {
-                console.log(error);
+                //console.log(error);
             }
         })
     }
@@ -586,88 +721,213 @@ export default function Product(){
                 <NavBar selection={1} />
                 <SecondNavBar selection={1} accessLevel={accessLevel}/>
                     <div className="new-org-content">
-                        <h3></h3>
-                        <h1>{orgName}</h1>
-                        <div className='unit-options'>
-                        <button className='submit-button' id='inspect' onClick={
-                            (e) => {
-                                e.preventDefault();
-                                setDisplay(!display);
-                            }
-                        }>{display ? "Esconder":"Inspeccionar"}</button>
-                        <button className='submit-button' id='refresh' onClick={
-                                (e) => {
-                                    e.preventDefault();
-                                    getUnits(token, 1);
-                                    setUnitLocks(['available','in use','unavailable'].map((status) => units[status].map(() => 0)));
-                                }
-                            }>Recargar</button>
+                        <div className='window-tool-bar'>
+                            <FontAwesomeIcon icon={faArrowLeft} className='back-arrow' onClick={() => 
+                                navigate('/inventory/'+organizationId+'/'+inventoryId+'/')}
+                            />
                         </div>
-                        { !toggleEdit && display &&
-                        <div className='new-org-form'>
-                            <label className="orgName">Nombre</label>
-                            <input type="text" className="new-org-input" id="orgName" value={orgName} disabled/>
-                            <label className='orgType'>Tipo</label>
-                            <input type="text" className='new-org-input' id='orgType' value={orgType === 'asset' ? 'Activo' : 'Consumible'} disabled/>
-                            <label className="orgPrefix">Prefijo</label>
-                            <input type="text" className="new-org-input" id="orgPrefix" value={orgPrefix} disabled/>
-                            <label className='orgUnits'>Unidad de medida</label>
-                            <input type="text" className='new-org-input' id='orgUnits' value={orgUnits} disabled/>
-                            <label className="orgBrand">Marca (opcional)</label>
-                            <input type="text" className="new-org-input" id="orgBrand" value={orgBrand} disabled/>
-                            <label className="orgModel">Modelo (opcional)</label>
-                            <input type="text" className="new-org-input" id="orgModel" value={orgModel} disabled/>
-                            <label className="orgDescription">Descripción (opcional)</label>
-                            <textarea className="new-org-input" id="orgDescription" value={orgDescription} disabled/>
-                            { (accessLevel === 'owner' || accessLevel === 'admin' || accessLevel === 'edit') &&
-                            <div className="orgDownBar">
-                                <button className='submit-button' id='edit-button' onClick={toggleEditFunc}>Editar</button>
-                                <button className='submit-button' id='edit-button' onClick={handleAddUnits}>Agregar Unidades</button>
-                                <button className='submit-button red' id='edit-button' onClick={
+                        <h1>{orgName} ({orgPrefix})</h1>
+                        <div className='tool-bar-adapter-prod'>
+                            <div className='tool-bar'>
+                                <button disabled={!(accessLevel === 'owner' || accessLevel === 'admin' || accessLevel === 'edit')}
+                                    className='tool-bar-button' id='blue-button' onClick={handleAddUnits}>
+                                    Agregar Unidades
+                                </button>
+                                <button disabled={!(accessLevel === 'owner' || accessLevel === 'admin' || accessLevel === 'edit')}
+                                className='tool-bar-button' id='blue-button' onClick={
+                                    (e) => {
+                                        e.preventDefault();
+                                        setDisplay(display === 'edit' ? null : 'edit');
+                                    }
+                                }>
+                                    Editar
+                                </button>
+                                <button disabled={!(accessLevel === 'owner' || accessLevel === 'admin' || accessLevel === 'edit')}
+                                className='tool-bar-button' id='red-button' onClick={
                                     (e) => {
                                         e.preventDefault();
                                         navigate('/delete/prod/'+organizationId+'/'+inventoryId+'/'+categoryId+'/'+productId+'/');
                                     }
-                                }>Eliminar Producto</button>
-                            </div>}
+                                }>
+                                    Eliminar Producto
+                                </button>
+                                <button className='tool-bar-button' onClick={
+                                    (e) => {
+                                        e.preventDefault();
+                                        setDisplay(display === 'display' ? null : 'display');
+                                    }
+                                }>
+                                    {display ? "Ocultar Ficha":"Mostrar Ficha"}
+                                </button>
+                                <button className='tool-bar-button' onClick={
+                                    (e) => {
+                                        e.preventDefault();
+                                        setShowMetrics(!showMetrics);
+                                    }
+                                }>
+                                    {!showMetrics ? 'Mostrar Métricas' : 'Ocultar Métricas'}
+                                </button>
+                                <button className='tool-bar-button' onClick={ (e) => {
+                                    e.preventDefault();
+                                    setShowAll(!showAll);
+                                    if (showAll){
+                                        setLocks([1,1,1]);
+                                    } else {
+                                        setLocks([0,0,0])
+                                    }
+                                }
+                                }>
+                                    {showAll ? 'Abrir unidades' : 'Ocultar unidades'}
+                                </button>
+                                <button
+                                    className='tool-bar-button' onClick={
+                                        (e) => {
+                                            e.preventDefault();
+                                            setEditSetLock(!editSetLock);
+                                            setEditSetChoice(editSetLock ? editSetChoice : 0);
+                                            setEditSetValue(editSetLock ? editSetValue : '');
+                                        }
+                                    } disabled={!anySelected() || !(accessLevel === 'owner' || accessLevel === 'admin' || accessLevel === 'edit')}>
+                                        Editar Selección
+                                </button>
+                            </div>
+                            <div className='thinBlackLine'></div>
+                        </div>
+                        { display === 'display' &&
+                        <div className='product-fields-grid'>
+                            <div className='new-org-form' id='product-fields-grid-item'>
+                                <label className="orgName">Nombre</label>
+                                <input type="text" className="new-org-input" id="orgName" value={orgName} disabled/>
+                                <label className="orgPrefix">Prefijo</label>
+                                <input type="text" className="new-org-input" id="orgPrefix" value={orgPrefix} disabled/>
+                                <label className="orgBrand">Marca (opcional)</label>
+                                <input type="text" className="new-org-input" id="orgBrand" value={orgBrand} disabled/>
+                                <label className="orgDescription">Descripción (opcional)</label>
+                                <textarea className="new-org-input" id="orgDescription" value={orgDescription} disabled/>
+                            </div>
+                            <div className='new-org-form' id='product-fields-grid-item'>
+                                <div id='small-margin'/>
+                                <label className='orgType'>Tipo</label>
+                                <input type="text" className='new-org-input' id='orgType' value={orgType === 'asset' ? 'Activo' : 'Consumible'} disabled/>
+                                <label className='orgUnits'>Unidad de medida</label>
+                                <input type="text" className='new-org-input' id='orgUnits' value={orgUnits} disabled/>
+                                <label className="orgModel">Modelo (opcional)</label>
+                                <input type="text" className="new-org-input" id="orgModel" value={orgModel} disabled/>
+                            </div>
                         </div>}
-                        { toggleEdit && display &&
-                        <div className="new-org-form">
-                            <label className="orgName">Nombre</label>
-                            <input type="text" className="new-org-input" id="orgName" value={orgNameModified} onChange={handleWriteName} />
-                            {orgNameError !== '' && <label id='red-small-font'>{orgNameError}</label>}
-                            <label className='orgType'>Tipo</label>
-                            <label className="orgSearch" id='small-font'>*Este campo no es editable</label>
-                            <input type="text" className='new-org-input' id='orgType' value={orgType === 'asset' ? 'Activo' : 'Consumible'} disabled/>
-                            <label className='orgPrefix'>Prefijo</label>
-                            <label className="orgSearch" id='small-font'>*Este campo no es editable</label>
-                            <input type="text" className='new-org-input' id='orgPrefix' value={orgPrefix} disabled/>
-                            <label className='orgUnits'>Unidad de medida</label>
-                            <input type="text" className='new-org-input' id='orgUnits' value={orgUnitsModified} onChange={handleWriteUnits}/>
-                            {orgUnitsError !== '' && <label id='red-small-font'>{orgUnitsError}</label>}
-                            <label className='orgBrand'>Marca (opcional)</label>
-                            <input type="text" className='new-org-input' id='orgBrand' value={orgBrandModified} onChange={handleWriteBrand}/>
-                            {orgBrandError !== '' && <label id='red-small-font'>{orgBrandError}</label>}
-                            <label className='orgModel'>Modelo (opcional)</label>
-                            <input type="text" className='new-org-input' id='orgModel' value={orgModelModified} onChange={handleWriteModel}/>
-                            {orgModelError !== '' && <label id='red-small-font'>{orgModelError}</label>}
-                            <label className="orgDescription">Descripción (opcional)</label>
-                            <textarea className="new-org-input" id="orgDescription" value={orgDescriptionModified} onChange={handleWriteDesc} />
-                            {orgDescriptionError !== '' && <label id='red-small-font'>{orgDescriptionError}</label>}
-                            <button type="submit" className='submit-button' disabled={
+                        { display === 'edit' &&
+                        <div className='product-fields-grid'>
+                            <div className='new-org-form' id='product-fields-grid-item'>
+                                <label className="orgName">Nombre</label>
+                                <input type="text" className="new-org-input" id="orgName" value={orgNameModified} onChange={handleWriteName} />
+                                {orgNameError !== '' && <label id='red-small-font'>{orgNameError}</label>}
+                                <label className='orgPrefix'>Prefijo (Este campo no es editable)</label>
+                                <input type="text" className='new-org-input' id='orgPrefix' value={orgPrefix} disabled/>
+                                <label className='orgBrand'>Marca (opcional)</label>
+                                <input type="text" className='new-org-input' id='orgBrand' value={orgBrandModified} onChange={handleWriteBrand}/>
+                                {orgBrandError !== '' && <label id='red-small-font'>{orgBrandError}</label>}
+                                <label className="orgDescription">Descripción (opcional)</label>
+                                <textarea className="new-org-input" id="orgDescription" value={orgDescriptionModified} onChange={handleWriteDesc} />
+                                {orgDescriptionError !== '' && <label id='red-small-font'>{orgDescriptionError}</label>}
+                            </div>
+                            <div className='new-org-form' id='product-fields-grid-item'>
+                                <div id='small-margin'/>
+                                <label className='orgType'>Tipo (Este campo no es editable)</label>
+                                <input type="text" className='new-org-input' id='orgType' value={orgType === 'asset' ? 'Activo' : 'Consumible'} disabled/>
+                                <label className='orgUnits'>Unidad de medida</label>
+                                <input type="text" className='new-org-input' id='orgUnits' value={orgUnitsModified} onChange={handleWriteUnits}/>
+                                {orgUnitsError !== '' && <label id='red-small-font'>{orgUnitsError}</label>}
+                                <label className='orgModel'>Modelo (opcional)</label>
+                                <input type="text" className='new-org-input' id='orgModel' value={orgModelModified} onChange={handleWriteModel}/>
+                                {orgModelError !== '' && <label id='red-small-font'>{orgModelError}</label>}
+                                <div id='big-margin'/>
+                                <button type="submit" className='submit-button' disabled={
                                 orgNameError !== '' || orgUnitsError !== '' || orgBrandError !== '' || orgModelError !== '' || orgDescriptionError !== ''
                                 || orgNameModified === '' || orgUnitsModified === '' || orgModelModified === '' || 
                                 (orgNameModified === orgName && orgUnitsModified === orgUnits && orgModelModified === orgModel && orgBrandModified === orgBrand && orgDescriptionModified === orgDescription)
-                            } onClick={(e) => {handleSubmit(e);}}>Confirmar</button>
-                            <button className='submit-button' id='red-button' onClick={toggleEditFunc}>Cancelar</button>
+                                } onClick={(e) => {handleSubmit(e);}}>Confirmar</button>
+                                <button className='submit-button' id='red-button' onClick={
+                                    (e) => {
+                                        e.preventDefault();
+                                        setDisplay(display === 'edit' ? null : 'edit');
+                                        setOrgNameModified(orgName);
+                                        setOrgModelModified(orgModel);
+                                        setOrgBrandModified(orgBrand);
+                                        setOrgUnitsModified(orgUnits);
+                                        setOrgDescriptionModified(orgDescription);
+                                    }}>
+                                        Cancelar
+                                </button>
+                            </div>
                         </div>}
-                        <h2 id='total-unit'>Total en {invName}: ${
-                            totalPrice(units['available']) + totalPrice(units['in use']) + totalPrice(units['unavailable'])    
-                        }</h2>
-                        <h2 id='total-unit'>Valor con depreciación: ${
-                            totalDeprecatedValue(units['available']) + totalDeprecatedValue(units['in use']) + totalDeprecatedValue(units['unavailable'])
-                        }</h2>
-                        <h3></h3>
+                        { showMetrics && 
+                        <>
+                        <h2 id='detail-title'>Métricas de {orgName}</h2>
+                        <div className='tool-bar-adapter-prod'>
+                            <div className='thinBlackLine'/>
+                        </div>
+                        <div className='metricsGrid'>
+                            <h2 id='total-unit'>Total en {invName}: ${
+                                totalPrice(units['available']) + totalPrice(units['in use']) + totalPrice(units['unavailable'])    
+                            }</h2>
+                            <h2 id='total-unit'>Valor con depreciación: ${
+                                totalDeprecatedValue(units['available']) + totalDeprecatedValue(units['in use']) + totalDeprecatedValue(units['unavailable'])
+                            }</h2>
+                        </div>
+                        </>}
+                        {showMetrics && <div className='tool-bar-adapter-prod'>
+                            <div className='thinBlackLine'/>
+                        </div>}
+                        {editSetLock && anySelected() && 
+                            <div className='tool-bar-adapter-prod'>
+                                <h2>Propaga un cambio</h2>
+                                <div className='new-org-form' id='product-fields-grid-item'>
+                                    <select className='new-org-input' id='orgName' value={editSetChoice} onChange={(e) => {setEditSetChoice(e.target.value)}}>
+                                        <option value={0} disabled>Selecciona un atributo</option>
+                                        <option value={1}>Precio</option>
+                                        <option value={2}>Proveedor</option>
+                                        <option value={3}>RUT Proveedor</option>
+                                        <option value={4}>Nombre Vendedor</option>
+                                        <option value={5}>Contacto Vendedor</option>
+                                        <option value={6}>Fecha de Compra</option>
+                                        <option value={7}>Descripción</option>
+                                    </select>
+                                    { editSetChoice !== 0 && <label className='orgUnits'>Nuevo valor</label>}
+                                    {
+                                        editSetChoice === '1' &&
+                                        <input type='text' className='new-org-input' id='orgName' value={'$'+editSetValue} onChange={(e) => {handleWriteEditSet(e, 'number')}}/>
+                                    }
+                                    {
+                                        ['2','4','5'].includes(editSetChoice) &&
+                                        <input type='text' className='new-org-input' id='orgName' value={editSetValue} onChange={(e) => {handleWriteEditSet(e, 'text')}}/>
+                                    }
+                                    {
+                                        editSetChoice === '3' &&
+                                        <input type='text' className='new-org-input' id='orgName' value={editSetValue} onChange={(e) => {handleWriteEditSet(e, 'text')}}/>
+                                    }
+                                    {
+                                        editSetChoice === '6' &&
+                                        <input type='date' className='new-org-input' id='orgName' value={editSetValue} onChange={(e) => {handleWriteEditSet(e, 'date')}}/>
+                                    }
+                                    {
+                                        editSetChoice === '7' &&
+                                        <textarea className='new-org-input' id="orgDescription" value={editSetValue} onChange={(e) => {handleWriteEditSet(e, 'textarea')}}/>
+                                    }
+                                    {editSetValueError !== '' && <label id='red-small-font'>{editSetValueError}</label>}
+                                    {editSetChoice !== 0 && <button className='submit-button' disabled={
+                                        editSetChoice === 0 ||
+                                        editSetValueError !== '' ||
+                                        editSetValue === ''
+                                    } onClick={(e) => {
+                                        e.preventDefault();
+                                        handleMultiEdit();
+                                    }}>
+                                        Confirmar
+                                    </button>}
+                                </div>
+                            </div>
+                        }
+                        <h2 id='detail-title'>Detalle de unidades</h2>
                         {['available','in use','unavailable'].map((status, index) => {
                             if(orgType === 'asset')
                             return(
@@ -695,7 +955,7 @@ export default function Product(){
                                                 <div className='products3-grid-header' onClick={orderBy('description',index)}> Descripción </div>
                                                 <div className='products3-grid-header' onClick={orderBy('responsible',index)}> Responsable </div>
                                                 <div className='products3-grid-header' onClick={orderBy('subproyect',index)}> Subproyecto </div>
-                                                <div></div>
+                                                <div className='products3-grid-header'/>
                                                 <div className='blackLine'/>
                                                 <div className='blackLine'/>
                                                 <div className='blackLine'/>
@@ -712,7 +972,9 @@ export default function Product(){
                                                                 <div className={'products3-grid-item'+(unitLocks[index][unitIndex] === 1 ? ' selected' : '')}> {unit.sku} </div>
                                                                 <div className={'products3-grid-item'+(unitLocks[index][unitIndex] === 1 ? ' selected' : '')}> ${unit.price} </div>
                                                                 <div className={'products3-grid-item'+(unitLocks[index][unitIndex] === 1 ? ' selected' : '')}> ${unit.deprecatedValue} </div>
-                                                                <div className={'products3-grid-item'+(unitLocks[index][unitIndex] === 1 ? ' selected' : '')}> {unit.provider} </div>
+                                                                <div className={'products3-grid-item'+(unitLocks[index][unitIndex] === 1 ? ' selected' : '')}> 
+                                                                    {unit.provider} {unit.providerName !== null ? '('+unit.providerName+')':''} {unit.providerRUT !== null ? 'Rut '+unit.providerRUT:''} {unit.providerContact !== null ? 'Contacto '+unit.providerContact:''}
+                                                                </div>
                                                                 <div className={'products3-grid-item'+(unitLocks[index][unitIndex] === 1 ? ' selected' : '')}> {transformDate(unit.purchaseDate)} </div>
                                                                 <div className={'products3-grid-item'+(unitLocks[index][unitIndex] === 1 ? ' selected' : '')}> {unit.description} </div>
                                                                 <div className={'products3-grid-item'+(unitLocks[index][unitIndex] === 1 ? ' selected' : '')}> {unit.responsible} </div>
@@ -743,7 +1005,7 @@ export default function Product(){
                                             <div className='products3-grid-header' onClick={orderBy('provider',index)}> Proveedor </div>
                                             <div className='products3-grid-header' onClick={orderBy('purchaseDate',index)}> Fecha de compra </div>
                                             <div className='products3-grid-header' onClick={orderBy('description',index)}> Descripción </div>
-                                            <div></div>
+                                            <div className='products3-grid-header'/>
                                             <div className='blackLine'/>
                                             <div className='blackLine'/>
                                             <div className='blackLine'/>
@@ -758,7 +1020,9 @@ export default function Product(){
                                                             <div className={'products3-grid-item'+(unitLocks[index][unitIndex] === 1 ? ' selected' : '')}> {unit.sku} </div>
                                                             <div className={'products3-grid-item'+(unitLocks[index][unitIndex] === 1 ? ' selected' : '')}> ${unit.price} </div>
                                                             <div className={'products3-grid-item'+(unitLocks[index][unitIndex] === 1 ? ' selected' : '')}> ${unit.deprecatedValue} </div>
-                                                            <div className={'products3-grid-item'+(unitLocks[index][unitIndex] === 1 ? ' selected' : '')}> {unit.provider} </div>
+                                                            <div className={'products3-grid-item'+(unitLocks[index][unitIndex] === 1 ? ' selected' : '')}>
+                                                            {unit.provider} {unit.providerName !== null ? '('+unit.providerName+')':''} {unit.providerRUT !== null ? 'Rut '+unit.providerRUT:''} {unit.providerContact !== null ? 'Contacto '+unit.providerContact:''}
+                                                            </div>
                                                             <div className={'products3-grid-item'+(unitLocks[index][unitIndex] === 1 ? ' selected' : '')}> {transformDate(unit.purchaseDate)} </div>
                                                             <div className={'products3-grid-item'+(unitLocks[index][unitIndex] === 1 ? ' selected' : '')}> {unit.description} </div>
                                                             <div className={'products3-grid-item'+(unitLocks[index][unitIndex] === 1 ? ' selected' : '')}><input type='checkbox' className='products3-1-grid-item unit-check' id={'checkbox-'+index+'-'+unitIndex} onClick={toggleUnitOptions(unitIndex, index)}/></div>
@@ -866,7 +1130,7 @@ export default function Product(){
                                                 <div className='products3-grid-header' onClick={orderBy('provider',index)}> Proveedor </div>
                                                 <div className='products3-grid-header' onClick={orderBy('purchaseDate',index)}> Fecha de compra </div>
                                                 <div className='products3-grid-header' onClick={orderBy('description',index)}> Descripción </div>
-                                                <div></div>
+                                                <div className='products3-grid-header'/>
                                                 <div className='blackLine'/>
                                                 <div className='blackLine'/>
                                                 <div className='blackLine'/>
@@ -881,7 +1145,9 @@ export default function Product(){
                                                                 <div className={'products3-grid-item'+(unitLocks[index][unitIndex] === 1 ? ' selected' : '')}> {unit.sku} </div>
                                                                 <div className={'products3-grid-item'+(unitLocks[index][unitIndex] === 1 ? ' selected' : '')}> ${unit.price} </div>
                                                                 <div className={'products3-grid-item'+(unitLocks[index][unitIndex] === 1 ? ' selected' : '')}> ${unit.deprecatedValue} </div>
-                                                                <div className={'products3-grid-item'+(unitLocks[index][unitIndex] === 1 ? ' selected' : '')}> {unit.provider} </div>
+                                                                <div className={'products3-grid-item'+(unitLocks[index][unitIndex] === 1 ? ' selected' : '')}>
+                                                                {unit.provider} {unit.providerName !== null ? '('+unit.providerName+')':''} {unit.providerRUT !== null ? 'Rut '+unit.providerRUT:''} {unit.providerContact !== null ? 'Contacto '+unit.providerContact:''}
+                                                                </div>
                                                                 <div className={'products3-grid-item'+(unitLocks[index][unitIndex] === 1 ? ' selected' : '')}> {transformDate(unit.purchaseDate)} </div>
                                                                 <div className={'products3-grid-item'+(unitLocks[index][unitIndex] === 1 ? ' selected' : '')}> {unit.description} </div>
                                                                 <div className={'products3-grid-item'+(unitLocks[index][unitIndex] === 1 ? ' selected' : '')}><input type='checkbox' className='products3-grid-item unit-check' id={'checkbox-'+index+'-'+unitIndex} onClick={toggleUnitOptions(unitIndex, index)}/></div>
@@ -925,7 +1191,9 @@ export default function Product(){
                                                                 <div className={'products3-grid-item'+(unitLocks[index][unitIndex] === 1 ? ' selected' : '')}> {unit.sku} </div>
                                                                 <div className={'products3-grid-item'+(unitLocks[index][unitIndex] === 1 ? ' selected' : '')}> ${unit.price} </div>
                                                                 <div className={'products3-grid-item'+(unitLocks[index][unitIndex] === 1 ? ' selected' : '')}> ${unit.deprecatedValue} </div>
-                                                                <div className={'products3-grid-item'+(unitLocks[index][unitIndex] === 1 ? ' selected' : '')}> {unit.provider} </div>
+                                                                <div className={'products3-grid-item'+(unitLocks[index][unitIndex] === 1 ? ' selected' : '')}>
+                                                                {unit.provider} {unit.providerName !== null ? '('+unit.providerName+')':''} {unit.providerRUT !== null ? 'Rut '+unit.providerRUT:''} {unit.providerContact !== null ? 'Contacto '+unit.providerContact:''}
+                                                                </div>
                                                                 <div className={'products3-grid-item'+(unitLocks[index][unitIndex] === 1 ? ' selected' : '')}> {transformDate(unit.purchaseDate)} </div>
                                                                 <div className={'products3-grid-item'+(unitLocks[index][unitIndex] === 1 ? ' selected' : '')}> {unit.description} </div>
                                                                 <div className={'products3-grid-item'+(unitLocks[index][unitIndex] === 1 ? ' selected' : '')}> {unit.subproyectName} </div>

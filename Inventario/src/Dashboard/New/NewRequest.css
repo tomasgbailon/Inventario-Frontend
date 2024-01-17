@@ -37,3 +37,11 @@
         width: 70%;
     }
 }
+@media (prefers-color-scheme: dark) {
+    .new-req-form label {
+        color: rgb(243, 243, 243);
+    }
+    .new-req-form select {
+        background-color: #181818;
+    }
+}

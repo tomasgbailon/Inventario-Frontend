@@ -28,7 +28,7 @@ export default function QuitProy(){
         }).then((response) => {
             navigate('/proyects/'+organizationId+'/');
         }).catch((error) => {
-            console.log(error);
+            //console.log(error);
         })
     }
     const getToken = async () => {

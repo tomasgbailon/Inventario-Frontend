@@ -126,3 +126,8 @@
         font-size: 0.3em;
     }
 }
+@media (prefers-color-scheme: dark) {
+    .requestsContainer{
+        color: rgb(243,243,243);
+    }
+}

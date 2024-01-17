@@ -23,6 +23,10 @@ export default function EditUnit(){
     const [orgSubproyect, setOrgSubproyect] = useState(0);
     const [orgProvider, setOrgProvider] = useState('');
     const [orgPurchaseDate, setOrgPurchaseDate] = useState('');
+    const [orgRUT, setOrgRUT] = useState('');
+    const [orgSellerName, setOrgSellerName] = useState('');
+    const [orgSellerContact, setOrgSellerContact] = useState('');
+    const [orgFacturationCode, setOrgFacturationCode] = useState('');
     const [token, setToken] = useState('');
     const [userId, setUserId] = useState(0);
     const [accessLevel, setAccessLevel] = useState('');
@@ -30,6 +34,9 @@ export default function EditUnit(){
     const [orgPriceError, setOrgPriceError] = useState('');
     const [orgResponsibleError, setOrgResponsibleError] = useState('');
     const [orgProviderError, setOrgProviderError] = useState('');
+    const [orgRUTError, setOrgRUTError] = useState('');
+    const [orgSellerNameError, setOrgSellerNameError] = useState('');
+    const [orgSellerContactError, setOrgSellerContactError] = useState('');
     const [orgStatusOriginal, setOrgStatusOriginal] = useState('');
     const [orgPriceOriginal, setOrgPriceOriginal] = useState('');
     const [orgResponsibleOriginal, setOrgResponsibleOriginal] = useState('');
@@ -37,11 +44,16 @@ export default function EditUnit(){
     const [orgProviderOriginal, setOrgProviderOriginal] = useState('');
     const [orgPurchaseDateOriginal, setOrgPurchaseDateOriginal] = useState('');
     const [orgDescriptionOriginal, setOrgDescriptionOriginal] = useState('');
+    const [orgRUTOriginal, setOrgRUTOriginal] = useState('');
+    const [orgSellerNameOriginal, setOrgSellerNameOriginal] = useState('');
+    const [orgSellerContactOriginal, setOrgSellerContactOriginal] = useState('');
+    const [orgFacturationCodeOriginal, setOrgFacturationCodeOriginal] = useState('');
     const [authId, setAuthId] = useState(user?.sub.split('|')[1]);
     const [email, setEmail] = useState(user?.email);
     const handleWriteDesc = (e) => {
         const value = e.target.value;
-        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-]*$/;
+        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-\/]*$/
+;
         if (value.length > 100) {
             setOrgDescriptionError('La descripción no puede tener más de 100 caracteres');
         } else if(!validNameRegex.test(value)) {
@@ -53,7 +65,8 @@ export default function EditUnit(){
     };
     const handleWriteResponsible = (e) => {
         const value = e.target.value;
-        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-]*$/;
+        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-\/]*$/
+;
         if (value.length > 20) {
             setOrgResponsibleError('El responsable no puede tener más de 20 caracteres');
         } else if (!validNameRegex.test(value)) {
@@ -65,7 +78,8 @@ export default function EditUnit(){
     };
     const handleWriteProvider = (e) => {
         const value = e.target.value;
-        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-]*$/;
+        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-\/]*$/
+;
         if (value.length > 20) {
             setOrgProviderError('El proveedor no puede tener más de 20 caracteres');
         } else if (!validNameRegex.test(value)) {
@@ -74,6 +88,44 @@ export default function EditUnit(){
             setOrgProviderError('');
         }
         setOrgProvider(e.target.value);
+    };
+    const handleWriteRUT = (e) => {
+        const value = e.target.value;
+        //numbers and k or K
+        const validNameRegex = /^[0-9kK]*$/;
+        if (value.length > 9) {
+            setOrgRUTError('El RUT no puede tener más de 9 caracteres');
+        } else if (!validNameRegex.test(value)) {
+            setOrgRUTError('El RUT solo puede tener números');
+        } else {
+            setOrgRUTError('');
+        }
+        setOrgRUT(e.target.value);
+    };
+    const handleWriteSellerName = (e) => {
+        const value = e.target.value;
+        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-\/]*$/
+;
+        if (value.length > 20) {
+            setOrgSellerNameError('El nombre del vendedor no puede tener más de 20 caracteres');
+        } else if (!validNameRegex.test(value)) {
+            setOrgSellerNameError('El nombre del vendedor solo puede tener letras y números');
+        } else {
+            setOrgSellerNameError('');
+        }
+        setOrgSellerName(e.target.value);
+    };
+    const handleWriteSellerContact = (e) => {
+        const value = e.target.value;
+        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ@_\s.,-]*$/;
+        if (value.length > 20) {
+            setOrgSellerContactError('El contacto del vendedor no puede tener más de 20 caracteres');
+        } else if (!validNameRegex.test(value)) {
+            setOrgSellerContactError('El contacto del vendedor solo puede tener letras y números');
+        } else {
+            setOrgSellerContactError('');
+        }
+        setOrgSellerContact(e.target.value);
     };
     const handleWriteStatus = (e) => {
         setOrgStatus(e.target.value);
@@ -149,6 +201,9 @@ export default function EditUnit(){
             provider: orgProvider === '' ? null : orgProvider,
             purchaseDate: orgPurchaseDate === '' ? null : orgPurchaseDate,
             description: orgDescription === '' ? null : orgDescription,
+            providerRUT: orgRUT === '' ? null : orgRUT,
+            providerName: orgSellerName === '' ? null : orgSellerName,
+            providerContact: orgSellerContact === '' ? null : orgSellerContact,
         }
         await axios.put(import.meta.env.VITE_API_ADDRESS+'/units/'+categoryId+'/'+productId+'/'+unitId, data, {
             headers: {
@@ -177,6 +232,10 @@ export default function EditUnit(){
             setOrgResponsible(response.data.responsible);
             setOrgSubproyect(response.data.subproyectId);
             setOrgProvider(response.data.provider);
+            setOrgRUT(response.data.providerRUT);
+            setOrgSellerName(response.data.providerName);
+            setOrgSellerContact(response.data.providerContact);
+            setOrgFacturationCode(response.data.facturationCode);
             setOrgDescriptionOriginal(response.data.description);
             setOrgStatusOriginal(response.data.status);
             setOrgPriceOriginal(response.data.price);
@@ -187,6 +246,10 @@ export default function EditUnit(){
             const newDate = date[0]+'-'+date[1]+'-'+date[2];
             setOrgPurchaseDate(newDate);
             setOrgPurchaseDateOriginal(newDate);
+            setOrgRUTOriginal(response.data.providerRUT);
+            setOrgSellerNameOriginal(response.data.providerName);
+            setOrgSellerContactOriginal(response.data.providerContact);
+            setOrgFacturationCodeOriginal(response.data.facturationCode);
         }).catch((error) => {
             if (currentTry < 3 || error.status === 500) {
                 getUnit(token, currentTry+1);
@@ -205,7 +268,7 @@ export default function EditUnit(){
             if (currentTry < 3 && error.status === 500) {
                 getSubproyects(token, currentTry+1);
             } else {
-                console.log(error);
+                //console.log(error);
             }
         })
     }
@@ -265,7 +328,16 @@ export default function EditUnit(){
                         <label className="orgName">Proveedor (Opcional)</label>
                         <input className="new-org-input" id="orgProvider" value={orgProvider} onChange={handleWriteProvider} />
                         {orgProviderError !== '' && <div id='red-small-font'>{orgProviderError}</div>}
-                        <label className="orgName">Fecha de compra (Opcional)</label>
+                        <label className="orgName">RUT Proveedor (Opcional) (Sin puntos ni guión)</label>
+                        <input className="new-org-input" id="orgRUT" value={orgRUT} onChange={handleWriteRUT} />
+                        {orgRUTError !== '' && <div id='red-small-font'>{orgRUTError}</div>}
+                        <label className="orgName">Nombre Vendedor (Opcional)</label>
+                        <input className="new-org-input" id="orgSellerName" value={orgSellerName} onChange={handleWriteSellerName} />
+                        {orgSellerNameError !== '' && <div id='red-small-font'>{orgSellerNameError}</div>}
+                        <label className="orgName">Contacto Vendedor (Opcional)</label>
+                        <input className="new-org-input" id="orgSellerContact" value={orgSellerContact} onChange={handleWriteSellerContact} />
+                        {orgSellerContactError !== '' && <div id='red-small-font'>{orgSellerContactError}</div>}
+                        <label className="orgName">Fecha de compra</label>
                         <input type='date' className="new-org-input" id="orgPurchaseDate" value={orgPurchaseDate} onChange={handleWriteDate} />
                         <label className="orgDescription">Descripción (opcional)</label>
                         <textarea className="new-org-input" id="orgDescription" value={orgDescription} onChange={handleWriteDesc} />
@@ -285,13 +357,18 @@ export default function EditUnit(){
                             orgResponsibleError !== '' ||
                             orgProviderError !== '' ||
                             orgPrice === '' ||
+                            orgPurchaseDate === '' ||
                             (orgDescription === orgDescriptionOriginal &&
                                 orgStatus === orgStatusOriginal &&
                                 orgPrice === orgPriceOriginal &&
                                 orgResponsible === orgResponsibleOriginal &&
                                 orgSubproyect === orgSubproyectOriginal &&
                                 orgProvider === orgProviderOriginal &&
-                                orgPurchaseDate === orgPurchaseDateOriginal
+                                orgPurchaseDate === orgPurchaseDateOriginal &&
+                                orgRUT === orgRUTOriginal &&
+                                orgSellerName === orgSellerNameOriginal &&
+                                orgSellerContact === orgSellerContactOriginal &&
+                                orgFacturationCode === orgFacturationCodeOriginal
                             )
                         } onClick={
                             (e) => {

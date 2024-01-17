@@ -34,12 +34,12 @@ export default function UserProfile(){
     const [userEmail, setUserEmail] = useState('');
     const [nameError, setNameError] = useState('');
     const [token, setToken] = useState('');
-    const [contentLoaded, setContentLoaded] = useState(false);
     const [authId, setAuthId] = useState(user?.sub.split('|')[1]);
     const [email, setEmail] = useState(user?.email);
     const handleWriteName = (e) => {
         const name = e.target.value;
-        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-]*$/;
+        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-\/]*$/
+;
         if (name.length > 15){
             setNameError('El nombre de usuario no puede tener más de 15 caracteres');
         } else if (name.length < 3){
@@ -112,7 +112,6 @@ export default function UserProfile(){
     useEffect(() => {
         if (token !== '' && token !== undefined && token !== null){
             getUser(token, 0);
-            setContentLoaded(true);
         }
     }, [token])
     if(isLoading ){

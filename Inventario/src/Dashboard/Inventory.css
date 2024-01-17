@@ -173,6 +173,57 @@
     font-family: 'Outfit Regular';
     font-size: 1em;
 }
+#categories-h1{
+    font-size: 2em;
+}
+.tool-bar {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 1em;
+}
+.tool-bar-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 16.6%;
+    height: 2.5em;
+    border: 1px solid rgb(151, 151, 151);
+    border-radius: 0.4em;
+    margin-right: 0.5em;
+    cursor: pointer;
+    font-family: 'Outfit Regular';
+    font-size: 1.2em;
+}
+.tool-bar-button:hover{
+    background-color: rgb(237, 237, 237);
+}
+#blue-button {
+    background-color: rgb(21,119,235);
+    color: rgb(243, 243, 243);
+    border: 0px solid rgb(151, 151, 151);
+}
+#blue-button:hover {
+    background-color: rgb(65, 140, 232);
+}
+#red-button:hover {
+    background-color: rgb(211, 94, 94);
+}
+.tool-bar-button:disabled{
+    background-color: rgb(219, 219, 219);
+}
+#blue-button:disabled{
+    background-color: rgb(219, 219, 219);
+}
+#red-button:disabled{
+    background-color: rgb(219, 219, 219);
+}
+.thinBlackLine{
+    height: 1px;
+    width: 100%;
+    background-color: rgb(121, 121, 121);
+}
 @media screen and (max-width: 1080px){
     .entry{
         gap: 0.5em;
@@ -227,5 +278,47 @@
     }
     .categoryInfo{
         height: 3em;
+    }
+    .tool-bar {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    .inventory-body .tool-bar-button{
+        height: 2.5em;
+        font-size: 0.4em;
+        width: auto;
+        margin-top: 1em;
+    }
+    #categories-h1{
+        font-size: 1.5em;
+    }
+}
+@media (prefers-color-scheme: dark) {
+    .categoryInfo p{
+        background-color: rgb(16, 16, 16);
+        color: rgb(243, 243, 243);
+    }
+    .products-grid-item a{
+        color: rgb(243, 243, 243);
+    }
+    .products-grid-header{
+        color: rgb(243, 243, 243);
+    }
+    .blackLine {
+        background-color: rgb(243, 243, 243);
+    }
+    .tool-bar-button{
+        background-color: rgb(16, 16, 16);
+        border: 1px solid rgb(151, 151, 151);
+        color: rgb(243, 243, 243);
+    }
+    .tool-bar-button:hover{
+        background-color: rgb(35, 35, 35);
+        border: 1px solid rgb(151, 151, 151);
+        color: rgb(243, 243, 243);
+    }
+    .tool-bar-button:disabled{
+        background-color: rgb(72, 72, 72);
+        color:rgb(126, 126, 126)
     }
 }

@@ -26,7 +26,7 @@ export default function NewProd(){
     const [modelError, setModelError] = useState('');
     const [brand, setBrand] = useState('');
     const [brandError, setBrandError] = useState('');
-    const [measure, setMeasure] = useState('');
+    const [measure, setMeasure] = useState('un');
     const [measureError, setMeasureError] = useState('');
     const [prefix, setPrefix] = useState('');
     const [prefixError, setPrefixError] = useState('');
@@ -38,7 +38,8 @@ export default function NewProd(){
     const [email, setEmail] = useState(user?.email);
     const handleWriteName = (e) => {
         const value = e.target.value;
-        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-]*$/;
+        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-\/]*$/
+;
         if (value.length > 30) {
             setNameError('El nombre no puede tener más de 30 caracteres');
         } else if (value.length < 5){
@@ -65,7 +66,8 @@ export default function NewProd(){
     }
     const handleWriteMeasure = (e) => {
         const value = e.target.value;
-        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-]*$/;
+        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-\/]*$/
+;
         if (value.length > 10) {
             setMeasureError('La unidad de medida no puede tener más de 10 caracteres');
         } else if (value.length < 1){
@@ -79,7 +81,8 @@ export default function NewProd(){
     }
     const handleWriteBrand = (e) => {
         const value = e.target.value;
-        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-]*$/;
+        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-\/]*$/
+;
         if (value.length > 20) {
             setBrandError('La marca no puede tener más de 20 caracteres');
         } else if (!validNameRegex.test(value)){
@@ -91,7 +94,8 @@ export default function NewProd(){
     }
     const handleWriteModel = (e) => {
         const value = e.target.value;
-        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-]*$/;
+        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-\/]*$/
+;
         if (value.length > 30) {
             setModelError('El modelo no puede tener más de 30 caracteres');
         } else if (!validNameRegex.test(value)){
@@ -103,7 +107,8 @@ export default function NewProd(){
     }
     const handleWriteDescription = (e) => {
         const value = e.target.value;
-        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-]*$/;
+        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-\/]*$/
+;
         if (value.length > 200) {
             setDescriptionError('La descripción no puede tener más de 200 caracteres');
         } else if (!validNameRegex.test(value)){
@@ -140,7 +145,7 @@ export default function NewProd(){
             if (currentTry < 3 && error.status === 500) {
                 createProduct(token, currentTry+1);
             } else {
-                console.log(error);
+                //console.log(error);
             }
         })
     }
@@ -189,7 +194,7 @@ export default function NewProd(){
             if (currentTry < 3) {
                 getInv(token, currentTry+1);
             } else {
-                console.log(error);
+                //console.log(error);
             }
         })
     
@@ -207,7 +212,7 @@ export default function NewProd(){
             if (currentTry < 3) {
                 getCategories(token, currentTry+1);
             } else {
-                console.log(error);
+                //console.log(error);
             }
         })
     }
@@ -273,7 +278,7 @@ export default function NewProd(){
                         <input type="text" className="new-org-input" id="prefix" placeholder="Prefijo" onChange={handleWritePrefix} />
                         {prefixError !== '' && <div id='red-small-font'>{prefixError}</div>}
                         <label className='measure'>Unidad de medida</label>
-                        <input type="text" className="new-org-input" id="measure" placeholder="Unidad de medida (ej: Unidades, Kg, Ton)" onChange={handleWriteMeasure} />
+                        <input type="text" className="new-org-input" id="measure" value={measure} placeholder="Unidad de medida (ej: Unidades, Kg, Ton)" onChange={handleWriteMeasure} />
                         {measureError !== '' && <div id='red-small-font'>{measureError}</div>}
                         <label className="brand">Marca (opcional)</label>
                         <input type="text" className="new-org-input" id="brand" placeholder="Marca del producto" onChange={handleWriteBrand} />

@@ -31,7 +31,8 @@ export default function NewSubProyect(){
     const [email, setEmail] = useState(user?.email);
     const handleWriteName = (e) => {
         const value = e.target.value;
-        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-]*$/;
+        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-\/]*$/
+;
         if (value.length > 25) {
             setOrgNameError('El nombre no puede tener más de 25 caracteres');
         } else if (!validNameRegex.test(value)) {
@@ -45,7 +46,8 @@ export default function NewSubProyect(){
     };
     const handleWriteDesc = (e) => {
         const value = e.target.value;
-        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-]*$/;
+        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-\/]*$/
+;
         if (value.length > 200) {
             setOrgDescriptionError('La descripción no puede tener más de 200 caracteres');
         } else if (!validNameRegex.test(value)) {
@@ -113,7 +115,7 @@ export default function NewSubProyect(){
             if (currentTry < 3 && error.status === 500) {
                 getProyects(token, currentTry+1);
             } else {
-                console.log(error);
+                //console.log(error);
             }
         })
     }

@@ -39,6 +39,7 @@ import DeleteProy from './Dashboard/Delete/DeleteProyect.jsx'
 import DeleteSubProy from './Dashboard/Delete/DeleteSubproyect.jsx'
 import NewSubproyect from './Dashboard/New/NewSubproyect.jsx'
 import Demo from './Demo/Demo.jsx'
+import History from './Dashboard/History.jsx'
 
 function Routing(){
     return (
@@ -85,6 +86,7 @@ function Routing(){
                     <Route path={'/delete/subproy/:organizationId/:proyectId/:subproyectId/'} element={<DeleteSubProy/>}/>
                     <Route path={'/create/subproy/:organizationId/'} element={<NewSubproyect/>}/>
                     <Route path={'/howitworks'} element={<Demo/>}/>
+                    <Route path={'/history/:type/:organizationId/:targetId'} element={<History/>}/>
                 </Routes>
             </BrowserRouter>
         </>

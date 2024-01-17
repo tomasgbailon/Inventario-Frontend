@@ -47,3 +47,24 @@ a{
     font-size: 1em;
   }
 }
+@media (prefers-color-scheme: dark) {
+  #landingNavBarContainer {
+    background-color: rgb(16, 16, 16);
+    border-bottom: 1px solid rgb(63, 63, 63);
+  }
+  p {
+    color: rgb(243, 243, 243);
+  }
+  a {
+    color: rgb(243, 243, 243);
+  }
+  h1 {
+    color: rgb(243, 243, 243);
+  }
+  h2 {
+    color: rgb(243, 243, 243);
+  }
+  h3 {
+    color: rgb(243, 243, 243);
+  }
+}

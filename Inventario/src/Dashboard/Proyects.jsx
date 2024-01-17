@@ -24,6 +24,8 @@ export default function Proyects() {
     const [locksView, setLocksView] = useState(viewProyects.map(() => 0));
     const [orderDirection, setOrderDirection] = useState(proyects.map(() => [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]));
     const [orderDirectionView, setOrderDirectionView] = useState(viewProyects.map(() => [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]));
+    const [hideEmpty, setHideEmpty] = useState(false);
+    const [showAll, setShowAll] = useState(true);
     const [token, setToken] = useState('');
     const [userId, setUserId] = useState(0);
     const [accessLevel, setAccessLevel] = useState('');
@@ -239,6 +241,15 @@ export default function Proyects() {
         }
         return 'negative'
     }
+    const affectAllLocks = async (open) => {
+        if (open){
+            setLocks(proyects.map(() => 1));
+            setLocksView(viewProyects.map(() => 1));
+        } else {
+            setLocks(proyects.map(() => 0));
+            setLocksView(viewProyects.map(() => 0));
+        }
+    }
     useEffect(() => {
         if (isAuthenticated) {
             const token = getToken();
@@ -305,26 +316,59 @@ export default function Proyects() {
                 <div className='proyects-body'>
                     <div className='titleContainer'>
                         <h1>{orgName} Proyectos</h1>
-                        { (accessLevel === 'admin' || accessLevel === 'owner') &&
-                            <button className='plusButton'><a onClick={
-                                (e) => {
-                                    e.preventDefault();
-                                    navigate('/create/proy/'+organizationId+'/');
-                                }
-                            }>+</a></button>}
                     </div>
                     <SearchContext.Provider value={{ searchTerm, setSearchTerm }}>
                         <SearchBar defaultText={'buscar subproyectos...'}/>
                     </SearchContext.Provider>
-                    <div className='create-product'><a onClick={
+                    <div className='tool-bar'>
+                        <button disabled={accessLevel !== 'admin' && accessLevel !== 'owner'} 
+                            className='tool-bar-button' id='blue-button' onClick={
+                            (e) => {
+                                e.preventDefault();
+                                navigate('/create/proy/'+organizationId+'/');
+                            }
+                        }>Nuevo Proyecto</button>
+                        <button disabled={accessLevel !== 'admin' && accessLevel !== 'owner' && accessLevel !== 'edit'} 
+                            className='tool-bar-button' id='blue-button' onClick={
                         (e) => {
                             e.preventDefault();
                             navigate('/create/subproy/'+organizationId+'/');
                         }
-                    }>Crear nuevo subproyecto</a></div>
+                        }>Nuevo Subproyecto</button>
+                        <select className='tool-bar-button' value={0} id='blue-button'>
+                            <option value={0} disabled>Historial</option>
+                            {proyects.concat(viewProyects).map((proyect, index) => {
+                                return (
+                                    <option value={proyect.proyectId} onClick={
+                                        (e) => {
+                                            e.preventDefault();
+                                            const date = new Date();
+                                            const start = date.getFullYear()+'-'+(date.getMonth()+1 <= 9 ? ''+date.getMonth()+1 : date.getMonth()+1)+'-'+date.getDate();
+                                            navigate('/history/proy/'+organizationId+'/'+proyect.proyectId+'?start='+start+'&range=1&page=1&group=daily');
+                                        }
+                                    }>{proyect.name}</option>
+                                )
+                            })}
+                        </select>
+                        <button className='tool-bar-button' onClick={(e) => {
+                            e.preventDefault();
+                            setHideEmpty(!hideEmpty);
+                        }}>
+                            {hideEmpty ? 'Mostrar Vacíos':'Ocultar Vacíos'}
+                        </button>
+                        <button  className='tool-bar-button' onClick={(e) => {
+                            e.preventDefault();
+                            setShowAll(!showAll);
+                            affectAllLocks(showAll);
+                        }}>
+                            {showAll ? 'Abrir todos':'Cerrar todos'}
+                        </button>
+                    </div>
+                    <div className='thinBlackLine'></div>
                     <h2>Puedes editar</h2>
                     {
                         proyects.length > 0 ? proyects.map((proyect, index) => {
+                            if(!hideEmpty || proyect.subproyects.length > 0)
                             return (
                                 <div className='entry'>
                                 <div className={`proyectsContainer ${locks[index] === 1 ? 'open' : ''}`} key={index}>

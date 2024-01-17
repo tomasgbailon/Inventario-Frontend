@@ -19,6 +19,8 @@ export default function Inventory() {
     const [searchTerm, setSearchTerm] = useState('');
     const [buttonUnlock, setButtonUnlock] = useState(0);
     const [categories, setCategories] = useState([]);
+    const [hideEmpty, setHideEmpty] = useState(false);
+    const [showAll, setShowAll] = useState(true);
     const [backUpCategories, setBackUpCategories] = useState([]);
     const [locks, setLocks] = useState(categories.map(() => 0));
     const [orderDirection, setOrderDirection] = useState(categories.map(() => [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]));
@@ -137,7 +139,7 @@ export default function Inventory() {
             if (currentTry < 3) {
                 getInv(token, currentTry+1);
             } else {
-                console.log(error);
+                //console.log(error);
             }
         })
     
@@ -160,6 +162,13 @@ export default function Inventory() {
                 console.log(error);
             }
         })
+    }
+    const affectAllLocks = async (open) => {
+        if (open){
+            setLocks(categories.map(() => 1));
+        } else {
+            setLocks(categories.map(() => 0));
+        }
     }
     useEffect(() => {
         if (isAuthenticated) {
@@ -221,24 +230,51 @@ export default function Inventory() {
                     <SearchContext.Provider value ={{searchTerm, setSearchTerm}}>
                         <SearchBar defaultText={'buscar productos...'}/>
                     </SearchContext.Provider>
-                    <div className='create-product'><a onClick={
-                        (e) => {
-                            e.preventDefault();
-                            navigate('/create/prod/'+organizationId+'/'+inventoryId+'/');
-                        }
-                    }>Crear nuevo producto</a></div>
-                    <div className='titleContainer'>
-                        <h1> Categorías</h1>
-                        { (accessLevel === 'admin' || accessLevel === 'owner' || accessLevel === 'edit') &&
-                            <button className='plusButton'><a onClick={
+                    <div className='tool-bar'>
+                        <button disabled={accessLevel !== 'admin' && accessLevel !== 'owner' && accessLevel !== 'edit'} 
+                            className='tool-bar-button' id='blue-button' onClick={
                             (e) => {
                                 e.preventDefault();
                                 navigate('/create/cat/'+organizationId+'/');
                             }
-                        }>+</a></button>}
+                        }>Nueva Categoría</button>
+                        <button disabled={accessLevel !== 'admin' && accessLevel !== 'owner' && accessLevel !== 'edit'} 
+                            className='tool-bar-button' id='blue-button' onClick={
+                        (e) => {
+                            e.preventDefault();
+                            navigate('/create/prod/'+organizationId+'/'+inventoryId+'/');
+                        }
+                        }>Nuevo Producto</button>
+                        <button
+                            className='tool-bar-button' id='blue-button' onClick={
+                        (e) => {
+                            e.preventDefault();
+                            const date = new Date();
+                            const start = date.getFullYear()+'-'+(date.getMonth()+1 <= 9 ? ''+date.getMonth()+1 : date.getMonth()+1)+'-'+date.getDate();
+                            navigate('/history/inv/'+organizationId+'/'+inventoryId+'?start='+start+'&range=1&page=1&group=daily');
+                        }
+                        }>Historial</button>
+                        <button className='tool-bar-button' onClick={(e) => {
+                            e.preventDefault();
+                            setHideEmpty(!hideEmpty);
+                        }}>
+                            {hideEmpty ? 'Mostrar Vacías':'Ocultar Vacías'}
+                        </button>
+                        <button  className='tool-bar-button' onClick={(e) => {
+                            e.preventDefault();
+                            setShowAll(!showAll);
+                            affectAllLocks(showAll);
+                        }}>
+                            {showAll ? 'Abrir todas':'Cerrar todas'}
+                        </button>
+                    </div>
+                    <div className='thinBlackLine'></div>
+                    <div className='titleContainer'>
+                        <h1 id='categories-h1'> Categorías</h1>
                     </div>
                     {
                         categories.length > 0 ? categories.map((category, index) => {
+                            if(!hideEmpty || category.products.length > 0)
                             return (
                                 <div className='entry'>
                                 <div className={`categoryContainer ${locks[index] === 1 ? 'open' : ''}`} key={index}>

@@ -71,7 +71,7 @@
 }
 .products3-grid {
     display: grid;
-    grid-template-columns: 7fr 4fr 4fr 8fr 6fr 10fr 7fr 8fr 4fr;
+    grid-template-columns: 7fr 4fr 4fr 10fr 6fr 9fr 7fr 7fr 4fr;
     width: 100%;
     margin-bottom: 0em;
     cursor: pointer;
@@ -235,13 +235,7 @@
     cursor: pointer;
     border: 0.1px solid rgb(145, 145, 145);
 }
-#refresh{
-    width: 10%;
-}
-#inspect{
-    width: 10%;
 
-}
 .product4-entry input{
     width: 100%;
     height: 2em;
@@ -254,16 +248,9 @@
     outline: none;
     cursor: pointer;
     border: 0.1px solid rgb(145, 145, 145);
-
 }
 #edit-button-2 {
     width: 19em;
-}
-#total-unit{
-    width: 30%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 .unit-options{
     width: 100%;
@@ -271,9 +258,60 @@
     align-items: center;
     justify-content: center;
     gap: 1em;
-
 }
-
+.tool-bar-adapter-prod {
+    width: 70vw;
+}
+.metricsGrid {
+    width: 70vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+#total-unit{
+    margin-top: 0px;
+    width: 100%;
+    height: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    color: black;
+}
+#detail-title {
+    width: 60vw;
+}
+.product-fields-grid{
+    width: 70vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+}
+#product-fields-grid-item{
+    width: auto;
+}
+#small-margin{
+    height: 1.2em;
+}
+#big-margin {
+    height: 3.8em;
+}
+.window-tool-bar{
+    width: 60vw;
+    height: 2em;
+    margin-top: 2em;
+}
+.back-arrow{
+    height: 2em;
+    width: 5em;
+    background-color: rgb(211, 211, 211);
+    color: black;
+    border-radius: 0.3em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+}
+.back-arrow:hover{
+    background-color: rgb(145, 145, 145);
+}
 @media screen and (max-width: 1080px){
     .product3-entry{
         width: 90%;
@@ -378,5 +416,58 @@
     }
     .product3-options .product3-button{
         font-size: 0.5em;
+    }
+}
+@media (prefers-color-scheme: dark) {
+    .product3Info p{
+        background-color: rgb(16, 16, 16);
+    }
+    .products3-grid-header{
+        background-color: rgb(30,30,30);
+        color: rgb(243, 243, 243);
+    }
+    .products3-grid-item {
+        background-color: rgb(30,30,30);
+        color: rgb(243, 243, 243);
+    }
+    .products3-grid-item.selected {
+        background-color: rgb(203, 229, 255);
+        color: rgb(0, 0, 0);
+    }
+    .product3-lock{
+        background-color: rgb(16, 16, 16);
+    }
+    input {
+        background-color: rgb(16, 16, 16);
+        color: rgb(243, 243, 243);
+    }
+    textarea {
+        background-color: rgb(16, 16, 16);
+        color: rgb(243, 243, 243);
+    }
+    .new-org-form label {
+        color: rgb(243, 243, 243);
+    }
+    select {
+        background-color: rgb(16, 16, 16);
+        color: rgb(243, 243, 243);
+    }
+    .orgName{
+        color: rgb(243, 243, 243);
+    }
+    #total-unit {
+        color: rgb(243, 243, 243);
+    }
+    .back-arrow{
+        height: 2em;
+        width: 5em;
+        background-color: rgb(50,50,50);
+        color: rgb(243, 243, 243);
+        border-radius: 0.3em;
+        padding-top: 0.5em;
+        padding-bottom: 0.5em;
+    }
+    .back-arrow:hover{
+        background-color: rgb(65,65,65);
     }
 }

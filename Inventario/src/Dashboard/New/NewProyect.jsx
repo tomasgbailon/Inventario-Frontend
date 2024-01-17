@@ -37,7 +37,8 @@ export default function NewProy(){
     const [email, setEmail] = useState(user?.email);
     const handleWriteProyName = (e) => {
         const value = e.target.value;
-        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-]*$/;
+        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-\/]*$/
+;
         if (value.length > 20){
             setProyNameError('El nombre del proyecto no puede ser mayor a 20 caracteres');
         } else if (value.length < 5){
@@ -69,7 +70,8 @@ export default function NewProy(){
     }
     const handleWriteDescription = (e) => {
         const value = e.target.value;
-        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-]*$/;
+        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-\/]*$/
+;
         if (value.length > 200){
             setProyDescriptionError('La descripción no puede ser mayor a 200 caracteres');
         } else if(!validNameRegex.test(value)){
@@ -99,7 +101,7 @@ export default function NewProy(){
             if (currentTry < 3) {
                 getUser(token, currentTry+1);
             } else {
-                console.log(error);
+                //console.log(error);
             }
         })
     }  
@@ -120,7 +122,7 @@ export default function NewProy(){
             if (currentTry < 3) {
                 getUsers(string, currentTry+1);
             } else {
-                console.log(error);
+                //console.log(error);
             }
         });
     }
@@ -162,7 +164,7 @@ export default function NewProy(){
             if (currentTry < 3) {
                 createProy(token, currentTry+1);
             } else {
-                console.log(error);
+                //console.log(error);
             }
         })
     }
@@ -184,7 +186,7 @@ export default function NewProy(){
             if (currentTry < 3 && error.status === 500) {
                 sendInvitations(token, receptorName, receptorEmail, currentTry+1);
             } else {
-                console.log(error);
+                //console.log(error);
                 setSelectedUsers([]);
             }
         });

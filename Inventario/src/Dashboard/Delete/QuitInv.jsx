@@ -28,7 +28,7 @@ export default function QuitInv(){
         }).then((response) => {
             navigate('/dashboard');
         }).catch((error) => {
-            console.log(error);
+            //console.log(error);
         })
     }
     const getToken = async () => {

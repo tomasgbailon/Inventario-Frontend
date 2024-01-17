@@ -9,6 +9,8 @@ import SecondNavBar from './SecondNavBar'
 import { useNavigate } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import axios from 'axios'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 
 function sum(array) {
     return array.reduce((a, b) => a + b, 0);
@@ -50,6 +52,9 @@ export default function SubProyect(){
     const [changeSubproyectType, setChangeSubproyectType] = useState('');
     const [subproyects, setSubproyects] = useState([]);
     const [showContent, setShowContent] = useState(false);
+    const [showAll, setShowAll] = useState(false);
+    const [display, setDisplay] = useState(false);
+    const [showMetrics, setShowMetrics] = useState(false);
     const [orgSubproyect, setOrgSubproyect] = useState(0);
     const [token, setToken] = useState('');
     const [userId, setUserId] = useState(0);
@@ -69,7 +74,8 @@ export default function SubProyect(){
     }
     const handleWriteName = (e) => {
         const value = e.target.value;
-        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-]*$/;
+        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-\/]*$/
+;
         if (value.length > 25) {
             setOrgNameError('El nombre no puede tener más de 25 caracteres');
         } else if (!validNameRegex.test(value)) {
@@ -83,7 +89,8 @@ export default function SubProyect(){
     };
     const handleWriteDesc = (e) => {
         const value = e.target.value;
-        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-]*$/;
+        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-\/]*$/
+;
         if (value.length > 200) {
             setOrgDescriptionError('La descripción no puede tener más de 200 caracteres');
         } else if (!validNameRegex.test(value)) {
@@ -425,6 +432,9 @@ export default function SubProyect(){
             provider: unit.provider,
             responsible: null,
             description: unit.description,
+            providerName: unit.providerName,
+            providerRUT: unit.providerRUT,
+            providerContact: unit.providerContact,
         };
         await axios.put(import.meta.env.VITE_API_ADDRESS+'/units/'+unit.categoryId+'/'+unit.productId+'/'+unit.unitId, data, {
             headers: {
@@ -468,6 +478,9 @@ export default function SubProyect(){
             provider: unit.provider,
             responsible: responsible === '' ? null : responsible,
             description: unit.description,
+            providerName: unit.providerName,
+            providerRUT: unit.providerRUT,
+            providerContact: unit.providerContact,
         };
         await axios.put(import.meta.env.VITE_API_ADDRESS+'/units/'+unit.categoryId+'/'+unit.productId+'/'+unit.unitId, data, {
             headers: {
@@ -540,6 +553,16 @@ export default function SubProyect(){
         setChangeSubproyectLock(-1);
         getSubproyect(token, 1);
     }
+    const affectAllLocks = (boolean) => {
+        const newLocks = assetLocks.map((lock, i) => {
+            return boolean === true ? 1 : 0;
+        });
+        setAssetLocks(newLocks);
+        const _newLocks = consLocks.map((lock, i) => {
+            return boolean === true ? 1 : 0;
+        });
+        setConsLocks(_newLocks);
+    }
     const assign = async (token, currentTry, unit) => {
         await axios.put(import.meta.env.VITE_API_ADDRESS+'/units/'+unit.categoryId+'/'+unit.productId+'/'+unit.unitId, {
             status: 'in use',
@@ -590,7 +613,7 @@ export default function SubProyect(){
         if (accessLevel !== '') {
             getSubproyect(token, 1);
             getSubproyects(token, 1);
-            console.log(accessLevel)
+            //console.log(accessLevel)
         }
     }, [accessLevel]);
     if (isLoading ) {
@@ -603,83 +626,157 @@ export default function SubProyect(){
                 <NavBar selection={1} />
                 <SecondNavBar selection={3} accessLevel={accessLevel}/>
                 <div className="new-org-content">
-                    <h3></h3>
-                    <h1>{orgName}</h1>
-                    <div className="orgDownBar">
-                            <button className='submit-button' id='edit-button' onClick={toggleShowContent}>{
-                                showContent ? 'Ocultar' : 'Inspeccionar'
-                            }</button>
-                            <button className='submit-button' id='edit-button' onClick={
-                                (e) => {
-                                    e.preventDefault();
-                                    getSubproyect(token, 1);
-                                }
-                            }>Recargar</button>
+                    <div className='window-tool-bar'>
+                        <FontAwesomeIcon icon={faArrowLeft} className='back-arrow' onClick={() => navigate('/proyects/'+organizationId+'/')}/>
                     </div>
-                    { !toggleEdit && showContent && <div className='new-org-form'>
-                        <label className="orgName">Nombre</label>
-                        <input type="text" className="new-org-input" id="orgName" value={orgName} disabled/>
-                        <label className='orgStatus'>Estado</label>
-                        <input type="text" className='new-org-input' id='orgStatus' value={orgStatus === 'active' ? 'Activo' : 'Inactivo'} disabled/>
-                        <label className="orgBudget">Presupuesto Objetivo</label>
-                        <input type="text" className="new-org-input" id="orgBudget" value={"$"+orgBudget} disabled/>
-                        <label className="orgDescription">Descripción (opcional)</label>
-                        <textarea className="new-org-input" id="orgDescription" value={orgDescription} disabled/>
-                        { (accessLevel === 'owner' || accessLevel === 'admin' || accessLevel === 'edit') &&
-                            <div className="orgDownBar">
-                            <button className='submit-button' id='edit-button' onClick={toggleEditFunc}>Editar</button>
-                            <button className='submit-button red' id='edit-button'onClick={
-                                (e) => {
-                                    e.preventDefault();
-                                    navigate('/delete/subproy/'+organizationId+'/'+proyectId+'/'+subproyectId+'/');
-                                }
-                            }>Eliminar</button>
-                        </div>}
+                    <h1>{orgName}</h1>
+                    <div className='tool-bar-adapter-subp'>
+                        <div className='tool-bar'>
+                            <button disabled={!(accessLevel === 'owner' || accessLevel === 'admin' || accessLevel === 'edit')}
+                                className='tool-bar-button' id='blue-button' onClick={
+                                    (e) => {
+                                        e.preventDefault();
+                                        setDisplay(display === 'edit' ? null : 'edit');
+                                    }
+                                }>
+                                    Editar
+                            </button>
+                            <button disabled={!(accessLevel === 'owner' || accessLevel === 'admin')}
+                                className='tool-bar-button' id='blue-button' onClick={
+                                    (e) => {
+                                        e.preventDefault();
+                                        const date = new Date();
+                                        const start = date.getFullYear()+'-'+(date.getMonth()+1 <= 9 ? ''+date.getMonth()+1 : date.getMonth()+1)+'-'+date.getDate();
+                                        navigate('/history/proy/'+organizationId+'/'+proyectId+'?start='+start+'&range=1&page=1&group=daily');
+                                    }
+                                }>
+                                    Historial
+                            </button>
+                            <button disabled={!(accessLevel === 'owner' || accessLevel === 'admin' || accessLevel === 'edit')}
+                                className='tool-bar-button' id='red-button' onClick={
+                                    (e) => {
+                                        e.preventDefault();
+                                        navigate('/delete/subproy/'+organizationId+'/'+proyectId+'/'+subproyectId+'/');
+                                    }
+                                }>
+                                    Eliminar Subproyecto
+                            </button>
+                            <button className='tool-bar-button' onClick={
+                                    (e) => {
+                                        e.preventDefault();
+                                        setDisplay(display === 'display' ? null : 'display');
+                                    }
+                                }>
+                                    {display ? "Ocultar Ficha":"Mostrar Ficha"}
+                            </button>
+                            <button className='tool-bar-button' onClick={
+                                    (e) => {
+                                        e.preventDefault();
+                                        setShowMetrics(!showMetrics);
+                                        affectAllLocks(!showMetrics);
+                                    }
+                                }>
+                                    {!showMetrics ? 'Mostrar Métricas' : 'Ocultar Métricas'}
+                            </button>
+                            <button className='tool-bar-button' onClick={
+                                    (e) => {
+                                        e.preventDefault();
+                                        setShowAll(!showAll);
+                                        affectAllLocks(showAll);
+                                    }
+                                }>
+                                    {showAll ? 'Mostrar Contenido' : 'Ocultar Contenido'}
+                            </button>
+                        </div>
+                        <div className='thinBlackLine'></div>
+                    </div>
+                    { display === 'display' && 
+                    <div className='product-fields-grid'>
+                        <div className='new-org-form' id='product-fields-grid-item'>
+                            <label className="orgName">Nombre</label>
+                            <input type="text" className="new-org-input" id="orgName" value={orgName} disabled/>
+                            <label className="orgDescription">Descripción (opcional)</label>
+                            <textarea className="new-org-input" id="orgDescription" value={orgDescription} disabled/>
+                        </div>
+                        <div className='new-org-form' id='product-fields-grid-item'>
+                            <div id='small-margin'/>
+                            <label className='orgStatus'>Estado</label>
+                            <input type="text" className='new-org-input' id='orgStatus' value={orgStatus === 'active' ? 'Activo' : 'Inactivo'} disabled/>
+                            <label className="orgBudget">Presupuesto Objetivo</label>
+                            <input type="text" className="new-org-input" id="orgBudget" value={"$"+orgBudget} disabled/>
+                        </div>
                     </div>}
-                    { toggleEdit && showContent && <div className="new-org-form">
-                        <label className="orgName">Nombre</label>
-                        <input type="text" className="new-org-input" id="orgName" value={orgNameModified} onChange={handleWriteName} />
-                        {orgNameError !== '' && <div id='red-small-font'>{orgNameError}</div>}
-                        <label className='orgStatus'>Estado</label>
-                        <select className='new-org-input' id='orgStatus' value={orgStatusModified} onChange={(e) => setOrgStatusModified(e.target.value)}>
-                            <option value='active'>Activo</option>
-                            <option value='inactive'>Inactivo</option>
-                        </select>
-                        <label className="orgBudget">Presupuesto Objetivo</label>
-                        <input className="new-org-input" id="orgBudget" value={'$'+orgBudgetModified} onChange={handleWriteBudget} />
-                        {orgBudgetError !== '' && <div id='red-small-font'>{orgBudgetError}</div>}
-                        <label className="orgDescription">Descripción (opcional)</label>
-                        <textarea className="new-org-input" id="orgDescription" value={orgDescriptionModified} onChange={handleWriteDesc} />
-                        {orgDescriptionError !== '' && <div id='red-small-font'>{orgDescriptionError}</div>}
+                    { display === 'edit' && 
+                    <div className='product-fields-grid'>
+                        <div className="new-org-form" id='product-fields-grid-item'>
+                            <label className="orgName">Nombre</label>
+                            <input type="text" className="new-org-input" id="orgName" value={orgNameModified} onChange={handleWriteName} />
+                            {orgNameError !== '' && <div id='red-small-font'>{orgNameError}</div>}
+                            <label className="orgDescription">Descripción (opcional)</label>
+                            <textarea className="new-org-input" id="orgDescription" value={orgDescriptionModified} onChange={handleWriteDesc} />
+                            {orgDescriptionError !== '' && <div id='red-small-font'>{orgDescriptionError}</div>}
+                        </div>
+                        <div className="new-org-form" id='product-fields-grid-item'>
+                            <div id='small-margin'/>
+                            {orgNameError !== '' && <div id='red-small-font'>{orgNameError}</div>}
+                            <label className='orgStatus'>Estado</label>
+                            <select className='new-org-input' id='orgStatus' value={orgStatusModified} onChange={(e) => setOrgStatusModified(e.target.value)}>
+                                <option value='active'>Activo</option>
+                                <option value='inactive'>Inactivo</option>
+                            </select>
+                            <label className="orgBudget">Presupuesto Objetivo</label>
+                            <input className="new-org-input" id="orgBudget" value={'$'+orgBudgetModified} onChange={handleWriteBudget} />
+                            {orgBudgetError !== '' && <div id='red-small-font'>{orgBudgetError}</div>}
                             <button type="submit" className='submit-button' disabled={
                                 orgNameError !== '' || orgBudgetError !== '' || orgDescriptionError !== ''
                                 || orgNameModified === '' || orgBudgetModified === '' || (orgName === orgNameModified && orgStatus === orgStatusModified && orgBudget === orgBudgetModified && orgDescription === orgDescriptionModified)
                             } onClick={
                                 handleEdit
                             }>Confirmar</button>
-                            <button className='submit-button' id='red-button' onClick={toggleEditFunc}>Cancelar</button>
+                            <button className='submit-button' id='red-button' onClick={
+                                (e) => {
+                                    e.preventDefault();
+                                    setDisplay(display === 'edit' ? null : 'edit');
+                                    setOrgNameModified(orgName);
+                                    setOrgStatusModified(orgStatus);
+                                    setOrgBudgetModified(orgBudget);
+                                    setOrgDescriptionModified(orgDescription);
+                                }
+                            }>Cancelar</button>
+                        </div>
                     </div>}
+                    { showMetrics && 
+                    <>
+                        <h2 id='detail-title'>Métricas de {orgName}</h2>
+                        <div className='tool-bar-adapter-subp'>
+                            <div className='thinBlackLine'/>
+                        </div>
+                        <div className='metricsGrid'>
+                            <h2 id='total-unit'>Total en {orgName}: ${
+                                //sum all the values of the products assets and consumables
+                                sum(assets.map((product) => {
+                                    return product.value;
+                                }
+                                )) + sum(consumables.map((product) => {
+                                    return product.value;
+                                })) 
+                            }</h2>
+                            <h2 id='total-unit'>Valor con depreciación: ${
+                                sum(assets.map((product) => {
+                                    return product.actualValue;
+                                }
+                                )) + sum(consumables.map((product) => {
+                                    return product.actualValue;
+                            })) 
+                            }</h2>
+                        </div>
+                    </>}
+                    {showMetrics && <div className='tool-bar-adapter-subp'>
+                            <div className='thinBlackLine'/>
+                        </div>}
                     {<>   
-                    <h2 id='subp-total'>Total en subproyecto ${
-                        //sum all the values of the products assets and consumables
-                        sum(assets.map((product) => {
-                            return product.value;
-                        }
-                        )) + sum(consumables.map((product) => {
-                            return product.value;
-                        })) 
-                    }</h2>
-                    <h2 id='subp-total'>Total en considerando depreciación ${
-                        //sum all the values of the products assets and consumables
-                        sum(assets.map((product) => {
-                            return product.actualValue;
-                        }
-                        )) + sum(consumables.map((product) => {
-                            return product.actualValue;
-                    })) 
-                    }</h2>
-                    <h3>Productos activos</h3>
-                    {assets.map((product, index) => {
+                    <h2 id='detail-title'>Productos Activos</h2>
+                    {assets.length > 0 ? assets.map((product, index) => {
                         return(
                             <div className='product2-entry'>
                                 <div className={`products2Container ${assetLocks[index] === 1 ? 'open' : ''}`} key={index}>
@@ -702,7 +799,7 @@ export default function SubProyect(){
                                             <div className='products2-grid-header' onClick={assetOrderBy('deprecatedValue', index)}> Valor Estimado </div>
                                             <div className='products2-grid-header' onClick={assetOrderBy('purchaseDate', index)}> Fecha de compra </div>
                                             <div className='products2-grid-header' onClick={assetOrderBy('responsible', index)}> Responsable </div>
-                                            <div></div>
+                                            <div className='products2-grid-header'/>
                                             <div className='blackLine'/>
                                             <div className='blackLine'/>
                                             <div className='blackLine'/>
@@ -775,26 +872,30 @@ export default function SubProyect(){
                                     </>
                                 }
                                 {
-                                        assetLocks[index] === 1 && product.type === 'asset'  && changeSubproyectLock === index && changeSubproyectType === 'asset' &&
-                                        <>
-                                        <label className='orgName'>Proyecto</label>
-                                        <select className='new-org-input' id='orgStatus' value={orgSubproyect} onChange={handleWriteSubproyect}>
-                                            <option value={0} disabled>Seleccionar</option>
-                                            {subproyects.map((subproyect) => {
-                                                return <option value={subproyect.subproyectId}>{subproyect.name} ({subproyect.proyectName})</option>
-                                            })}
-                                        </select>
-                                        <button className='submit-button' onClick={
-                                            (e)=>{handleAssign(e, 'asset', index);toggleProyectSelect();}
-                                        } >Confirmar</button>
-                                        <h3></h3>
-                                        </>
-                                    }
+                                    assetLocks[index] === 1 && product.type === 'asset'  && changeSubproyectLock === index && changeSubproyectType === 'asset' &&
+                                    <>
+                                    <label className='orgName'>Proyecto</label>
+                                    <select className='new-org-input' id='orgStatus' value={orgSubproyect} onChange={handleWriteSubproyect}>
+                                        <option value={0} disabled>Seleccionar</option>
+                                        {subproyects.map((subproyect) => {
+                                            return <option value={subproyect.subproyectId}>{subproyect.name} ({subproyect.proyectName})</option>
+                                        })}
+                                    </select>
+                                    <button className='submit-button' onClick={
+                                        (e)=>{handleAssign(e, 'asset', index);toggleProyectSelect();}
+                                    } >Confirmar</button>
+                                    <h3></h3>
+                                    </>
+                                }
                             </div>
-                    )})
+                    )}):
+                    <h3>
+                        No hay productos activos
+                    </h3>
                     }
-                    <h3>Productos consumibles</h3>
-                    {consumables.map((product, index) => {          
+                    <h2 id='detail-title'>Productos Consumibles</h2>
+                    {consumables.length > 0 ?
+                    consumables.map((product, index) => {          
                         return(
                             <div className='product2-entry'>
                                 <div className={`products2Container ${consLocks[index] === 1 ? 'open' : ''}`} key={index}>
@@ -817,7 +918,7 @@ export default function SubProyect(){
                                             <div className='products2-grid-header' onClick={consOrderBy('deprecatedValue', index)}> Valor Estimado </div>
                                             <div className='products2-grid-header' onClick={consOrderBy('purchaseDate', index)}> Fecha de compra </div>
                                             <div className='products2-grid-header' onClick={consOrderBy('responsible', index)}> Descripción </div>
-                                            <div></div>
+                                            <div className='products2-grid-header'/>
                                             <div className='blackLine'/>
                                             <div className='blackLine'/>
                                             <div className='blackLine'/>
@@ -890,7 +991,10 @@ export default function SubProyect(){
                                         </>
                                     }
                             </div>
-                    )})
+                    )}):
+                    <h3>
+                        No hay productos activos
+                    </h3>
                     }
                     </>}
                 </div>

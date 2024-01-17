@@ -62,6 +62,7 @@
 
   #red-button {
     background-color: rgb(214, 58, 58);
+    border: 0px;
     /* background: linear-gradient(0deg, rgb(251, 129, 129), rgb(255, 28, 28),rgb(251, 129, 129)); */
     color: white;
     /* font-size: 1em; */
@@ -99,5 +100,14 @@
     .pop-over-button{
       font-size: 0.7em;
       height: 2.5em;
+    }
+  }
+  @media (prefers-color-scheme: dark) {
+    .popover-button{
+      color: rgb(243, 243, 243);
+    }
+    .popover-content {
+      background-color: rgb(30,30,30);
+      border: 1px solid rgb(63, 63, 63);
     }
   }

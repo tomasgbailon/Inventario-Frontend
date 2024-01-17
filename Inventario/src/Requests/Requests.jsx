@@ -49,7 +49,7 @@ export default function Requests(){
                 Identity: authId,
             },
         }).then((response) => {
-            console.log(response.data);
+            //console.log(response.data);
             setAdminRequests(response.data.admins);
             setEditRequests(response.data.editors);
             setViewRequests(response.data.viewers);

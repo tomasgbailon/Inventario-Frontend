@@ -38,7 +38,8 @@ export default function NewInv(){
     const [email, setEmail] = useState(user?.email);
     const handleWriteName = (event) => {
         const name = event.target.value;
-        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-]*$/;
+        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-\/]*$/
+;
         if (name.length > 20){
             setInvNameError('El nombre no puede exceder los 20 caracteres');
         } else if (name.length < 5) {
@@ -65,7 +66,8 @@ export default function NewInv(){
     }
     const handleWriteLocation = (event) => {
         const location = event.target.value;
-        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-]*$/;
+        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-\/]*$/
+;
         if (location.length > 30){
             setInvLocationError('La ubicación no puede exceder los 30 caracteres');
         } else if (!validNameRegex.test(location)) {
@@ -77,7 +79,8 @@ export default function NewInv(){
     }
     const handleWriteDescription = (event) => {
         const description = event.target.value;
-        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-]*$/;
+        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-\/]*$/
+;
         if (description.length > 200){
             setInvDescriptionError('La descripción no puede exceder los 200 caracteres');
         } else if (!validNameRegex.test(description)) {
@@ -142,7 +145,7 @@ export default function NewInv(){
             if (currentTry < 3 && error.status === 500) {
                 sendInvitations(token, receptorName, receptorEmail, currentTry+1);
             } else {
-                console.log(error);
+                //console.log(error);
                 setSelectedUsers([]);
             }
         });
@@ -167,7 +170,7 @@ export default function NewInv(){
             if (currentTry < 3) {
                 getUser(token, currentTry+1);
             } else {
-                console.log(error);
+                //console.log(error);
             }
         })
     }  
@@ -188,7 +191,7 @@ export default function NewInv(){
             if (currentTry < 3) {
                 getUsers(string, currentTry+1);
             } else {
-                console.log(error);
+                //console.log(error);
             }
         });
     }

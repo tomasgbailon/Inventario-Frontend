@@ -18,7 +18,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    width: 55vw;
+    width: 65vw;
     height: auto
 }
 .proyects-body h2{
@@ -139,6 +139,14 @@
 #balance-negative {
     color:red;
 }
+.tool-bar select {
+    display: flex;
+    text-align: center;
+}
+.tool-bar-button option {
+    font-family: 'Outfit Light';
+    font-size: 1em;
+}
 @media screen and (max-width: 1080px){
     .entry {
         gap: 0.5em;
@@ -183,5 +191,79 @@
     .submit-button#edit-button {
         width: 35%;
         font-size: 0.6em;
+    }
+    .proyects .tool-bar {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    .proyects .tool-bar-button{
+        height: 2.5em;
+        font-size: 0.4em;
+        width: auto;
+        margin-top: 1em;
+    }
+}
+@media (prefers-color-scheme: dark) {
+    .proyects-body h2{
+        color: rgb(243, 243, 243);
+    }
+    .proyects-body h3{
+        color: rgb(243, 243, 243);
+    }
+    .proyectsContainer{
+        border: solid 1.5px rgb(63, 63, 63);
+        background-color: rgb(30,30,30);
+    }
+    .proyectInfo p{
+        background-color: rgb(30,30,30);
+    }
+    .subproyects-grid-header{
+        color: rgb(243, 243, 243);
+    }
+    .subproyects-grid-item {
+        color: rgb(243, 243, 243);
+    }
+    .proyectInfo .little-circle {
+        background-color: rgb(243, 243, 243);
+    }
+    .subproyects-grid-item .little-circle {
+        background-color: rgb(243, 243, 243);
+    }
+    .entry {
+        color: rgb(243, 243, 243);
+    }
+    .proyects-body {
+        color: rgb(243, 243, 243);
+    }
+    .proyects-body h2{
+        color: rgb(243, 243, 243);
+    }
+    .proyects-body h3{
+        color: rgb(243, 243, 243);
+    }
+    .categoryInfo #big-font {
+        color: rgb(243, 243, 243);
+    }
+    .proyectInfo #big-font {
+        color: rgb(243, 243, 243);
+    }
+    .subproyects-grid-header {
+        color: rgb(243, 243, 243);
+    }
+    .subproyects-grid-item {
+        color: rgb(243, 243, 243);
+    }
+    .proyectsContainer {
+        border: solid 1.5px rgb(63, 63, 63);
+        background-color: rgb(30,30,30);
+    }
+    .proyectInfo p {
+        background-color: rgb(16,16,16);
+    }
+    .subproyects-grid-header {
+        color: rgb(243, 243, 243);
+    }
+    .subproyects-grid-item {
+        color: rgb(243, 243, 243);
     }
 }

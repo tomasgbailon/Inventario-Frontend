@@ -162,3 +162,8 @@ p {
     justify-content: flex-start;
   }
 }
+@media (prefers-color-scheme: dark) {
+  .landingImage {
+    filter: invert(0.905);
+  }
+}

@@ -133,7 +133,7 @@ export default function DeleteCat(){
                             <button type='submit' className='submit-button' onClick={
                                 (e) => {
                                     e.preventDefault();
-                                    navigate('/inventory/'+organizationId+'/'+inventoryId+'/');
+                                    navigate('/product/'+organizationId+'/'+inventoryId+'/'+categoryId+'/'+productId+'/')
                                 }
                             }>Cancelar</button>
                         </div>

@@ -40,11 +40,13 @@ export default function EditProyect(){
     const [email, setEmail] = useState(user?.email);
     const handleWriteName = (e) => {
         const name = e.target.value;
+        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-\/]*$/
+;
         if (name.length > 30) {
             setOrgNameError('El nombre es demasiado largo');
         } else if (name.length < 5) {
             setOrgNameError('El nombre es demasiado corto');
-        } else if (!name.match(/^[a-zA-Z0-9 ]*$/)) {
+        } else if (!name.match(validNameRegex)) {
             setOrgNameError('El nombre solo puede contener letras y números');
         } else {
             setOrgNameError('');
@@ -56,10 +58,12 @@ export default function EditProyect(){
     };
     const handleWriteDesc = (e) => {
         const value = e.target.value;
+        const validNameRegex = /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ\s.,-\/]*$/
+;
         if (value.length > 300) {
             setOrgDescriptionError('La descripción es demasiado larga');
-        } else if (!value.match(/^[a-zA-Z0-9 ]*$/)) {
-            setOrgDescriptionError('La descripción solo puede contener letras y números');
+        } else if (!value.match(validNameRegex)) {
+            setOrgDescriptionError('La descripción solo puede contener letras, números y los siguientes caracteres: .,-');
         } else {
             setOrgDescriptionError('');
         }
@@ -93,7 +97,7 @@ export default function EditProyect(){
             if (currentTry < 3) {
                 getUser(token, currentTry+1);
             } else {
-                console.log(error);
+                //console.log(error);
             }
         })
     }
@@ -116,7 +120,7 @@ export default function EditProyect(){
             if (currentTry < 3) {
                 getInv(token, currentTry+1);
             } else {
-                console.log(error);
+                //console.log(error);
             }
         })
     

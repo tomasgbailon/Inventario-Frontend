@@ -108,18 +108,17 @@
     font-family: 'Outfit Medium';
     font-size: 2em;
     margin-bottom: 0em;
-    width: 38%;
+    width: auto;
     display: flex;
     justify-content: flex-start;
-    border-bottom: 1px solid rgb(193, 193, 193);
 }
 .new-org-content h3{
-    font-family: 'Outfit Medium';
-    font-size: 1.2em;
-    margin-bottom: 0.5em;
-    width: 38%;
-    display: flex;
-    justify-content: flex-start;
+    font-family: 'Outfit Light';
+    font-size: 1.5em;
+    color: black;
+    width: 59%;
+    margin-top: 0.5em;
+    margin-bottom: 0em;
 }
 .filling {
     display: flex;
@@ -187,6 +186,9 @@
     height: 100%;
     border-radius: 0.5em;
     background-color: rgb(245, 245, 245);
+}
+.tool-bar-adapter-subp {
+    width: 60vw;
 }
 @media screen and (max-width: 1580px){
     .product2-entry{
@@ -258,8 +260,45 @@
     }
     .new-org-content h3{
         width: 78%;
+        color: rgb(243, 243, 243);
+        font-size: 0.7em;
     }
     #subp-total{
         font-size: 1em;
+    }
+    .tool-bar-adapter-subp{
+        width: 80vw;
+    }
+    #detail-title{
+        font-size: 1em;
+    }
+    .new-org-content .tool-bar{
+        grid-template-columns: 1fr 1fr;
+        
+    } 
+    .new-org-content .tool-bar-button{
+        height: 2.5em;
+        font-size: 0.4em;
+        width: auto;
+        margin-top: 1em;
+    }
+}
+@media (prefers-color-scheme: dark) {
+    .products2-grid-item {
+        color: rgb(243, 243, 243);
+        background-color: rgb(30,30,30);
+    }
+    .products2-grid-header{
+        color: rgb(243, 243, 243);
+        background-color: rgb(30,30,30);
+    }
+    .product2Info p{
+        background-color: rgb(16, 16, 16);
+    }
+    .product2-lock{
+        background-color: rgb(16, 16, 16);
+    }
+    .orgName{
+        color: rgb(243, 243, 243);
     }
 }

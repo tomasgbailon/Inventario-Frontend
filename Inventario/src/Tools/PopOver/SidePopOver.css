@@ -231,10 +231,6 @@
   #blue-button a {
     color: #fff;
   }
-
-  #red-button {
-    background-color: rgb(214, 58, 58);
-  }
   #red-button a {
     color: #fff;
   }
@@ -296,3 +292,52 @@
       margin-left: -3.8em;
     }
   }
+@media (prefers-color-scheme: dark) {
+  .side-popover-content-1 {
+    background-color: rgb(30,30,30);
+    border: 1px solid rgb(63, 63, 63);
+  }
+  .side-popover-content-2 {
+    background-color: rgb(30,30,30);
+    border: 1px solid rgb(63, 63, 63);
+  }
+  .side-popover-content-3 {
+    background-color: rgb(30,30,30);
+    border: 1px solid rgb(63, 63, 63);
+  }
+  .side-popover-content-4 {
+    background-color: rgb(30,30,30);
+    border: 1px solid rgb(63, 63, 63);
+  }
+  .side-popover-content-5 {
+    background-color: rgb(30,30,30);
+    border: 1px solid rgb(63, 63, 63);
+  }
+  .side-popover-button a {
+    color: rgb(243, 243, 243);
+  }
+  .side-popover-3 {
+    background-color: #181818
+  }
+  .side-popover-5 {
+    background-color: #181818
+  }
+  .side-popover-3-button {
+    background-color: #181818
+  }
+  .side-popover-3-button{
+    color: rgb(243, 243, 243);
+  }
+  .side-popover-3.open .side-popover-content-3 .side-pop-over-button a {
+    color: rgb(243, 243, 243);
+  }
+  .side-popover-4.open .side-popover-content-4 .side-pop-over-button a {
+    color: rgb(243, 243, 243);
+  }
+  .side-popover-5.open .side-popover-content-5 .side-pop-over-button a {
+    color: rgb(243, 243, 243);
+  }
+  .side-popover-button{
+    color: rgb(243, 243, 243);
+  }  
+}
