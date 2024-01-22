@@ -21,7 +21,7 @@ export default function LandingFooter() {
                 </div>
             </div>
             <div className='creditContainer'>
-                <p>© 2023 Inventario desarrollado por Tomás González Bailón</p>
+                <p>© 2023 Kipin v1.1.0 desarrollado por Tomás González Bailón</p>
             </div>
         </div>
     )

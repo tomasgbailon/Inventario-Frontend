@@ -1,0 +1,212 @@
+.demo-container{
+    height: auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.demo-container h1 {
+    font-family: 'Outfit Medium';
+    text-align: justify;
+}
+.separator{
+    width: 100%;
+    height:10px;
+    margin-top: 4em;
+    margin-bottom: 4em;
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.2);
+}
+.demo-container h2 {
+    font-family: 'Outfit Medium';
+    font-size: 2.5em;
+    color: black;
+    margin-bottom: 0em;
+    text-align: justify;
+    width: 100%;
+    text-align: left;
+}
+.demo-container ul{
+    width: 100%;
+    text-align: left;
+}
+.demo-container h3 {
+    font-family: 'Outfit Medium';
+    font-size: 1.6em;
+    color: black;
+    text-align: justify;
+}
+.demo-container h4 {
+    font-family: 'Outfit Medium';
+    font-size: 1.5em;
+    color: black;
+    text-align: left;
+    width: 100%;
+    margin-bottom: 0em;
+    margin-top: 0em;
+}
+#demo-logo{
+    margin-top: 3em;
+    width: 10%;
+    height: auto;
+}
+.demo-container p{
+    font-family: 'Outfit Regular';
+    font-size: 1.5em;
+    margin-top: 0em;
+    margin-bottom: 0em;
+    text-align: justify;
+    color: rgb(42, 42, 42);
+}
+.demo-container li{
+    font-size: 1.5em;
+    font-family: 'Outfit Regular';
+    color: rgb(42, 42, 42);
+}
+.demo-container a{
+    font-size: 1em;
+    font-family: 'Outfit Regular';
+    color: rgb(51, 121, 206);
+
+}
+.demo-block-vert{
+    width: auto;
+    max-width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+}
+.demo-block-hor {
+    width: auto;
+    max-width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+}
+.hor{
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.demo-block-hor img{
+    width: 100%;
+    height: auto;
+    border-radius: 1em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+.demo-block-vert img{
+    width: 50%;
+    height: auto;
+    border-radius: 1em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+#alone{
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+#big-pic{
+    width: 100%;
+    height: auto;
+    border-radius: 1em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+
+}
+#inside-p{
+    text-align: left;
+    padding-right: 1em;
+}
+#inside-r{
+    text-align: justify;
+    padding-left: 1em;
+}
+.bold {
+    color: rgb(0, 115, 255);
+}
+.bold-red{
+    color: rgb(194, 5, 5);
+}
+.bold-green{
+    color: rgb(23, 143, 27);
+}
+.bold-yellow{
+    color: rgb(192, 167, 26);
+}
+.bold-black{
+    font-family: 'Outfit Bold';
+}
+.label-container{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1em;
+}
+.label {
+    font-family: 'Outfit Regular';
+    background-color: rgb(229, 229, 229);
+    font-size: 1.2em;
+    border-radius: 0.5em;
+    height: 2em;
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 0.3em;
+    padding-right: 0.3em;
+}
+@media screen and (max-width: 1080px){
+    .demo-container h2 {
+        font-size: 1.4em;
+    }
+    .demo-container h3 {
+        font-size: 1.2em;
+    }
+    .demo-container p{
+        font-size: 1em;
+    }
+    .demo-container li{
+        font-size: 1em;
+        max-width: 90%;
+    }
+    .demo-block-vert{
+        max-width: 90%;
+        width: 90%;
+    }
+    .demo-block-hor {
+        max-width: 90%;
+        width: 90%;
+        flex-direction: column;
+    }
+    .separator{
+        margin-top: 2em;
+        margin-bottom: 2em;
+    }
+    .label-container{
+        gap: 0.5em;
+    }
+    .label {
+        font-size: 0.7em;
+        height: 1.5em;
+        width: 7em;
+    }
+    #inside-r{
+        padding-left: 0em;
+        width: 100%;
+        text-align: justify;
+    }
+    #inside-p{
+        padding-right: 0em;
+        width: 100%;
+        text-align: justify;
+    }
+}

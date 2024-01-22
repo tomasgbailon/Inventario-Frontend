@@ -1,0 +1,269 @@
+.history{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.history-content{
+    min-height: 70vh;
+    height: auto;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.history-content h1 {
+    font-family: 'Outfit Medium';
+    font-size: 3em;
+
+}
+.history-inv-grid{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    width: 100%;
+}
+.history-inv-grid-in {
+    display: grid;
+    grid-template-columns: 1fr 0.3fr 1fr 0.5fr 1fr;
+    width: 100%;
+    font-size: 0.8em;
+}
+.history-inv-grid-out {
+    display: grid;
+    grid-template-columns: 1fr 0.3fr 1fr 0.5fr;
+    width: 100%;
+    font-size: 0.8em;
+}
+.history-inv-grid-transfer {
+    display: grid;
+    grid-template-columns: 1fr 0.3fr 1fr 1fr;
+    width: 100%;
+    font-size: 0.8em;
+}
+.history-inv-grid-return {
+    display: grid;
+    grid-template-columns: 1fr 0.3fr 1fr 1fr;
+    width: 100%;
+    font-size: 0.8em;
+}
+.history-inv-grid-header {
+    display: flex;
+    font-family: 'Outfit Medium';
+    font-size: 1.5em;
+    justify-content: center;
+    align-items: center;
+    color: black;
+}
+.history-inv-grid-item{
+    display: flex;
+    font-family: 'Outfit Light';
+    font-size: 1.5em;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0.3em;
+    margin-bottom: 0.3em;
+    color: black;
+}
+.tool-bar-label {
+    font-family: 'Outfit Medium';
+    font-size: 1.5em;
+    margin-right: 0.5em;
+    margin-left: 1em;
+}
+.page-bar-label {
+    font-family: 'Outfit Medium';
+    font-size: 1.5em;
+    width: auto;
+    color: black;
+}
+.tool-bar-date {
+    font-family: 'Outfit Light';
+    font-size: 1.4em;
+    border-radius: 1em;
+    width: 20%;
+    padding-left: 0.5em;
+    height: 2em;
+}
+.tool-bar-range{
+    font-family: 'Outfit Light';
+    font-size: 1.4em;
+    border-radius: 1em;
+    width: 20%;
+    padding-left: 1em;
+    height: 2.3em;
+}
+.tool-bar-range option{
+    font-family: 'Outfit Light';
+    font-size: 1em;
+}
+.page-bar{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+}
+.page-bar-pages{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap:1em;
+}
+.page-bar-page{
+    font-family: 'Outfit Regular';
+    font-size: 1.4em;
+    width: 2em;
+    height: 2em;
+    background-color: rgb(21, 119, 235);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.2em;
+    cursor: pointer;
+    color: white;
+}
+#currentPage{
+    height: 3em;
+}
+.history-inv-grid-top-label{
+    width: auto;
+    display: flex;
+    font-family: 'Outfit Medium';
+    font-size: 1.4em;
+    background-color: rgb(228, 228, 228);
+    height: 1.8em;
+    justify-content: center;
+    align-items: center;
+    padding-left: 1em;
+    padding-right: 1em;
+    border-radius: 0.4em;
+    margin-bottom: 0.5em;
+    margin-top: 0.5em;
+    color: black;
+}
+.history-key{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: auto;
+    font-family: 'Outfit Medium';
+    font-size: 2em;
+    background-color: rgb(21, 119, 235);
+    border-radius: 0.4em;
+    padding-left: 1em;
+    padding-right: 1em;
+    color: white;
+}
+.history-icon{
+    width: 1.1em;
+    height: 1.1em;
+    margin-left: 0.5em;
+    color: black;
+}
+.align-left{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+}
+
+@media screen and (max-width: 1080px){
+    .history-content{
+        width: 90%;
+    }
+    .history-content h1 {
+        font-size: 1.7em;
+        text-align: center;
+    }
+    .history-inv-grid-in {
+        font-size: 0.4em;
+    }
+    .history-inv-grid-out {
+        font-size: 0.4em;
+    }
+    .history-inv-grid-transfer {
+        font-size: 0.4em;
+    }
+    .history-inv-grid-return {
+        font-size: 0.4em;
+    }
+    .history-inv-grid-header {
+        font-size: 1.2em;
+    }
+    .history-inv-grid-item{
+        margin-top: 0px;
+        margin-bottom: 0px;
+        font-size: 1.2em;
+    }
+    .page-bar-label {
+        font-size: 1em;
+    }
+    .tool-bar-label {
+        font-family: 'Outfit Medium';
+        font-size: 1em;
+        margin-right: 0.1em;
+        margin-left: 0.3em;
+    }
+    .history-content .tool-bar {
+        display: flex;
+        flex-direction: column;
+    }
+    .tool-bar-date {
+        font-size: 0.9em;
+        border-radius: 0.5em;
+        width: 50%;
+        padding-left: 0.5em;
+        height: auto;
+    }
+    .tool-bar-range{
+        font-size: 0.9em;
+        border-radius: 0.5em;
+        width: 54%;
+        padding-left: 1em;
+        height: auto;
+    }
+    .tool-bar-range option{
+        font-family: 'Outfit Light';
+        font-size: 0.7em;
+    }
+    .history-key{
+        font-size: 1em;
+    }
+    .history-inv-grid-top-label{
+        font-size: 0.8em;
+        height: auto;
+    }
+    .page-bar-page{
+        font-size: 0.8em;
+        width: 1.5em;
+        height: 1.5em;
+    }
+    #currentPage{
+        height: 2em;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    .history-inv-grid-item{
+        color: rgb(243, 243, 243);
+    }
+    .history-inv-grid-header{
+        color: rgb(243, 243, 243);
+    }
+    .history-inv-grid-top-label{
+        color: rgb(243, 243, 243);
+        background-color: rgb(50,50,50);
+    }
+    .history-icon{
+        color: rgb(243, 243, 243);
+    }
+    .page-bar-label {
+        color: rgb(243, 243, 243);
+    }
+}

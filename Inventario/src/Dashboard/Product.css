@@ -1,0 +1,473 @@
+#product-panel{
+    width: 30%;
+    padding-left: 0em;
+    margin-top: 3em;
+}
+.product3-entry{
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: 75%;
+    gap: 0em;
+}
+.product4-entry{
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: 75%;
+    gap: 0em;
+}
+.products3Container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    min-height: 3em;
+    height: auto;
+    border: solid 1px rgba(82, 82, 82, 0.633);
+    border-radius: 0.7em;
+    overflow:hidden;
+    margin-bottom: 0.2em;
+    max-height: 0;
+    transition: max-height 1.5s ease-in-out;
+}
+.products3Container.open{
+    max-height: 10000em;
+    transition: max-height 1.5s ease-in-out;
+}
+.product3Info{
+    width: 100%;
+    height: 3em;
+    display: grid;
+    grid-template-columns: 4fr 3fr 3fr 3fr 1fr;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.product3Info p{
+    height: 100%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    background-color: rgb(245, 245, 245);
+}
+.product3Info .little-circle {
+    width: 0.5em;
+    height: 0.5em;
+    border-radius: 50%;
+    background-color: rgb(0, 0, 0);
+    margin-right: 0.5em;
+}
+.subproyects-grid-item .little-circle {
+    width: 0.7em;
+    height: 0.7em;
+    border-radius: 50%;
+    background-color: rgb(0, 0, 0);
+    margin-right: 0.5em;
+}
+.products3-grid {
+    display: grid;
+    grid-template-columns: 7fr 4fr 4fr 10fr 6fr 9fr 7fr 7fr 4fr;
+    width: 100%;
+    margin-bottom: 0em;
+    cursor: pointer;
+}
+.products3-1-grid {
+    display: grid;
+    grid-template-columns: 6fr 5fr 5fr 8fr 6fr 9fr 4fr;
+    width: 100%;
+    margin-bottom: 0em;
+    cursor: pointer;
+}
+.products3-2-grid {
+    display: grid;
+    grid-template-columns: 6fr 5fr 5fr 8fr 6fr 9fr 4fr;
+    width: 100%;
+    margin-bottom: 0em;
+    cursor: pointer;
+}
+.products4-grid {
+    display: grid;
+    grid-template-columns: 6fr 5fr 5fr 8fr 6fr 9fr  5fr 4fr;
+    width: 100%;
+    margin-bottom: 0em;
+    cursor: pointer;
+}
+.products3-grid-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-size: 0.9em;
+    color: rgb(0, 0, 0);
+    font-family: 'Outfit Medium';
+    transition: background-color 0.1s ease-in-out;
+}
+.products3-grid-header:active{
+    background-color: rgb(211, 211, 211);
+}
+.products3-grid-item {
+    font-size: 0.9em;
+    font-family: 'Outfit Light';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 2em;
+    height: auto;
+    color: black;
+    background-color: white;
+    padding: 0.1em;
+}
+.products3-grid-item.selected {
+    font-size: 0.9em;
+    font-family: 'Outfit Light';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 2em;
+    height: auto;
+    color: black;
+    background-color: rgb(203, 229, 255);
+    padding: 0.1em;
+}
+.products3-grid .unit-check{
+    width: 1.6em;
+    height: 1.6em;
+    margin-left: 0em;
+
+}
+.products3-1-grid .unit-check{
+    width: 1.6em;
+    height: 1.6em;
+    margin-left: 0.3em;
+
+}
+.products3-2-grid .unit-check{
+    width: 1.6em;
+    height: 1.6em;
+    margin-left: 2.5em;
+
+}
+.products4-grid .unit-check{
+    width: 1.6em;
+    height: 1.6em;
+    margin-left: 0em;
+
+}
+.product3-options{
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 1em;
+}
+.product3-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 25%;
+    height: 2.5em;
+    border-radius: 0.5em;
+    background-color: rgb(21, 119, 235);
+    color: white;
+    font-family: 'Outfit Light';
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.1s ease-in-out;
+}
+.product3-button:disabled{
+    background-color: rgb(211, 211, 211);
+    color: rgb(82, 82, 82);
+    cursor: default;
+    min-width: 25%;
+    width: auto;
+    margin-top: 0em;
+}
+.product3-lock{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 0.5em;
+    background-color: rgb(245, 245, 245);
+}
+.product3-lock .t4-check{
+    width: 1.5em;
+    height: 1.5em;
+    margin-left: 0em;
+    margin-right: 2em;
+}
+.product3Info input{
+    background-color: rgb(211, 211, 211);
+}
+.red {
+    background-color: rgb(214, 58, 58);
+}
+.orgName{
+    font-size: 1.5em;
+    font-family: 'Outfit Medium';
+    color: rgb(0, 0, 0);
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+#orgMultiSelect {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+}
+.product4-entry select {
+    width: 100%;
+    height: 2.5em;
+    border-radius: 0.5em;
+    background-color: rgb(245, 245, 245);
+    font-family: 'Outfit Light';
+    font-size: 1em;
+    color: rgb(56, 56, 56);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border: 0.1px solid rgb(145, 145, 145);
+}
+
+.product4-entry input{
+    width: 100%;
+    height: 2em;
+    border-radius: 0.5em;
+    background-color: rgb(245, 245, 245);
+    font-family: 'Outfit Light';
+    font-size: 1em;
+    color: rgb(0, 0, 0);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border: 0.1px solid rgb(145, 145, 145);
+}
+#edit-button-2 {
+    width: 19em;
+}
+.unit-options{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+}
+.tool-bar-adapter-prod {
+    width: 70vw;
+}
+.metricsGrid {
+    width: 70vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+#total-unit{
+    margin-top: 0px;
+    width: 100%;
+    height: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    color: black;
+}
+#detail-title {
+    width: 60vw;
+}
+.product-fields-grid{
+    width: 70vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+}
+#product-fields-grid-item{
+    width: auto;
+}
+#small-margin{
+    height: 1.2em;
+}
+#big-margin {
+    height: 3.8em;
+}
+.window-tool-bar{
+    width: 60vw;
+    height: 2em;
+    margin-top: 2em;
+}
+.back-arrow{
+    height: 2em;
+    width: 5em;
+    background-color: rgb(211, 211, 211);
+    color: black;
+    border-radius: 0.3em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+}
+.back-arrow:hover{
+    background-color: rgb(145, 145, 145);
+}
+@media screen and (max-width: 1080px){
+    .product3-entry{
+        width: 90%;
+    }
+    .product3-entry input{
+        width: 1em;
+        margin-left: 1em;
+    }
+    .product4-entry{
+        width: 90%;
+    }
+    .products4-grid .unit-check {
+        width: 1.2em;
+        height: 1.2em;
+        margin-left: 0em;
+        margin-right: 1em;
+
+    }
+    .products3-grid-header {
+        font-size: 0.4em;
+    }
+    .products3-grid-item {
+        font-size: 0.5em;
+        padding: 0.3em;
+    }
+    .products3-2-grid .unit-check{
+        width: 1em;
+        height: 1em;
+        margin-left: 0.5em;
+    
+    }
+    .products3-grid .unit-check{
+        width: 4em;
+        height: 4em;
+        margin-left: 0em;
+    
+    }
+    .products3-1-grid .unit-check{
+        width: 1.6em;
+        height: 1.6em;
+        margin-left: 0.5em;
+    
+    }
+    .products3-grid-item.selected {
+        font-size: 0.5em;
+    }
+    .product3Info{
+        height: 100%;
+    }
+    .product3Info{
+        height: 2em;
+        grid-template-columns: 3fr 3fr 3fr 3fr 1fr;
+    }
+    .product3Info p{
+        font-size: 0.6em;
+    }
+    .products3Container{
+        min-height: 2em;
+        border-radius: 0.3em;
+    }
+    .products4-grid {
+        grid-template-columns: 6fr 5fr 5fr 8fr 6fr 9fr  5fr 4fr;
+    }
+    .products4-grid div {
+        font-size: 0.4em;
+    }
+    .products4-grid input {
+        font-size: 1.8em;
+    }
+    .product3-button{
+        width: 35%;
+        height: 2em;
+        font-size: 100%;
+    }
+    .product3-lock{
+        border-radius: 0px;
+    }
+    .product3-lock input {
+        width: 1.2em;
+        height: 1.2em;
+        margin-left: 0em;
+    }
+    .product3-lock .t4-check{
+        width: 1.2em;
+        height: 1.2em;
+        margin-right: 0.8em;
+    }
+    #inspect{
+        width: 25%;
+        font-size: 0.7em;
+        margin-top: 0em;
+    }
+    #refresh{
+        width: 25%;
+        font-size: 0.7em;
+        margin-top: 0em;
+    }
+    #total-unit{
+        width: 100%;
+        font-size: 1em;
+        border-bottom: 0em;
+    }
+    .product3-options .product3-button{
+        font-size: 0.5em;
+    }
+}
+@media (prefers-color-scheme: dark) {
+    .product3Info p{
+        background-color: rgb(16, 16, 16);
+    }
+    .products3-grid-header{
+        background-color: rgb(30,30,30);
+        color: rgb(243, 243, 243);
+    }
+    .products3-grid-item {
+        background-color: rgb(30,30,30);
+        color: rgb(243, 243, 243);
+    }
+    .products3-grid-item.selected {
+        background-color: rgb(203, 229, 255);
+        color: rgb(0, 0, 0);
+    }
+    .product3-lock{
+        background-color: rgb(16, 16, 16);
+    }
+    input {
+        background-color: rgb(16, 16, 16);
+        color: rgb(243, 243, 243);
+    }
+    textarea {
+        background-color: rgb(16, 16, 16);
+        color: rgb(243, 243, 243);
+    }
+    .new-org-form label {
+        color: rgb(243, 243, 243);
+    }
+    select {
+        background-color: rgb(16, 16, 16);
+        color: rgb(243, 243, 243);
+    }
+    .orgName{
+        color: rgb(243, 243, 243);
+    }
+    #total-unit {
+        color: rgb(243, 243, 243);
+    }
+    .back-arrow{
+        height: 2em;
+        width: 5em;
+        background-color: rgb(50,50,50);
+        color: rgb(243, 243, 243);
+        border-radius: 0.3em;
+        padding-top: 0.5em;
+        padding-bottom: 0.5em;
+    }
+    .back-arrow:hover{
+        background-color: rgb(65,65,65);
+    }
+}

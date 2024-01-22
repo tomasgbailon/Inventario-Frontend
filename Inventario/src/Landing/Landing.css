@@ -73,7 +73,7 @@ font-style: normal;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 74vh;
+  height: 70vh;
 }
 
 .rightLandingContainer {
@@ -126,24 +126,44 @@ p {
 @media screen and (max-width: 800px){
   .landingContainer {
     flex-direction: column;
-    min-height: 100vh;
+    min-height: 30vh;
+    height: 80vh;
   }
 
   h1 {
     font-size: 7vw;
   }
+  .leftLandingContainer p{
+    font-size: 5vw;
+  }
 
   .leftLandingContainer {
     width: 80%;
-    height: 50%;
+    height: auto;
     padding: 0%;
     justify-content: center;
     align-items: center;
     text-align: left;
   }
-
   .rightLandingContainer {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .landingImage {
     width: 80%;
-    height: 50%;
+    height: auto;
+  }
+  .landingContainer{
+    padding-top: 1em;
+    justify-content: flex-start;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  .landingImage {
+    filter: invert(0.905);
   }
 }

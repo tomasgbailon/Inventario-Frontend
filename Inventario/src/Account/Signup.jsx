@@ -8,7 +8,7 @@ export function SignupWindow(){
             </div>
             <div className='signup-window-right'>
                 <div className='signup-window-form'>
-                    <h1>Regístrate en Inventario</h1>
+                    <h1>Regístrate en Kipin</h1>
                     <label className='signup-form-label'>Nombre</label>
                     <input className='signup-form-input' type='text' placeholder='Nombre'/>
                     <label className='signup-form-label'>Apellido</label>

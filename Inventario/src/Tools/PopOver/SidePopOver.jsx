@@ -1,8 +1,10 @@
 import React, { useEffect, useState, useContext } from 'react';
 import './SidePopOver.css';
 import {DashboardContext} from '../../Dashboard/Dashboard.jsx';
+import { useNavigate } from 'react-router-dom';
 
 function SidePopOver({Buttons, mainText, Id, contentStyle}) {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [buttons, setButtons] = useState(Buttons);
   const [text, setText] = useState(mainText);
@@ -13,7 +15,7 @@ function SidePopOver({Buttons, mainText, Id, contentStyle}) {
   const togglePopover = () => {
     setButtonUnlock(id);
     setIsOpen(!isOpen);
-    console.log(buttonUnlock, isOpen);
+
   };
   const handleColor = (color) => {
     switch (color) {
@@ -30,14 +32,19 @@ function SidePopOver({Buttons, mainText, Id, contentStyle}) {
   useEffect(() => {
   }, []);
   return (
-    <div className={`side-popover${contentStyle == 3 ? '-3' : ''} ${(isOpen && (id === buttonUnlock) ) ? 'open' : ''}`}>
+    <div className={`side-popover${contentStyle >= 3 ? '-'+contentStyle : ''} ${(isOpen && (id === buttonUnlock) ) ? 'open' : ''}`}>
       <button onClick={togglePopover} className={`side-popover${contentStyle == 3 ? '-3' : ''}-button`}>{text}</button>
       <div className={"side-popover-content"+"-"+contentStyle}>
         {
           buttons.map((button) => {
             return (
               <>
-                <button className={`side-pop-over-button`} id={handleColor(button.color)}><a href={button.link}>{button.text}</a></button>
+                <button className={`side-pop-over-button`} id={handleColor(button.color)}><a onClick={
+                  (e) => {
+                    e.preventDefault();
+                    navigate(button.link);
+                  }
+                }>{button.text}</a></button>
               </>
             )
           })

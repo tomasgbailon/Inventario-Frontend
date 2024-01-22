@@ -11,3 +11,55 @@
     margin: 0%;
     color: white;
 }
+.circle-big{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    font-size: 6em;
+}
+.circle-big p{
+    margin: 0%;
+    color: white;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@media screen and (max-width: 1080px){
+    .circle{
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        font-size: 0.4em;
+    }
+    .circle p{
+        margin: 0%;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .circle-big{
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        font-size: 4em;
+    }
+    .circle-big p{
+        margin: 0%;
+        color: white;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

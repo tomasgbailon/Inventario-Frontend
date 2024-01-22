@@ -1,8 +1,12 @@
 import React, { useEffect, useState, useContext } from 'react';
 import './PopOver.css';
 import {DashboardContext} from '../../Dashboard/Dashboard.jsx';
+import { useAuth0 } from '@auth0/auth0-react';
+import { useNavigate } from 'react-router-dom';
 
 function PopOver({Buttons, mainText, Id}) {
+  const navigate = useNavigate();
+  const { logout } = useAuth0();
   const [isOpen, setIsOpen] = useState(false);
   const [buttons, setButtons] = useState(Buttons);
   const [text, setText] = useState(mainText);
@@ -36,11 +40,17 @@ function PopOver({Buttons, mainText, Id}) {
           buttons.map((button) => {
             return (
               <>
-                <button className='pop-over-button' id={handleColor(button.color)}><a href={button.link}>{button.text}</a></button>
+                <button className='pop-over-button' id={handleColor(button.color)}><a onClick={
+                  (e) => {
+                    e.preventDefault();
+                    navigate(button.link);
+                  }
+                }>{button.text}</a></button>
               </>
             )
           })
         }
+        <button className='pop-over-button' id='red-button' onClick={() => logout({ logoutParams: { returnTo: window.location.origin }}) }>Cerrar Sesión</button>
       </div>
     </div>
   );

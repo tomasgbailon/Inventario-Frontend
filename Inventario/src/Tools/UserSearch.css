@@ -49,3 +49,19 @@
     color: white;
     cursor: pointer;
 }
+@media screen and (max-width: 1080px){
+    .user-searchInput {
+        font-size: 0.7em;
+    }
+    .user-searchResult {
+        font-size: 0.8em;
+    }
+    .org-searchEntry {
+        font-size: 0.7em;
+    }
+}
+@media (prefers-color-scheme: dark) {
+    .user-searchInput {
+        background-color: rgb(25, 25, 25);
+    }
+}

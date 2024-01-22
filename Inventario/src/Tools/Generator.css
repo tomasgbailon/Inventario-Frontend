@@ -1,13 +1,21 @@
 .generatorButton{
     background-color: #328f2b;
-    border-radius: 0.7em;
+    /* background: linear-gradient(0deg, rgb(33, 177, 83), rgb(14, 115, 49),rgb(33, 177, 83)); */
+    border-radius: 0.5em;
     color: white;
     text-align: center;
     justify-content: center;
     align-items: center;
     display: flex;
-    font-size: 1.5em;
-    width: 95%;
-    height: 2em;
-    font-family: 'Outfit Medium';
+    font-size: 1.1em;
+    width: 91%;
+    height: 2.5em;
+    font-family: 'Outfit Regular';
+}
+
+@media screen and (max-width: 1080px){
+    .generatorButton{
+        height: 1.5em;
+        font-size: 1em;
+    }
 }

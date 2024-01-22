@@ -1,6 +1,6 @@
 .navbar{
     width: 100vw;
-    height: 10vh;
+    height: 8vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14,7 +14,7 @@
     align-items: center;
     justify-content: flex-end;
     height: 100%;
-    width: 10%;
+    width: 16vh;
     transition: 0.3s;
 }
 
@@ -42,6 +42,7 @@
     width: 100%;
     height: 4%;
     background-color: rgb(21, 119, 235);
+    /* background-color: rgb(19, 117, 255); */
 }
 
 .thinGreyLine {
@@ -49,17 +50,24 @@
     height: 4%;
     background-color: rgb(243, 243, 243);
 }
-
+.NavBarLogo{
+    width: 30%;
+    height: auto;
+}
 @media screen and (max-width: 1080px){
+    .NavBarLogo{
+        width: 7%;
+        height: auto;
+    }
     .navbar {
         flex-direction: column;
-        height: 70vh;
-        padding-top: 2em;
-        padding-bottom: 2em;
+        height: 25vh;
+        padding-top: 1em;
+        padding-bottom: 1em;
     }
 
     .navbar a {
-        font-size: 2em;
+        font-size: 1em;
     }
 
     .navbarItem {
@@ -69,11 +77,26 @@
 
     .thinBlueLine {
         width: 40%;
-        height: 2%;
+        height: 5%;
         background-color: rgb(21, 119, 235);
     }
 
     #logoContainer {
         flex-direction: column;
+    }
+}
+@media (prefers-color-scheme: dark) {
+    .navbar {
+        background-color: rgb(16, 16, 16);
+        border-bottom: 1px solid rgb(63, 63, 63);
+    }
+    .navbar a {
+        color: rgb(243, 243, 243);
+    }
+    .thinBlueLine {
+        background-color: rgb(21, 119, 235);
+    }
+    .thinGreyLine {
+        background-color: rgb(16, 16, 16);
     }
 }

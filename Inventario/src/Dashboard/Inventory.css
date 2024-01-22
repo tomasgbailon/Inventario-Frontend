@@ -1,7 +1,7 @@
 .inventory {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     height: auto;
     overflow: auto;
@@ -12,8 +12,15 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    width: 50vw;
+    width: 60vw;
     height: auto
+}
+.inventory-body h3 {
+    font-family: 'Outfit Regular';
+    font-size: 2em;
+    text-align: center;
+    width: 100%;
+
 }
 .entry{
     display: flex;
@@ -45,12 +52,13 @@
     width: 100%;
     min-height: 5em;
     height: auto;
-    border: solid 2px rgb(82, 82, 82);
+    border: solid 1.5px rgb(82, 82, 82);
     border-radius: 1em;
     overflow: hidden;
-    margin-bottom: 0.2em;
+    margin-bottom: 0.5em;
     max-height: 0;
     transition: max-height 1.5s ease-in-out;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
 }
 .categoryContainer.open{
     max-height: 10000em;
@@ -83,7 +91,7 @@
 }
 .products-grid {
     display: grid;
-    grid-template-columns: 4fr 4fr 3fr 2fr 1fr 1fr 1fr 4fr;
+    grid-template-columns: 5fr 1fr 3fr 3fr 2fr 1fr 1fr 1fr 4fr;
     width: 100%;
     margin-bottom: 0em;
     cursor: pointer;
@@ -103,14 +111,24 @@
 }
 .blackLine {
     width: 100%;
-    height: 0.08em;
+    height: 0.07em;
     background-color: rgb(0, 0, 0);
     margin-top: 0.1em;
     margin-bottom: 0.1em;
 }
 .products-grid-item {
     font-size: 1.4em;
-    font-family: 'Outfit Medium';
+    font-family: 'Outfit Regular';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 2em;
+    height: auto;
+    color: black;
+}
+.products-grid-item a{
+    font-size: 1em;
+    font-family: 'Outfit Regular';
     display: flex;
     justify-content: center;
     align-items: center;
@@ -126,30 +144,181 @@
     margin-right: 0.5em;
 }
 #red-circle {
-    background-color: rgb(255, 0, 0);
+    background-color: rgb(214, 58, 58);
 }
 #yellow-circle {
-    background-color: rgb(229, 214, 0);
+    background-color: rgb(249, 204, 23);
 }
 #green-circle {
     background-color: rgb(0, 213, 0);
+}
+.create-product{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 92%;
+    height: 2.5em;
+    background-color: rgb(21,119,235);
+    /* background: linear-gradient(0deg, rgb(3, 196, 254), rgb(28, 123, 255), rgb(28, 123, 255),rgb(3, 196, 254)); */
+    border-radius: 1em;
+    cursor: pointer;
+}
+.create-product a{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-family: 'Outfit Regular';
+    font-size: 1em;
+}
+#categories-h1{
+    font-size: 2em;
+}
+.tool-bar {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 1em;
+}
+.tool-bar-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 16.6%;
+    height: 2.5em;
+    border: 1px solid rgb(151, 151, 151);
+    border-radius: 0.4em;
+    margin-right: 0.5em;
+    cursor: pointer;
+    font-family: 'Outfit Regular';
+    font-size: 1.2em;
+}
+.tool-bar-button:hover{
+    background-color: rgb(237, 237, 237);
+}
+#blue-button {
+    background-color: rgb(21,119,235);
+    color: rgb(243, 243, 243);
+    border: 0px solid rgb(151, 151, 151);
+}
+#blue-button:hover {
+    background-color: rgb(65, 140, 232);
+}
+#red-button:hover {
+    background-color: rgb(211, 94, 94);
+}
+.tool-bar-button:disabled{
+    background-color: rgb(219, 219, 219);
+}
+#blue-button:disabled{
+    background-color: rgb(219, 219, 219);
+}
+#red-button:disabled{
+    background-color: rgb(219, 219, 219);
+}
+.thinBlackLine{
+    height: 1px;
+    width: 100%;
+    background-color: rgb(121, 121, 121);
 }
 @media screen and (max-width: 1080px){
     .entry{
         gap: 0.5em;
     }
     .inventory-body {
-        width: 80vw;
+        width: 90vw;
     }
     .categoryInfo{
         height: 5em;
         grid-template-columns: 3fr 1fr;
     }
-    #big-font {
-        font-size: 1.5em;
-        padding-left: 0.5em;
-    }
     .products-grid-item {
         font-size: 1.1em;
+    }
+    .titleContainer{
+        display: flex;
+        flex-direction: column;
+        padding-left: 0px;
+        margin-bottom: 1em;
+    }
+    .titleContainer h1 {
+        font-size: 1.5em;
+        text-align: center;
+        width: 100%;
+    }
+    #title{
+        font-size: 2.3em;
+        text-align: center;
+    }
+    .create-product{
+        width: 90%;
+        height: 2.5em;
+        border-radius: 0.6em;
+        cursor: pointer;
+        font-size: 0.9em;
+        font-family: 'Outfit Regular';
+    }
+    .categoryInfo p{
+        font-size: 0.9em;
+
+    }
+    .products-grid-header{
+        font-size: 0.4em;
+    }
+    .products-grid-item a{
+        font-size: 0.5em;
+    }
+    .categoryContainer{
+        min-height: 3em;
+        height: auto;
+        border-radius: 0.5em;
+    }
+    .categoryInfo{
+        height: 3em;
+    }
+    .tool-bar {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    .inventory-body .tool-bar-button{
+        height: 2.5em;
+        font-size: 0.4em;
+        width: auto;
+        margin-top: 1em;
+    }
+    #categories-h1{
+        font-size: 1.5em;
+    }
+}
+@media (prefers-color-scheme: dark) {
+    .categoryInfo p{
+        background-color: rgb(16, 16, 16);
+        color: rgb(243, 243, 243);
+    }
+    .products-grid-item a{
+        color: rgb(243, 243, 243);
+    }
+    .products-grid-header{
+        color: rgb(243, 243, 243);
+    }
+    .blackLine {
+        background-color: rgb(243, 243, 243);
+    }
+    .tool-bar-button{
+        background-color: rgb(16, 16, 16);
+        border: 1px solid rgb(151, 151, 151);
+        color: rgb(243, 243, 243);
+    }
+    .tool-bar-button:hover{
+        background-color: rgb(35, 35, 35);
+        border: 1px solid rgb(151, 151, 151);
+        color: rgb(243, 243, 243);
+    }
+    .tool-bar-button:disabled{
+        background-color: rgb(72, 72, 72);
+        color:rgb(126, 126, 126)
     }
 }
