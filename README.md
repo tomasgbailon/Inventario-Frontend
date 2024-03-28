@@ -99,7 +99,14 @@ npm run dev
 - [x] Bug fixes
 - [x] Improved UI for documentation in dark mode
 
-## Version 1.1.2 🚀 (March, 2024) ```Latest```
+## Version 1.1.2 🚀 (March, 2024) 
 - [x] Added events to documentation
 - [x] Improved invitations logic
+
+## Version 1.1.3 ☀️ (March, 2024) ```Latest```
+- [x] Fixed documentarion about projects
+- [x] Improved responsiveness for vertical screens
+- [x] Improved date format in reports
+- [x] Limited events reports to current year   
+
 
